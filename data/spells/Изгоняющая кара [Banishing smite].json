@@ -1,0 +1,21 @@
+{
+  "Id": "3bb087e5-9bd6-48a9-ba4b-e2d6e73851bc",
+  "OriginalId": "117",
+  "Name": "Изгоняющая кара [Banishing smite]",
+  "Hold": false,
+  "HoldTime": "0001-01-01T00:00:00",
+  "ReplaceOriginal": true,
+  "OrigName": "Banishing smite",
+  "Level": 5,
+  "School": "5",
+  "Time": "Бонусное действие, которое вы совершаете сразу после попадания по существу рукопашным оружием или безоружной атакой.",
+  "Range": "На себя",
+  "V": true,
+  "S": false,
+  "ReqSee": false,
+  "M": false,
+  "ComponentText": "",
+  "Duration": "Концентрация, до 1 минуты",
+  "Classes": "16",
+  "HtmlText": "<table name=\"Таблица\" chest=0 linkChest=1 trans=0 rand=0 min=1 max=1><tr f=1><td al=Left w=0 s=1 t=*>Кратко</td></tr><tr f=0><td al=Left><dice dmgType=\"20\" mg=\"0\" name=\"5к10\">5к10</dice> силовым полем, если у цели остаётся <dice dmgType=\"31\" mg=\"0\" name=\"50\">50</dice> хитов или меньше, то <ch new=1 p=0 clear=0 h=0 ps=0 psm=0 prof=0 text=\"Спасбросок Харизмы\" difLevel=\"1|4\" mod=\"0\" customValue=\"[dc]\" id=\"s6\">Спасбросок Харизмы СЛ [dc]</ch>, иначе <st id=\"incapacitated\" box=0 hidden=0 name=\"неде\u0002еcпособен\" t=0 ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st> и отправлен на полуплан.</td></tr></table>\r\nЦель, поражённая этой атакой, получает до\u0002полнительных <dice dmgType=\"20\" mg=\"0\" name=\"5к10\">5к10</dice> урона силовым полем от этой атаки. Если после атаки у цели остаётся <dice dmgType=\"31\" mg=\"0\" name=\"50\">50</dice> хитов или меньше, то она должна совершить <ch new=1 p=0 clear=0 h=0 ps=0 psm=0 prof=0 text=\"Спасбросок Харизмы\" difLevel=\"1|4\" mod=\"0\" customValue=\"[dc]\" id=\"s6\">Спасбросок Харизмы СЛ [dc]</ch> или быть перемещённой на безвред\u0002ный полуплан на время длительности заклина\u0002ния. Находясь там, цель находится в состоянии <st id=\"incapacitated\" box=0 hidden=0 name=\"недееспособный\" t=0 ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st>. Когда заклинание заканчивает\u0002ся, цель возвращается на место, откуда исчезла, или в ближайшее свободное пространство, если исходное место занято"
+}

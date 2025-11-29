@@ -1,0 +1,21 @@
+{
+  "Id": "e262bb57-30e6-41a9-8112-5db674b5515f",
+  "OriginalId": "322",
+  "Name": "Слово силы Смерть [Power word kill]",
+  "Hold": false,
+  "HoldTime": "0001-01-01T00:00:00",
+  "ReplaceOriginal": true,
+  "OrigName": "Power word kill",
+  "Level": 9,
+  "School": "6",
+  "Time": "1 действие",
+  "Range": "60 футов",
+  "V": true,
+  "S": false,
+  "ReqSee": true,
+  "M": false,
+  "ComponentText": "",
+  "Duration": "Мгновенно",
+  "Classes": "12|21|20|19",
+  "HtmlText": "<table name=\"Таблица\" chest=0 linkChest=1 trans=0 rand=0 min=1 max=1><tr f=1><td al=Left w=0 s=1 t=*>Кратко</td></tr><tr f=0><td al=Left>У цели до <dice dmgType=\"31\" name=\"100\">100</dice> хитов — умирает, иначе <dice dmgType=\"22\" name=\"12к12\">12к12</dice></td></tr></table>\r\nВы заставляете одно существо, которое видите в пределах дистанции, умереть. Если у цели <dice dmgType=\"31\" name=\"100\">100</dice> хитов или меньше, то она умирает. В противном случае она получает <dice dmgType=\"22\" name=\"12к12\">12к12</dice> урона психической энергией."
+}

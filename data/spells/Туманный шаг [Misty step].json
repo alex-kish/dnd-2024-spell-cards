@@ -1,0 +1,21 @@
+{
+  "Id": "6b393a66-e8dc-4e16-b415-72df56467646",
+  "OriginalId": "352",
+  "Name": "Туманный шаг [Misty step]",
+  "Hold": false,
+  "HoldTime": "0001-01-01T00:00:00",
+  "ReplaceOriginal": true,
+  "OrigName": "Misty step",
+  "Level": 2,
+  "School": "2",
+  "Time": "Бонусное действие",
+  "Range": "На себя",
+  "V": true,
+  "S": false,
+  "ReqSee": true,
+  "M": false,
+  "ComponentText": "",
+  "Duration": "Мгновенная",
+  "Classes": "21|22|20|26|25|16|17|19",
+  "HtmlText": "<table name=\"Таблица\" chest=0 linkChest=1 trans=0 rand=0 min=1 max=1><tr f=1><td al=Left w=0 s=1 t=*>Кратко</td></tr><tr f=0><td al=Left>Схваченный вами маг, растворяется в серебряном тумане. Появившись в <ft cell=5>30</ft> от вас, он с Рывком убегает прочь.</td></tr></table>\r\nВас на мгновение окружает серебристый туман и вы телепортируетесь на расстояние до <ft cell=5>30</ft> в незанятое пространство, которое видите."
+}

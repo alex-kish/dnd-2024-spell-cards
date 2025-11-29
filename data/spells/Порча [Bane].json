@@ -1,0 +1,21 @@
+{
+  "Id": "bad9f454-32e4-40c7-a0fa-1cc83b74e7a7",
+  "OriginalId": "254",
+  "Name": "Порча [Bane]",
+  "Hold": false,
+  "HoldTime": "0001-01-01T00:00:00",
+  "ReplaceOriginal": true,
+  "OrigName": "Bane",
+  "Level": 1,
+  "School": "6",
+  "Time": "1 действие",
+  "Range": "30 футов",
+  "V": true,
+  "S": true,
+  "ReqSee": true,
+  "M": true,
+  "ComponentText": "капля крови",
+  "Duration": "Концентрация, до 1 минуты",
+  "Classes": "12|13|20",
+  "HtmlText": "<table name=\"Таблица\" chest=0 linkChest=1 trans=0 rand=0 min=1 max=1><tr f=1><td al=Left w=0 s=1 t=*>Кратко</td></tr><tr f=0><td al=Left>3 цели — <ch new=1 p=0 clear=0 h=0 ps=0 psm=0 prof=0 text=\"Спасбросок Харизмы\" difLevel=\"1|4\" mod=\"0\" customValue=\"[dc]\" id=\"s6\">Спасбросок Харизмы СЛ [dc]</ch>, иначе <dice dmgType=\"32\" name=\"1к4\">1к4</dice> вычитать броска атаки или спасброска</td></tr></table>\r\nДо трёх существ в пределах дистанции, кото\u0002рых вы видите, должны совершить <ch new=1 p=0 clear=0 h=0 ps=0 psm=0 prof=0 text=\"Спасбросок Харизмы\" difLevel=\"1|4\" mod=\"0\" customValue=\"[dc]\" id=\"s6\">Спасбросок Харизмы СЛ [dc]</ch>. Пока заклинание активно, каждый раз, когда цель, провалившая этот спасбросок, совер\u0002шает бросок атаки или спасбросок, она должна бросать <dice dmgType=\"32\" name=\"1к4\">1к4</dice> и вычитать выпавший результат из броска атаки или спасброска.\r\n<zag size=\"14\" s=1 >На больших уровнях:</zag> Вы можете сделать целью одно дополнительное суще\u0002ство за каждый уровень ячейки выше первого"
+}

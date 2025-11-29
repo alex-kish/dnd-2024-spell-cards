@@ -1,0 +1,21 @@
+{
+  "Id": "b28840e8-6e51-4559-859c-4b5c75fe8ef0",
+  "OriginalId": "TCoE_4",
+  "Name": "Расщепление Разума [Mind Sliver]",
+  "Hold": false,
+  "HoldTime": "0001-01-01T00:00:00",
+  "ReplaceOriginal": true,
+  "OrigName": "Mind Sliver",
+  "Level": 0,
+  "School": "6",
+  "Time": "1 действие",
+  "Range": "60 футов",
+  "V": true,
+  "S": false,
+  "ReqSee": false,
+  "M": false,
+  "ComponentText": "",
+  "Duration": "1 раунд",
+  "Classes": "21|20|19",
+  "HtmlText": "<table name=\"Таблица\" chest=0 linkChest=1 trans=0 rand=0 min=1 max=1><tr f=1><td al=Left w=0 s=1 t=*>Эффект</td></tr><tr f=0><td al=Left>одно видимое существо: <ch new=1 p=0 clear=0 h=0 ps=0 psm=0 prof=0 text=\"Спасбросок Интеллекта\" difLevel=\"1|4\" mod=\"0\" customValue=\"[dc]\" id=\"s4\">Спасбросок Интеллекта СЛ [dc]</ch>, иначе <dice dmgType=\"0\" auto=\"1\" name=\"[lvl,7]/6\">[lvl,7]/6</dice>d6 урона психической энергией и <st id=\"0ffa8563-e9a0-4e2e-a286-5a0acf1a65f5\" r=\"1\" box=0 hidden=0 name=\"вычтет\" t=2 modes=\"3;;0;-1d4;1;0;0;;0;0;1;0;;0;;-1;;0;0;0;0;0;;;;0;0;0|3;o;0;-1d4;0;0;0;;1;0;1;0;;0;;0;;0;0;0;0;0;;;;0;0;0\" ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st> <dice dmgType=\"32\" name=\"1d4\">1d4</dice> из следующего спасброска, до конца вашего следующего хода.</td></tr></table>\r\nВы пытаетесь временно пошатнуть разум 1 существа, которое видите в пределах дистанции. Цель должна преуспеть в <ch new=1 p=0 clear=0 h=0 ps=0 psm=0 prof=0 text=\"Спасброске Интеллекта\" difLevel=\"1|4\" mod=\"0\" customValue=\"[dc]\" id=\"s4\">Спасброске Интеллекта СЛ [dc]</ch> или получить <dice dmgType=\"22\" name=\"1к6\">1к6</dice> урона психической энергией и <st id=\"0ffa8563-e9a0-4e2e-a286-5a0acf1a65f5\" r=\"1\" box=0 hidden=0 name=\"вычесть\" t=2 modes=\"3;;0;-1d4;1;0;0;;0;0;1;0;;0;;-1;;0;0;0;0;0;;;;0;0;0|3;o;0;-1d4;0;0;0;;1;0;1;0;;0;;0;;0;0;0;0;0;;;;0;0;0\" ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st> <dice dmgType=\"32\" name=\"1к4\">1к4</dice>  из следующего спасброска, который оно совершит до конца вашего следующего хода.\r\n<zag size=\"14\" s=1 >На более высоких уровнях:</zag>  Урон увеличивается на <dice dmgType=\"22\" name=\"1d6\">1d6</dice>6, когда вы достигаете 5-го уровня (<dice dmgType=\"22\" name=\"2d6\">2d6</dice>), 11-го уровня (<dice dmgType=\"22\" name=\"3d6\">3d6</dice>) и 17-го уровня (<dice dmgType=\"22\" name=\"4d6\">4d6</dice>)."
+}

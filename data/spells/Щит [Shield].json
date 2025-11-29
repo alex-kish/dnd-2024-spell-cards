@@ -1,0 +1,21 @@
+{
+  "Id": "7dc57463-7917-45f5-b9dc-f8d48c6955d0",
+  "OriginalId": "70",
+  "Name": "Щит [Shield]",
+  "Hold": false,
+  "HoldTime": "0001-01-01T00:00:00",
+  "ReplaceOriginal": true,
+  "OrigName": "Shield",
+  "Level": 1,
+  "School": "5",
+  "Time": "Реакция, которую вы совершаете, когда по вам попадают броском атаки или вы становитесь целью заклинания Волшебная стрела",
+  "Range": "На себя",
+  "V": true,
+  "S": true,
+  "ReqSee": false,
+  "M": false,
+  "ComponentText": "",
+  "Duration": "1 раунд",
+  "Classes": "21|25|19",
+  "HtmlText": "<table name=\"Таблица\" chest=0 linkChest=1 trans=0 rand=0 min=1 max=1><tr f=1><td al=Left w=0 s=1 t=*>Кратко</td></tr><tr f=0><td al=Left> <st id=\"370ce807-9f11-4e0b-af3b-50433ea5ba76\" r=\"1\" box=0 hidden=0 name=\"+5 к КД\" t=1 modes=\"2;;5;+5;0;0;0;;0;0;1;0;;0;;0;;0;0;0;1;2;;;;0;0\" ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st>, иммун к <baselink isFolder=\"0\" type=\"Spell\" id=\"27\" full=0 astext=0 ph=\"0\" uph=\"0\">Волшебная стрела [Magic missile]</baselink>.</td></tr></table>\r\nНезаметный барьер из магической силы защищает вас. До начала вашего следующего хода у вас есть бонус <st id=\"370ce807-9f11-4e0b-af3b-50433ea5ba76\" r=\"1\" box=0 hidden=0 name=\"+5 к КД\" t=1 modes=\"2;;5;+5;0;0;0;;0;0;1;0;;0;;0;;0;0;0;1;2;;;;0;0\" ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st>, в том числе против атаки, которая спровоцировала эту реакцию, и вы не получаете урон от заклинания <baselink isFolder=\"0\" type=\"Spell\" id=\"27\" full=0 astext=0 ph=\"0\" uph=\"0\">Волшебная стрела [Magic missile]</baselink>."
+}

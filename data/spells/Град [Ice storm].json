@@ -1,0 +1,21 @@
+{
+  "Id": "826c7713-191b-4e97-bf17-ca131a553ad2",
+  "OriginalId": "49",
+  "Name": "Град [Ice storm]",
+  "Hold": false,
+  "HoldTime": "0001-01-01T00:00:00",
+  "ReplaceOriginal": true,
+  "OrigName": "Ice storm",
+  "Level": 4,
+  "School": "1",
+  "Time": "1 действие",
+  "Range": "300 футов",
+  "V": true,
+  "S": true,
+  "ReqSee": false,
+  "M": true,
+  "ComponentText": "варежка",
+  "Duration": "Мгновенная",
+  "Classes": "21|22|26|25|19",
+  "HtmlText": "<table name=\"Таблица\" chest=0 linkChest=1 trans=0 rand=0 min=1 max=1><tr f=1><td al=Left w=0 s=1 t=*>Кратко</td></tr><tr f=0><td al=Left>Цилиндр радиусом <ft cell=5>20</ft> и высотой <ft cell=5>40</ft>: <ch new=1 p=0 clear=0 h=0 ps=0 psm=0 prof=0 text=\"Спасбросок Ловкости\" difLevel=\"1|4\" mod=\"0\" customValue=\"[dc]\" id=\"s2\">Спасбросок Ловкости СЛ [dc]</ch>, иначе <dice dmgType=\"10\" name=\"2к10\">2к10</dice> дробящего урона и <dice dmgType=\"14\" name=\"4к6\">4к6</dice> урона холодом или 1/2. Область <st id=\"a97a5776-0c26-447e-b131-0b2d9f50a065\" box=0 hidden=0 name=\"труднопроходимая местность\" t=0 modes=\"16;;0;-15;0;0;0;Пешком;0;0;1;0;;0;;-1;;0;0;0;0;0;;;;0;0;0\" ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st> до конца вашего следующего хода.</td></tr></table>\r\nГрад падает в цилиндре радиусом <ft cell=5>20</ft> и высотой <ft cell=5>40</ft>, центрированном на точке в пределах дистанции. Каждое существо в цилиндре должно совершить <ch new=1 p=0 clear=0 h=0 ps=0 psm=0 prof=0 text=\"Спасбросок Ловкости\" difLevel=\"1|4\" mod=\"0\" customValue=\"[dc]\" id=\"s2\">Спасбросок Ловкости СЛ [dc]</ch>. Существо получает <dice dmgType=\"10\" name=\"2к10\">2к10</dice> дробящего урона и <dice dmgType=\"14\" name=\"4к6\">4к6</dice> урона холодом при провале или половину этого урона при успехе.\r\n_Град превращает землю в цилиндре в <st id=\"a97a5776-0c26-447e-b131-0b2d9f50a065\" box=0 hidden=0 name=\"труднопроходимую местность\" t=0 modes=\"16;;0;-15;0;0;0;Пешком;0;0;1;0;;0;;-1;;0;0;0;0;0;;;;0;0;0\" ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st> до конца вашего следующего хода.\r\n<zag size=\"14\" s=1 >На больших уровнях:</zag>  Дробящий урон увеличивается на <dice dmgType=\"10\" name=\"1к10\">1к10</dice> за каждый уровень ячейки выше 4."
+}

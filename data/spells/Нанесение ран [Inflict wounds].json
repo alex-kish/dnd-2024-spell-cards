@@ -1,0 +1,21 @@
+{
+  "Id": "263dee77-fae6-4d3c-9bc2-7054bc525ef9",
+  "OriginalId": "177",
+  "Name": "Нанесение ран [Inflict wounds]",
+  "Hold": false,
+  "HoldTime": "0001-01-01T00:00:00",
+  "ReplaceOriginal": true,
+  "OrigName": "Inflict wounds",
+  "Level": 1,
+  "School": "4",
+  "Time": "1 действие",
+  "Range": "Касание",
+  "V": true,
+  "S": true,
+  "ReqSee": false,
+  "M": false,
+  "ComponentText": "",
+  "Duration": "Мгновенная",
+  "Classes": "13",
+  "HtmlText": "<table name=\"Таблица\" chest=0 linkChest=1 trans=0 rand=0 min=1 max=1><tr f=1><td al=Left w=0 s=1 t=*>Кратко</td></tr><tr f=0><td al=Left><ch new=1 p=0 clear=0 h=0 ps=0 psm=0 prof=0 text=\"Спасбросок Телосложения\" difLevel=\"1|4\" mod=\"0\" customValue=\"[dc]\" id=\"s3\">Спасбросок Телосложения СЛ [dc]</ch>, иначе <dice dmgType=\"21\" name=\"2к10\">2к10</dice> урона некротической энергией, или 1/2.</td></tr></table>\r\nСущество, к которому вы прикасаетесь, совершает <ch new=1 p=0 clear=0 h=0 ps=0 psm=0 prof=0 text=\"Спасбросок Телосложения\" difLevel=\"1|4\" mod=\"0\" customValue=\"[dc]\" id=\"s3\">Спасбросок Телосложения СЛ [dc]</ch>. При провале оно получает <dice dmgType=\"21\" name=\"2к10\">2к10</dice> урона некротической энергией, а при успешном спасброске — половину этого урона.\r\n<zag size=\"14\" s=1 >На больших уровнях:</zag> Урон увеличивается на <dice dmgType=\"21\" name=\"1к10\">1к10</dice> за каждый уровень ячейки заклинаний выше первого."
+}

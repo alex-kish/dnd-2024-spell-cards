@@ -1,0 +1,21 @@
+{
+  "Id": "63b61002-773b-45e2-a18e-ea3dae966bf7",
+  "OriginalId": "214",
+  "Name": "Остановка времени [Time stop]",
+  "Hold": false,
+  "HoldTime": "0001-01-01T00:00:00",
+  "ReplaceOriginal": true,
+  "OrigName": "Time stop",
+  "Level": 9,
+  "School": "7",
+  "Time": "1 действие",
+  "Range": "На себя",
+  "V": true,
+  "S": false,
+  "ReqSee": false,
+  "M": false,
+  "ComponentText": "",
+  "Duration": "Мгновенная",
+  "Classes": "19|21",
+  "HtmlText": "<table name=\"Таблица\" chest=0 linkChest=1 trans=0 rand=0 min=1 max=1><tr f=1><td al=Left w=0 s=1 t=*>Кратко</td></tr><tr f=0><td al=Left>После вашего хода у вас есть еще минимум 2 (<dice dmgType=\"32\" name=\"1к4+1\">1к4+1</dice>) полноценных хода. Самое время наложить: \r\n• <baselink isFolder=\"0\" type=\"Spell\" id=\"161\" full=0 astext=0 ph=\"0\" uph=\"0\">Мерцание [Blink]</baselink> или <baselink isFolder=\"0\" type=\"Spell\" id=\"87\" full=0 astext=0 ph=\"0\" uph=\"0\">Замедленный огненный шар [Delayed blast fireball]</baselink>,\r\n• <baselink isFolder=\"0\" type=\"Spell\" id=\"218\" full=0 astext=0 ph=\"0\" uph=\"0\">Отражения [Mirror image]</baselink>,\r\n• <baselink isFolder=\"0\" type=\"Spell\" id=\"206\" full=0 astext=0 ph=\"0\" uph=\"0\">Огненный щит [Fire shield]</baselink>,\r\n• <baselink isFolder=\"0\" type=\"Spell\" id=\"20\" full=0 astext=0 ph=\"0\" uph=\"0\">Видение невидимого [See invisibility]</baselink>/<baselink isFolder=\"0\" type=\"Spell\" id=\"126\" full=0 astext=0 ph=\"0\" uph=\"0\">Истинное зрение [True Seeing]</baselink> или <baselink isFolder=\"0\" type=\"Spell\" id=\"107\" full=0 astext=0 ph=\"0\" uph=\"0\">Узилище [Forcecage]</baselink>/<baselink isFolder=\"0\" type=\"Spell\" id=\"314\" full=0 astext=0 ph=\"0\" uph=\"0\">Силовая стена [Wall of Force]</baselink>,\r\n• <baselink isFolder=\"0\" type=\"Spell\" id=\"474\" full=0 astext=0 ph=\"0\" uph=\"0\">Корона звезд [Crown of Stars]</baselink>/<baselink isFolder=\"0\" type=\"Spell\" id=\"448\" full=0 astext=0 ph=\"0\" uph=\"0\">Болезненное сияние [Sickening radiance]</baselink> или <baselink isFolder=\"0\" type=\"Spell\" id=\"317\" full=0 astext=0 ph=\"0\" uph=\"0\">Замешательство [Befuddlement]</baselink>, чтобы смотреть на попкорн в микроволновке.</td></tr></table>\r\nВы кратковременно останавливаете течение времени для всех, кроме себя. Для других существ время не проходит, в то время как вы совершаете <dice dmgType=\"32\" name=\"1к4+1\">1к4+1</dice> хода подряд, в течение которых вы можете использовать <zag size=\"14\" i=1 >Действия</zag> и перемещаться как обычно.\r\n_Это заклинание заканчивается, если одно из Действий, которые вы совершаете в этот период, или любой эффект, созданный вами, влияет на любое существо, кроме вас, или на объект, который носит или держит кто-то другой. Кроме того, заклинание заканчивается, если вы перемещаетесь дальше, чем на <ft cell=5>1000</ft> от места, где вы его наложили."
+}

@@ -1,0 +1,21 @@
+{
+  "Id": "ff88a85b-e2cf-4f85-83d9-95a409d0ebae",
+  "OriginalId": "109",
+  "Name": "Ужас [Fear]",
+  "Hold": false,
+  "HoldTime": "0001-01-01T00:00:00",
+  "ReplaceOriginal": true,
+  "OrigName": "Fear",
+  "Level": 3,
+  "School": "3",
+  "Time": "1 действие",
+  "Range": "На себя (30-футовый конус)",
+  "V": true,
+  "S": true,
+  "ReqSee": false,
+  "M": true,
+  "ComponentText": "белое перо",
+  "Duration": "Концентрация, до 1 минуты",
+  "Classes": "12|21|20|26|25|19",
+  "HtmlText": "<table name=\"Таблица\" chest=0 linkChest=1 trans=0 rand=0 min=1 max=1><tr f=1><td al=Left w=0 s=1 t=*>Кратко</td></tr><tr f=0><td al=Left><ch new=1 p=0 clear=0 h=0 ps=0 psm=0 prof=0 text=\"Спасбросок Мудрости\" difLevel=\"1|4\" mod=\"0\" customValue=\"[dc]\" id=\"s5\">Спасбросок Мудрости СЛ [dc]</ch>, иначе <st id=\"frightened\" box=0 hidden=0 name=\"Испуг\" t=0 ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st>, бросай все и Рывок отсюда.</td></tr></table>\r\nКаждое существо в <ft cell=5>30</ft> конусе должно успешно совершить <ch new=1 p=0 clear=0 h=0 ps=0 psm=0 prof=0 text=\"Спасбросок Мудрости\" difLevel=\"1|4\" mod=\"0\" customValue=\"[dc]\" id=\"s5\">Спасбросок Мудрости СЛ [dc]</ch> или уронить все, что оно держит, и получить состояние <st id=\"frightened\" box=0 hidden=0 name=\"испуганный\" t=0 ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st> на время длительности эффекта. <st id=\"frightened\" box=0 hidden=0 name=\"Испуганное\" t=0 ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st> существо совершает Действие рывок и перемещается от вас по самому безопасному маршруту в каждый свой ход, пока у неё есть куда перемещаться. Если существо заканчивает свой ход в месте, откуда оно не видит вас, то оно совершает <ch new=1 p=0 clear=0 h=0 ps=0 psm=0 prof=0 text=\"Спасбросок Мудрости\" difLevel=\"1|4\" mod=\"0\" customValue=\"[dc]\" id=\"s5\">Спасбросок Мудрости СЛ [dc]</ch>. При успешном спасброске заклинание заканчивается для этого существа."
+}

@@ -1,0 +1,21 @@
+{
+  "Id": "dc2f2bb0-07e2-4ed4-982f-a8e4b93778cf",
+  "OriginalId": "311",
+  "Name": "Священное пламя [Sacred flame]",
+  "Hold": false,
+  "HoldTime": "0001-01-01T00:00:00",
+  "ReplaceOriginal": true,
+  "OrigName": "Sacred flame",
+  "Level": 0,
+  "School": "1",
+  "Time": "1 действие",
+  "Range": "60 футов",
+  "V": true,
+  "S": true,
+  "ReqSee": false,
+  "M": false,
+  "ComponentText": "",
+  "Duration": "Мгновенная",
+  "Classes": "13",
+  "HtmlText": "<table name=\"Таблица\" chest=0 linkChest=1 trans=0 rand=0 min=1 max=1><tr f=1><td al=Left w=0 s=1 t=*>Эффект</td></tr><tr f=0><td al=Left>одно видимое существо: <ch new=1 p=0 clear=0 h=0 ps=0 psm=0 prof=0 text=\"Спасбросок Ловкость\" difLevel=\"1|4\" mod=\"0\" customValue=\"[dc]\" id=\"s2\">Спасбросок Ловкость СЛ [dc]</ch>, иначе <dice dmgType=\"0\" auto=\"1\" name=\"[lvl,7]/6\">[lvl,7]/6</dice>d8 излучением. <st id=\"cover2\" box=0 hidden=0 name=\"Укрытия\" t=0 modes=\"2;;2;+2;0;0;0;;0;0;1;0;;0;;0;;0;0;0;0;0;;;;0;0;0|3;s2;0;+2;0;0;0;;0;0;1;0;;0;;0;;0;0;0;0;0;;;;0;0;0\" ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st> не помогут.</td></tr></table>\r\nЛуч света, подобный пламени, нисходит на существо, которое вы можете видеть в пределах дистанции. Цель должна преуспеть в <ch new=1 p=0 clear=0 h=0 ps=0 psm=0 prof=0 text=\"Спасброске Ловкости\" difLevel=\"1|4\" mod=\"0\" customValue=\"[dc]\" id=\"s2\">Спасброске Ловкости СЛ [dc]</ch> или получить <dice dmgType=\"19\" name=\"1d8\">1d8</dice> урона излучением. Цель не получает эффекты от укрытия на половину или на три четверти для этого спасброска.\r\n<zag size=\"14\" s=1 >На больших уровнях:</zag> Урон увеличивается на <dice dmgType=\"19\" name=\"1d8\">1d8</dice>, когда вы достигаете 5 уровня (<dice dmgType=\"19\" name=\"2d8\">2d8</dice>), 11 уровня (<dice dmgType=\"19\" name=\"3d8\">3d8</dice>) и 17 уровня (<dice dmgType=\"19\" name=\"4d8\">4d8</dice>)."
+}

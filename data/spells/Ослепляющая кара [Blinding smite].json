@@ -1,0 +1,21 @@
+{
+  "Id": "1f950f26-e455-4dbf-a612-d45daac2cd0d",
+  "OriginalId": "213",
+  "Name": "Ослепляющая кара [Blinding smite]",
+  "Hold": false,
+  "HoldTime": "0001-01-01T00:00:00",
+  "ReplaceOriginal": true,
+  "OrigName": "Blinding smite",
+  "Level": 3,
+  "School": "1",
+  "Time": "Бонусное действие, которое вы совершаете сразу после попадания по существу рукопашным оружием или безоружной атакой.",
+  "Range": "На себя",
+  "V": true,
+  "S": false,
+  "ReqSee": false,
+  "M": false,
+  "ComponentText": "",
+  "Duration": "Концентрация, вплоть до 1 минуты",
+  "Classes": "16",
+  "HtmlText": "<table name=\"Таблица\" chest=0 linkChest=1 trans=0 rand=0 min=1 max=1><tr f=1><td al=Left w=0 s=1 t=*>Кратко</td></tr><tr f=0><td al=Left><dice dmgType=\"19\" mg=\"0\" name=\"3к8\">3к8</dice> урона излучением плюс <st id=\"blinded\" r=\"10\" box=0 hidden=0 name=\"ослеплён\" t=0 ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st>. В конце хода <ch new=1 p=0 clear=0 h=0 ps=0 psm=0 prof=0 text=\"Спасбросок Телосложения\" difLevel=\"1|4\" mod=\"0\" customValue=\"[dc]\" id=\"s3\">Спасбросок Телосложения СЛ [dc]</ch>, иначе все еще слеп.</td></tr></table>\r\nЦель, поражённая этой атакой, получает допол\u0002нительных <dice dmgType=\"19\" mg=\"0\" name=\"3к8\">3к8</dice> урона излучением от этой атаки и цель получает состояние <st id=\"blinded\" r=\"10\" box=0 hidden=0 name=\"ослеплённый\" t=0 ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st> до окон\u0002чания длительности заклинания. В конце своего хода <st id=\"blinded\" r=\"10\" box=0 hidden=0 name=\"ослеплённая\" t=0 ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st> цель делает <ch new=1 p=0 clear=0 h=0 ps=0 psm=0 prof=0 text=\"Спасбросок Телосложения\" difLevel=\"1|4\" mod=\"0\" customValue=\"[dc]\" id=\"s3\">Спасбросок Телосложения СЛ [dc]</ch>, оканчивая эффект заклинания на себе при успехе.\r\n<zag size=\"14\" s=1 >На больших уровнях:</zag> Дополнительный урон увеличивается на <dice dmgType=\"19\" mg=\"0\" name=\"1к8\">1к8</dice> за за каждый уровень ячейки выше 3."
+}

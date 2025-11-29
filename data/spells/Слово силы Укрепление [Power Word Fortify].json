@@ -1,0 +1,21 @@
+{
+  "Id": "4ba1bc40-42e5-4c98-bf04-7b8b781f47d6",
+  "OriginalId": null,
+  "Name": "Слово силы Укрепление [Power Word Fortify]",
+  "Hold": false,
+  "HoldTime": "0001-01-01T00:00:00",
+  "ReplaceOriginal": false,
+  "OrigName": "Power Word Fortify",
+  "Level": 7,
+  "School": "6",
+  "Time": "1 действие",
+  "Range": "60 футов",
+  "V": true,
+  "S": false,
+  "ReqSee": false,
+  "M": false,
+  "ComponentText": null,
+  "Duration": "Мгновенная",
+  "Classes": "12|13",
+  "HtmlText": "<table name=\"Таблица\" chest=0 linkChest=1 trans=0 rand=0 min=1 max=1><tr f=1><td al=Left w=0 s=1 t=*>Кратко</td></tr><tr f=0><td al=Left>До 6 существ могут получить по <st id=\"vremHp\" box=0 hidden=0 name=\"20 временных хитов\" t=0 modes=\"1;;10;120;0;0;0;;0;0;1;0;;0;;-1;;0;0;0;0;0;;;;0;0;0\" ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st> (распределите пул 120 ХП)</td></tr></table>\r\nВы укрепляете до шести существ, которых видите в пределах дистанции. Заклинание дарует <st id=\"vremHp\" box=0 hidden=0 name=\"120 временных хитов\" t=0 modes=\"1;;10;120;0;0;0;;0;0;1;0;;0;;-1;;0;0;0;0;0;;;;0;0;0\" ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st>, которые вы распределяете между получателями заклинания."
+}

@@ -1,0 +1,21 @@
+{
+  "Id": "cbaf6edc-e8fa-4816-8eeb-3c8fa193445f",
+  "OriginalId": "315",
+  "Name": "Скольжение [Grease]",
+  "Hold": false,
+  "HoldTime": "0001-01-01T00:00:00",
+  "ReplaceOriginal": true,
+  "OrigName": "Grease",
+  "Level": 1,
+  "School": "2",
+  "Time": "1 действие",
+  "Range": "60 футов",
+  "V": true,
+  "S": true,
+  "ReqSee": false,
+  "M": true,
+  "ComponentText": "кусочек свиного сала или масла",
+  "Duration": "1 минута",
+  "Classes": "21|23|26|25|19",
+  "HtmlText": "<table name=\"Таблица\" chest=0 linkChest=1 trans=0 rand=0 min=1 max=1><tr f=1><td al=Left w=0 s=1 t=*>Кратко</td></tr><tr f=0><td al=Left>Вошли/оказались или закончили ход — <ch new=1 p=0 clear=0 h=0 ps=0 psm=0 prof=0 text=\"Спасброске Ловкости\" difLevel=\"1|4\" mod=\"0\" customValue=\"[dc]\" id=\"s2\">Спасброске Ловкости СЛ [dc]</ch>, иначе <st id=\"prone\" r=\"1\" box=0 hidden=0 name=\"сбит сног\" t=1 ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st>.</td></tr></table>\r\nНесгораемый жир покрывает землю в квадрате со стороной <ft cell=5>10</ft> с центром в точке в пределах дистанции, и превращает её в <st id=\"a97a5776-0c26-447e-b131-0b2d9f50a065\" box=0 hidden=0 name=\"труднопроходимую местность\" t=0 modes=\"16;;0;-15;0;0;0;Пешком;0;0;1;0;;0;;-1;;0;0;0;0;0;;;\" ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st> на время действия.\r\n_Когда жир появляется, все существа стоящие в этой области, должны преуспеть в <ch new=1 p=0 clear=0 h=0 ps=0 psm=0 prof=0 text=\"Спасброске Ловкости\" difLevel=\"1|4\" mod=\"0\" customValue=\"[dc]\" id=\"s2\">Спасброске Ловкости СЛ [dc]</ch> или получить состояние <st id=\"prone\" r=\"1\" box=0 hidden=0 name=\"сбит сног\" t=1 ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st>. Существо, входящее в область или заканчивающее свой ход в ней, также должно преуспеть в этом спасброске или <st id=\"prone\" r=\"1\" box=0 hidden=0 name=\"упасть ничком\" t=1 ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st>."
+}

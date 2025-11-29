@@ -1,0 +1,21 @@
+{
+  "Id": "b1505ea4-1bd5-4edd-acfa-5a98f11292b9",
+  "OriginalId": "521",
+  "Name": "Синаптический разряд [Synaptic Static]",
+  "Hold": false,
+  "HoldTime": "0001-01-01T00:00:00",
+  "ReplaceOriginal": true,
+  "OrigName": "Synaptic Static",
+  "Level": 5,
+  "School": "6",
+  "Time": "1 действие",
+  "Range": "120 футов",
+  "V": true,
+  "S": true,
+  "ReqSee": false,
+  "M": false,
+  "ComponentText": "",
+  "Duration": "Мгновенно",
+  "Classes": "12|21|20|19",
+  "HtmlText": "<table name=\"Таблица\" chest=0 linkChest=1 trans=0 rand=0 min=1 max=1><tr f=1><td al=Left w=0 s=1 t=*>Кратко</td></tr><tr f=0><td al=Left>Cферf радиусом <ft cell=5>20</ft>: <ch new=1 p=0 clear=0 h=0 ps=0 psm=0 prof=0 text=\"Спасбросок Интеллекта\" difLevel=\"1|4\" mod=\"0\" customValue=\"[dc]\" id=\"s4\">Спасбросок Интеллекта СЛ [dc]</ch>, иначе <dice dmgType=\"22\" name=\"8к6\">8к6</dice> урона психической энергией и  вычитает <dice dmgType=\"32\" name=\"1к6\">1к6</dice> из бросков атаки, проверок характеристик и <st id=\"ConcStatus\" r=\"10\" box=0 hidden=0 name=\"концентрации\" t=7 ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st> (повторный в конце хода), или 1/2.</td></tr></table>\r\nВы вызываете всплеск психической энергии в точке в пределах дистанции. Каждое существо в сфере радиусом <ft cell=5>20</ft> с центром в этой точке должно совершить <ch new=1 p=0 clear=0 h=0 ps=0 psm=0 prof=0 text=\"Спасбросок Интеллекта\" difLevel=\"1|4\" mod=\"0\" customValue=\"[dc]\" id=\"s4\">Спасбросок Интеллекта СЛ [dc]</ch>. При провале оно получает <dice dmgType=\"22\" name=\"8к6\">8к6</dice> урона психической энергией, при успехе половину этого урона. \r\n_При провале цели также на 1 минуту окутываются запутанными мыслями. В это время она вычитает <dice dmgType=\"32\" name=\"1к6\">1к6</dice> из всех своих бросков атаки и проверок характеристик, а также <ch new=1 p=0 clear=0 h=0 ps=0 psm=0 prof=0 text=\"Спасбросков Телосложения\" difLevel=\"1|4\" mod=\"0\" customValue=\"10\" id=\"s3\">Спасбросков Телосложения СЛ 10</ch> для поддержания <st id=\"ConcStatus\" r=\"10\" box=0 hidden=0 name=\"концентрации\" t=7 ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st>. Цель совершает <ch new=1 p=0 clear=0 h=0 ps=0 psm=0 prof=0 text=\"Спасбросок Интеллекта\" difLevel=\"1|4\" mod=\"0\" customValue=\"[dc]\" id=\"s4\">Спасбросок Интеллекта СЛ [dc]</ch> в конце каждого своего хода, завершая эффект на себе при успехе."
+}

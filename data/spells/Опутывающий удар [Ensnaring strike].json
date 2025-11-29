@@ -1,0 +1,21 @@
+{
+  "Id": "b8eb2623-84ba-40ca-b6da-ec89f4d33f1a",
+  "OriginalId": "212",
+  "Name": "Опутывающий удар [Ensnaring strike]",
+  "Hold": false,
+  "HoldTime": "0001-01-01T00:00:00",
+  "ReplaceOriginal": true,
+  "OrigName": "Ensnaring strike",
+  "Level": 1,
+  "School": "2",
+  "Time": "Бонусное действие, которое вы совершаете сразу после попадания по существу оружием.",
+  "Range": "На себя",
+  "V": true,
+  "S": false,
+  "ReqSee": false,
+  "M": false,
+  "ComponentText": "",
+  "Duration": "Концентрация, до 1 минуты",
+  "Classes": "17",
+  "HtmlText": "<table name=\"Таблица\" chest=0 linkChest=1 trans=0 rand=0 min=1 max=1><tr f=1><td al=Left w=0 s=1 t=*>Кратко</td></tr><tr f=0><td al=Left><ch new=1 p=0 clear=0 h=0 ps=0 psm=0 prof=0 text=\"Спасбросок Силы\" difLevel=\"1|4\" mod=\"0\" customValue=\"[dc]\" id=\"s1\">Спасбросок Силы СЛ [dc]</ch>, иначе <st id=\"restrained\" r=\"10\" box=0 hidden=0 name=\"опу\u0002тан\" t=0 modes=\"5;;0;;0;0;0;;0;0;1;0;;0;;-1;;0;0;0;0;0;;p2;\" ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st> и в начале хода  <dice dmgType=\"12\" mg=\"0\" name=\"1к6\">1к6</dice> колющего.\r\n• Высвобождение <zag size=\"14\" i=1 >Действием</zag> проверка <ch new=1 p=0 clear=0 h=0 ps=0 psm=0 prof=0 text=\"Силы (Атлетика)\" difLevel=\"1|4\" mod=\"0\" customValue=\"[dc]\" id=\"a12\">Силы (Атлетика) СЛ [dc]</ch></td></tr></table>\r\nКогда вы попадаете по цели, то на ней появля\u0002ются цепкие лозы и она совершает <ch new=1 p=0 clear=0 h=0 ps=0 psm=0 prof=0 text=\"Спасбросок Силы\" difLevel=\"1|4\" mod=\"0\" customValue=\"[dc]\" id=\"s1\">Спасбросок Силы СЛ [dc]</ch>. Существо Большого или большего размера имеет <st id=\"preim\" box=0 hidden=0 name=\"преимущество\" t=0 modes=\"4;;0;;0;0;0;;0;0;1;0;;0;;-1;;0;0;0;0;0;;ini;|4;;0;;1;0;0;;0;0;1;0;;0;;-1;;0;0;0;0;0;;;|4;;0;;0;0;0;;0;1;1;0;;0;;-1;;0;0;0;0;0;;o;\" ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st> на этот спасбросок. При провале на цель накладывается состояние <st id=\"restrained\" r=\"10\" box=0 hidden=0 name=\"опу\u0002тан\" t=0 modes=\"5;;0;;0;0;0;;0;0;1;0;;0;;-1;;0;0;0;0;0;;p2;\" ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st> до окончания действия заклинания. При успешном спасброске лозы увядают, и заклина\u0002ние заканчивается.\r\n_Пока цель в состоянии <st id=\"restrained\" r=\"10\" box=0 hidden=0 name=\"опу\u0002тан\" t=0 modes=\"5;;0;;0;0;0;;0;0;1;0;;0;;-1;;0;0;0;0;0;;p2;\" ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st>, она получа\u0002ет <dice dmgType=\"12\" mg=\"0\" name=\"1к6\">1к6</dice> колющего урона в начале каждого своего хода. Цель или существо, находящееся в пределах досягаемости, могут совершить <zag size=\"14\" i=1 >Действие</zag>, что\u0002бы выполнить проверку <ch new=1 p=0 clear=0 h=0 ps=0 psm=0 prof=0 text=\"Силы (Атлетика)\" difLevel=\"1|4\" mod=\"0\" customValue=\"[dc]\" id=\"a12\">Силы (Атлетика) СЛ [dc]</ch> против Сл вашего заклинания. При успехе заклинание заканчивается.\r\n<zag size=\"14\" s=1 >На больших уровнях:</zag> Урон увеличивается на <dice dmgType=\"12\" mg=\"0\" name=\"1к6\">1к6</dice> за каждый уровень ячейки заклинаний выше первого."
+}

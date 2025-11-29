@@ -1,0 +1,21 @@
+{
+  "Id": "6d831d3a-502e-4404-b614-ab0311a43ab8",
+  "OriginalId": "94",
+  "Name": "Уход за умирающим [Spare the dying]",
+  "Hold": false,
+  "HoldTime": "0001-01-01T00:00:00",
+  "ReplaceOriginal": true,
+  "OrigName": "Spare the dying",
+  "Level": 0,
+  "School": "4",
+  "Time": "1 действие",
+  "Range": "15 футов",
+  "V": true,
+  "S": true,
+  "ReqSee": false,
+  "M": false,
+  "ComponentText": "",
+  "Duration": "Мгновенная",
+  "Classes": "22|13|23",
+  "HtmlText": "<table name=\"Таблица\" chest=0 linkChest=1 trans=0 rand=0 min=1 max=1><tr f=1><td al=Left w=0 s=1 t=*>Кратко</td></tr><tr f=0><td al=Left>Стабилизируй друга в далеке! <ft cell=5>15</ft>/<ft cell=5>30</ft>/<ft cell=5>60</ft>/<ft cell=5>120</ft></td></tr></table>\r\nВыберите существо в пределах досягаемости, у которого <dice dmgType=\"31\" name=\"0\">0</dice> хитов и которое не мертво. Существо <st id=\"unconcious\" box=0 hidden=0 name=\"стабилизируется\" t=0 modes=\"5;;0;;0;0;0;;1;0;1;0;;0;;-1;;0;0;0;0;0;;s1;;0;0;0|5;;0;;0;0;0;;1;0;1;0;;0;;-1;;0;0;0;0;0;;s2;;0;0;0\" inner=\"incapacitated|prone\" ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st>.\r\n<zag size=\"14\" s=1 >На больших уровнях:</zag> Дистанция увеличивается вдвое, когда вы достигаете 5 (<ft cell=5>30</ft>), 11 (<ft cell=5>60</ft>) и 17 (<ft cell=5>120</ft>) уровней."
+}

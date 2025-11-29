@@ -1,0 +1,21 @@
+{
+  "Id": "430ae400-4931-4856-bc0a-456d0b19e7a6",
+  "OriginalId": "4",
+  "Name": "Аура жизни [Aura of life]",
+  "Hold": false,
+  "HoldTime": "0001-01-01T00:00:00",
+  "ReplaceOriginal": true,
+  "OrigName": "Aura of life",
+  "Level": 4,
+  "School": "5",
+  "Time": "1 действие",
+  "Range": "На себя (30-футовый радиус)",
+  "V": true,
+  "S": false,
+  "ReqSee": false,
+  "M": false,
+  "ComponentText": "",
+  "Duration": "Концентрация, до 10 минут",
+  "Classes": "13|16",
+  "HtmlText": "<table name=\"Таблица\" chest=0 linkChest=1 trans=0 rand=0 min=1 max=1><tr f=1><td al=Left w=0 s=1 t=*>Кратко</td></tr><tr f=0><td al=Left><st id=\"550304e4-ea85-45f9-8e9b-58e3d75a1f8e\" box=0 hidden=0 name=\"сопротивление\" t=0 modes=\"11;;0;;0;0;0;;0;1;1;0;;0;21;0;;0;0;0;0;0;;;;0;0;0\" ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st> <dice dmgType=\"21\" name=\"некротическому\">некротическому</dice> уро\u0002ну, ХП не может быть снижено. Начиная ход с  <dice dmgType=\"31\" name=\"0\">0</dice> ХП - встань с <dice dmgType=\"31\" name=\"1\">1</dice> ХП.</td></tr></table>\r\nОт вас исходит аура эмананацией на <ft cell=5>30</ft> во время длительности заклинания. Пока вы и ваши союзники находитесь в пределах ауры, то получаете <st id=\"550304e4-ea85-45f9-8e9b-58e3d75a1f8e\" box=0 hidden=0 name=\"сопротивление\" t=0 modes=\"11;;0;;0;0;0;;0;1;1;0;;0;21;0;;0;0;0;0;0;;;;0;0;0\" ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st> <dice dmgType=\"21\" name=\"некротическому\">некротическому</dice> уро\u0002ну, и максимальное количество ваших хитов не может быть уменьшено. Если союзник с <dice dmgType=\"31\" name=\"0\">0</dice> хитами начинает свой ход в пределах ауры, то он восста\u0002навливает <dice dmgType=\"31\" name=\"1\">1</dice> хит"
+}

@@ -1,0 +1,21 @@
+{
+  "Id": "a0b41882-9775-49bf-84f3-55590c1b3e08",
+  "OriginalId": "24",
+  "Name": "Возрождение [Revivify]",
+  "Hold": false,
+  "HoldTime": "0001-01-01T00:00:00",
+  "ReplaceOriginal": true,
+  "OrigName": "Revivify",
+  "Level": 3,
+  "School": "4",
+  "Time": "1 действие",
+  "Range": "Касание",
+  "V": true,
+  "S": true,
+  "ReqSee": false,
+  "M": true,
+  "ComponentText": "алмаз стоимостью 300+ зм, расходуемый заклинанием",
+  "Duration": "Мгновенная",
+  "Classes": "22|13|23|16|17",
+  "HtmlText": "<table name=\"таблица\" chest=0 linkChest=1 trans=0 rand=0 min=1 max=1><tr f=1><td al=Left w=0 s=1 t=*>кратко</td></tr><tr f=0><td al=Left>Реанимирутей друга, павшего в бою не более минуты назад. Встань с <dice dmgType=\"31\" name=\"1\">1</dice> хитом!</td></tr></table>\r\nВы касаетесь мёртвого существа, которое умерло не более одной минуты назад и не скончалось от старости. Существо возвращается к жизни с <dice dmgType=\"31\" name=\"1\">1</dice> хитом. Это заклинание не восстанавливает недостающие части тела."
+}

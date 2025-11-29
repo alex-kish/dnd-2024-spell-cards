@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Карточки заклинаний D&D 2024</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Карточки заклинаний D&D 2024</h1>
+            <nav>
+                <button id="viewAllBtn" class="nav-btn active">Все заклинания</button>
+                <button id="viewBookBtn" class="nav-btn">Книга заклинаний</button>
+                <button id="clearBookBtn" class="nav-btn">Очистить книгу</button>
+            </nav>
+        </header>
+
+        <div id="allSpellsView" class="view">
+            <div class="filters">
+                <input type="text" id="searchName" placeholder="Поиск по названию..." class="filter-input">
+                <select id="filterLevel" class="filter-select">
+                    <option value="">Все уровни</option>
+                    <option value="0">Заговоры</option>
+                    <option value="1">1 уровень</option>
+                    <option value="2">2 уровень</option>
+                    <option value="3">3 уровень</option>
+                    <option value="4">4 уровень</option>
+                    <option value="5">5 уровень</option>
+                    <option value="6">6 уровень</option>
+                    <option value="7">7 уровень</option>
+                    <option value="8">8 уровень</option>
+                    <option value="9">9 уровень</option>
+                </select>
+                <select id="filterClass" class="filter-select">
+                    <option value="">Все классы</option>
+                </select>
+            </div>
+            <div id="loadingIndicator" class="loading" style="display: none;">
+                <p>Загрузка заклинаний...</p>
+            </div>
+            <div id="spellsGrid" class="spells-grid"></div>
+        </div>
+
+        <div id="spellBookView" class="view hidden">
+            <div class="book-header">
+                <div>
+                    <h2>Книга заклинаний</h2>
+                    <p id="bookCount" class="book-count">Заклинаний в книге: 0</p>
+                </div>
+                <button id="printBtn" class="print-btn">Печать</button>
+            </div>
+            <div id="spellBookGrid" class="spells-grid print-grid"></div>
+        </div>
+    </div>
+
+    <!-- Встроенные данные для работы без сервера -->
+    <script type="application/json" id="classes-data">
+[{"id":"11","name":"Изобретатель"},{"id":"12","name":"Бард"},{"id":"13","name":"Жрец"},{"id":"14","name":"Варвар"},{"id":"15","name":"Воин"},{"id":"16","name":"Паладин"},{"id":"17","name":"Следопыт"},{"id":"18","name":"Монах"},{"id":"19","name":"Чародей"},{"id":"20","name":"Колдун"},{"id":"21","name":"Волшебник"},{"id":"22","name":"Друид"},{"id":"23","name":"Плут"},{"id":"25","name":"Колдун (Пакт)"},{"id":"26","name":"Чародей (Происхождение)"}]
+    </script>
+    <script type="application/json" id="schools-data">
+[{"id":"1","name":"Воплощение"},{"id":"2","name":"Вызов"},{"id":"3","name":"Ограждение"},{"id":"4","name":"Некромантия"},{"id":"5","name":"Очарование"},{"id":"6","name":"Иллюзия"},{"id":"7","name":"Преобразование"},{"id":"8","name":"Прорицание"}]
+    </script>
+    <script src="data/all-spells.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+

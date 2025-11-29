@@ -1,0 +1,21 @@
+{
+  "Id": "a425edce-8997-4681-8000-98c4400e9d36",
+  "OriginalId": "20",
+  "Name": "Видение невидимого [See invisibility]",
+  "Hold": false,
+  "HoldTime": "0001-01-01T00:00:00",
+  "ReplaceOriginal": true,
+  "OrigName": "See invisibility",
+  "Level": 2,
+  "School": "8",
+  "Time": "1 действие",
+  "Range": "На себя",
+  "V": true,
+  "S": true,
+  "ReqSee": false,
+  "M": true,
+  "ComponentText": "щепотка талька",
+  "Duration": "1 час",
+  "Classes": "12|21|23|26|25|19",
+  "HtmlText": "<table name=\"Таблица\" chest=0 linkChest=1 trans=0 rand=0 min=1 max=1><tr f=1><td al=Left w=0 s=1 t=*>Кратко</td></tr><tr f=0><td al=Left>Видеть <st id=\"invisible\" r=\"10\" box=0 hidden=0 name=\"невидимое\" t=0 ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st> и Эфирный план</td></tr></table>\r\nНа время действия заклинания вы видите существа и объекты, обладающие состоянием <st id=\"invisible\" r=\"10\" box=0 hidden=0 name=\"невидимый\" t=0 ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st>, как если бы они были видимы, и можете видеть на Эфирный план. Существа и объекты там кажутся призрачными."
+}

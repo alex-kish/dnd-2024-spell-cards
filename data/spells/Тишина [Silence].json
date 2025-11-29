@@ -1,0 +1,21 @@
+{
+  "Id": "68f3f846-6f97-4a09-b871-67de812a1a66",
+  "OriginalId": "349",
+  "Name": "Тишина [Silence]",
+  "Hold": false,
+  "HoldTime": "0001-01-01T00:00:00",
+  "ReplaceOriginal": true,
+  "OrigName": "Silence",
+  "Level": 2,
+  "School": "3",
+  "Time": "1 действие (ритуал)",
+  "Range": "120 футов",
+  "V": true,
+  "S": true,
+  "ReqSee": false,
+  "M": false,
+  "ComponentText": "",
+  "Duration": "Концентрация, до 10 минут",
+  "Classes": "12|13|15|17",
+  "HtmlText": "<table name=\"Таблица\" chest=0 linkChest=1 trans=0 rand=0 min=1 max=1><tr f=1><td al=Left w=0 s=1 t=*>Кратко</td></tr><tr f=0><td al=Left>Сфера радиусом <ft cell=5>20</ft> — <st id=\"550304e4-ea85-45f9-8e9b-58e3d75a1f8e\" box=0 hidden=0 name=\"иммунитет\" t=0 modes=\"11;;0;;0;0;0;;1;0;1;0;;0;18;0;;0;0;0;0;0;;;;0;0;0\" ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st> к урону <dice dmgType=\"18\" name=\"звуком\">звуком</dice>, <st id=\"deafened\" r=\"10\" box=0 hidden=0 name=\"оглохли\" t=0 ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st>. Вербальные заклинания не доступны</td></tr></table>\r\nНа время действия заклинания никакие звуки не могут быть созданы внутри или пройти через сферу радиусом <ft cell=5>20</ft> с центром в точке, выбранной вами в пределах дистанции. Любое существо или объект, полностью находящийся внутри сферы, получает <st id=\"550304e4-ea85-45f9-8e9b-58e3d75a1f8e\" box=0 hidden=0 name=\"иммунитет\" t=0 modes=\"11;;0;;0;0;0;;1;0;1;0;;0;18;0;;0;0;0;0;0;;;;0;0;0\" ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st> к урону <dice dmgType=\"18\" name=\"звуком\">звуком</dice>, и существа получают состояния <st id=\"deafened\" r=\"10\" box=0 hidden=0 name=\"оглохшими\" t=0 ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st>, находясь полностью внутри неё. Наложение заклинания с вербальным компонентом в этой области невозможно."
+}

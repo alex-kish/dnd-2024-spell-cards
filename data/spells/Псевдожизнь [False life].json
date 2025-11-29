@@ -1,0 +1,21 @@
+{
+  "Id": "e2ff2a2e-b1c1-4fe5-8fc6-c53cb608b931",
+  "OriginalId": "287",
+  "Name": "Псевдожизнь [False life]",
+  "Hold": false,
+  "HoldTime": "0001-01-01T00:00:00",
+  "ReplaceOriginal": true,
+  "OrigName": "False life",
+  "Level": 1,
+  "School": "4",
+  "Time": "1 действие",
+  "Range": "На себя",
+  "V": true,
+  "S": true,
+  "ReqSee": false,
+  "M": true,
+  "ComponentText": "капля спирта",
+  "Duration": "1 час",
+  "Classes": "19|21|23",
+  "HtmlText": "<table name=\"Таблица\" chest=0 linkChest=1 trans=0 rand=0 min=1 max=1><tr f=1><td al=Left w=0 s=1 t=*>Кратко</td></tr><tr f=0><td al=Left>Вы получаете <dice dmgType=\"31\" name=\"2d4+4\">2d4+4</dice> <st id=\"vremHp\" box=0 hidden=0 name=\"временных хита\" t=0 modes=\"1;;10;50;0;0;0;;0;0;1;0;;0;;-1;;0;0;0;0;0;;;;0;0;0\" ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st>.</td></tr></table>\r\nВы получаете <dice dmgType=\"31\" name=\"2d4+4\">2d4+4</dice> <st id=\"vremHp\" box=0 hidden=0 name=\"временных хита\" t=0 modes=\"1;;10;50;0;0;0;;0;0;1;0;;0;;-1;;0;0;0;0;0;;;;0;0;0\" ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st>.\r\n<zag size=\"14\" s=1 >На больших уровнях:</zag> Вы получаете 5 дополнительных временных хитов за каждый уровень ячейки заклинания выше 1."
+}

@@ -1,0 +1,21 @@
+{
+  "Id": "4f693860-5f9a-4224-b1f4-65d643536cf1",
+  "OriginalId": "193",
+  "Name": "Обнаружение болезней и яда [Detect poison and disease]",
+  "Hold": false,
+  "HoldTime": "0001-01-01T00:00:00",
+  "ReplaceOriginal": true,
+  "OrigName": "Detect poison and disease",
+  "Level": 1,
+  "School": "8",
+  "Time": "1 действие (ритуал)",
+  "Range": "На себя (сфера радиусом 30 футов)",
+  "V": true,
+  "S": true,
+  "ReqSee": false,
+  "M": true,
+  "ComponentText": "лист тиса",
+  "Duration": "Концентрация, до 10 минут",
+  "Classes": "13|16|17|22",
+  "HtmlText": "<table name=\"Таблица\" chest=0 linkChest=1 trans=0 rand=0 min=1 max=1><tr f=1><td al=Left w=0 s=1 t=*>Кратко</td></tr><tr f=0><td al=Left>Все что содержит или производит <dice dmgType=\"16\" name=\"яд\">яд</dice>, в <ft cell=5>30</ft> от вас \"подсвечено\"</td></tr></table>\r\nНа время действия заклинания вы ощущаете местонахождение <dice dmgType=\"16\" name=\"ядов\">ядов</dice>, ядовитых существ и ма\u0002гических заражений в пределах <ft cell=5>30</ft> от вас. Вы определяете вид <dice dmgType=\"16\" name=\"яда\">яда</dice>, существа или зараже\u0002ния в каждом случае. Заклинание блокируется <ft cell=5>1</ft> камня, земли или дерева; 1 дюймом метал\u0002ла или тонким листом свинца."
+}

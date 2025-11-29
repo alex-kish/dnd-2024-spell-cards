@@ -1,0 +1,21 @@
+{
+  "Id": "aecd84c7-221c-4e8f-8d6b-cb88230f2524",
+  "OriginalId": "494",
+  "Name": "Очарование монстра [Charm Monster]",
+  "Hold": false,
+  "HoldTime": "0001-01-01T00:00:00",
+  "ReplaceOriginal": true,
+  "OrigName": "Charm Monster",
+  "Level": 4,
+  "School": "6",
+  "Time": "1 действие",
+  "Range": "30 футов",
+  "V": true,
+  "S": true,
+  "ReqSee": true,
+  "M": false,
+  "ComponentText": "",
+  "Duration": "1 час",
+  "Classes": "12|21|22|20|19",
+  "HtmlText": "<table name=\"Таблица\" chest=0 linkChest=1 trans=0 rand=0 min=1 max=1><tr f=1><td al=Left w=0 s=1 t=*>Кратко</td></tr><tr f=0><td al=Left><ch new=1 p=0 clear=0 h=0 ps=0 psm=0 prof=0 text=\"Спасбросок Мудрости\" difLevel=\"1|4\" mod=\"0\" customValue=\"[dc]\" id=\"s5\">Спасбросок Мудрости СЛ [dc]</ch> (с <st id=\"preim\" box=0 hidden=0 name=\"преимуществом\" t=0 modes=\"4;;0;;0;0;0;;0;0;1;0;;0;;0;;0;0;0;0;0;;ini;;0;0;0|4;;0;;1;0;0;;0;0;1;0;;0;;0;;0;0;0;0;0;;;;0;0;0|4;;0;;0;0;0;;0;1;1;0;;0;;0;;0;0;0;0;0;;o;;0;0;0\" ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st>, если сражается): <st id=\"charmed\" box=0 hidden=0 name=\"очаро\u0002ван\" t=0 ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st>.</td></tr></table>\r\nОдно существо, которое вы видите в пределах дистанции, совершает <ch new=1 p=0 clear=0 h=0 ps=0 psm=0 prof=0 text=\"Спасбросок Мудрости\" difLevel=\"1|4\" mod=\"0\" customValue=\"[dc]\" id=\"s5\">Спасбросок Мудрости СЛ [dc]</ch>. Оно делает это с <st id=\"preim\" box=0 hidden=0 name=\"преимуществом\" t=0 modes=\"4;;0;;0;0;0;;0;0;1;0;;0;;0;;0;0;0;0;0;;ini;;0;0;0|4;;0;;1;0;0;;0;0;1;0;;0;;0;;0;0;0;0;0;;;;0;0;0|4;;0;;0;0;0;;0;1;1;0;;0;;0;;0;0;0;0;0;;o;;0;0;0\" ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st>, если вы или ваши союзники сражаетесь с ним. В случае провала спасброска цель получает состояние <st id=\"charmed\" box=0 hidden=0 name=\"очарованный\" t=0 ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st> до окончания действия заклинания или до тех пор, пока вы или ваши союзники не нанесёте ей урон. <st id=\"charmed\" box=0 hidden=0 name=\"Очарованное\" t=0 ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st> существо становится друже\u0002любным по отношению к вам. Когда заклинание заканчивается, то цель осознаёт, что была <st id=\"charmed\" box=0 hidden=0 name=\"очаро\u0002вана\" t=0 ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st> вами. \r\n<zag size=\"14\" s=1 >На более высоких уровнях.</zag> Вы можете выбрать одно дополнительное существо за каждый уровень ячейки заклинания выше 4-го."
+}

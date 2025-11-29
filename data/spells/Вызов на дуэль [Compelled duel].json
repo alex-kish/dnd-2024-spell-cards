@@ -1,0 +1,21 @@
+{
+  "Id": "294a95b1-1e80-4ce7-ad17-2b68ebe642c8",
+  "OriginalId": "37",
+  "Name": "Вызов на дуэль [Compelled duel]",
+  "Hold": false,
+  "HoldTime": "0001-01-01T00:00:00",
+  "ReplaceOriginal": true,
+  "OrigName": "Compelled duel",
+  "Level": 1,
+  "School": "6",
+  "Time": "Бонусное действие",
+  "Range": "30 футов",
+  "V": true,
+  "S": false,
+  "ReqSee": true,
+  "M": false,
+  "ComponentText": "",
+  "Duration": "Концентрация, вплоть до 1 минуты",
+  "Classes": "16",
+  "HtmlText": "<table name=\"Таблица\" chest=0 linkChest=1 trans=0 rand=0 min=1 max=1><tr f=1><td al=Left w=0 s=1 t=*>Кратко</td></tr><tr f=0><td al=Left><ch new=1 p=0 clear=0 h=0 ps=0 psm=0 prof=0 text=\"Спасбросок Мудрости\" difLevel=\"1|4\" mod=\"0\" customValue=\"[dc]\" id=\"s5\">Спасбросок Мудрости СЛ [dc]</ch>, или сражайся со мной 1 на 1, в <ft cell=5>30</ft> (<st id=\"pomeha\" box=0 hidden=0 name=\"помеха\" t=0 modes=\"5;;0;;0;0;0;;0;0;1;0;;0;;0;;0;0;0;0;0;;;\" ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st> по другим)</td></tr></table>\r\nВы пытаетесь принудить существо к дуэли. Одно существо, которое вы видите в пределах дистанции, должно совершить <ch new=1 p=0 clear=0 h=0 ps=0 psm=0 prof=0 text=\"Спасбросок Мудрости\" difLevel=\"1|4\" mod=\"0\" customValue=\"[dc]\" id=\"s5\">Спасбросок Мудрости СЛ [dc]</ch>. В случае провала цель получает <st id=\"pomeha\" box=0 hidden=0 name=\"помеху\" t=0 modes=\"5;;0;;0;0;0;;0;0;1;0;;0;;0;;0;0;0;0;0;;;\" ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st> на броски атаки против существ, кроме вас, и не может добровольно переместиться на расстояние более <ft cell=5>30</ft> от вас.\r\n<zag size=\"14\" s=1 >Заклинание оканчивается</zag>, если вы соверша\u0002ете бросок атаки против существа, отличного от цели, если вы накладываете заклинание на врага, отличного от цели, если ваш союзник наносит урон цели или если вы заканчиваете свой ход на расстоянии более <ft cell=5>30</ft> от цели."
+}

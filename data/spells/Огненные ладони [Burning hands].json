@@ -1,0 +1,21 @@
+{
+  "Id": "5990e543-8ea9-4041-bb40-edaad6b1c837",
+  "OriginalId": "203",
+  "Name": "Огненные ладони [Burning hands]",
+  "Hold": false,
+  "HoldTime": "0001-01-01T00:00:00",
+  "ReplaceOriginal": true,
+  "OrigName": "Burning hands",
+  "Level": 1,
+  "School": "1",
+  "Time": "1 действие",
+  "Range": "На себя (15-футовый конус)",
+  "V": true,
+  "S": true,
+  "ReqSee": false,
+  "M": false,
+  "ComponentText": "",
+  "Duration": "Мгновенная",
+  "Classes": "21|26|25|19",
+  "HtmlText": "<table name=\"Таблица\" chest=0 linkChest=1 trans=0 rand=0 min=1 max=1><tr f=1><td al=Left w=0 s=1 t=*>Кратко</td></tr><tr f=0><td al=Left>Конус <ft cell=5>15</ft> — <ch new=1 p=0 clear=0 h=0 ps=0 psm=0 prof=0 text=\"Спасбросок Ловкость\" difLevel=\"1|4\" mod=\"0\" customValue=\"[dc]\" id=\"s2\">Спасбросок Ловкость СЛ [dc]</ch>: <dice dmgType=\"13\" name=\"3к6\">3к6</dice> урона огнём, или 1/2</td></tr></table>\r\nОт вас вырывается тонкий пласт пламени. Каждое существо в пределах <ft cell=5>15</ft> конуса должно совершить <ch new=1 p=0 clear=0 h=0 ps=0 psm=0 prof=0 text=\"Спасбросок Ловкость\" difLevel=\"1|4\" mod=\"0\" customValue=\"[dc]\" id=\"s2\">Спасбросок Ловкость СЛ [dc]</ch>, получая <dice dmgType=\"13\" name=\"3к6\">3к6</dice> урона огнём в случае провала или половину этого урона в случае успеха. Пламя поджигает все горючие предметы, никем не несомые и не носимые.\r\n<zag size=\"14\" s=1 >На больших уровнях:</zag> Урон увеличивается на <dice dmgType=\"13\" name=\"1к6\">1к6</dice> за каждый уровень ячейки выше первого."
+}

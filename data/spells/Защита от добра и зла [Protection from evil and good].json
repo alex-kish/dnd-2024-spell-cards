@@ -1,0 +1,21 @@
+{
+  "Id": "7eef829a-c295-490c-9d92-0f69710b7164",
+  "OriginalId": "99",
+  "Name": "Защита от добра и зла [Protection from evil and good]",
+  "Hold": false,
+  "HoldTime": "0001-01-01T00:00:00",
+  "ReplaceOriginal": true,
+  "OrigName": "Protection from evil and good",
+  "Level": 1,
+  "School": "5",
+  "Time": "1 действие",
+  "Range": "Касание",
+  "V": true,
+  "S": true,
+  "ReqSee": false,
+  "M": true,
+  "ComponentText": "фляга святой воды стоимостью 25+ зм, расходуемая заклинанием",
+  "Duration": "Концентрация, до 10 минут",
+  "Classes": "21|22|13|20|26|25|16",
+  "HtmlText": "<table name=\"Таблица\" chest=0 linkChest=1 trans=0 rand=0 min=1 max=1><tr f=1><td al=Left w=0 s=1 t=*>Кратко</td></tr><tr f=0><td al=Left>Защитись от Планарных существ — их атаки и с <st id=\"pomeha\" box=0 hidden=0 name=\"помехой\" t=0 modes=\"5;;0;;0;0;0;;0;0;1;0;;0;;-1;;0;0;0;0;0;;;;0;0;0\" ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st>, а тебе <st id=\"preim\" box=0 hidden=0 name=\"преимущество\" t=0 modes=\"4;;0;;0;0;0;;0;0;1;0;;0;;-1;;0;0;0;0;0;;ini;;0;0;0|4;;0;;1;0;0;;0;0;1;0;;0;;-1;;0;0;0;0;0;;;;0;0;0|4;;0;;0;0;0;;0;1;1;0;;0;;-1;;0;0;0;0;0;;o;;0;0;0\" ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st> от <st id=\"a32abbab-000e-49e2-8fe4-6628bf365889\" box=0 hidden=0 name=\"одержима\" t=0 ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st>, <st id=\"charmed\" box=0 hidden=0 name=\"очарована\" t=0 ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st> или <st id=\"frightened\" box=0 hidden=0 name=\"испугана\" t=0 ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st>.</td></tr></table>\r\nВы касаетесь одного согласного существа и оно до окончания длительности заклинания защищено от существ с типом: аберрация, небожитель, элементаль, фея, исчадие или нежить.\r\n_Защита предоставляет несколько эффектов. Существа этих типов совершают атаки по цели с <st id=\"pomeha\" box=0 hidden=0 name=\"помехой\" t=0 modes=\"5;;0;;0;0;0;;0;0;1;0;;0;;-1;;0;0;0;0;0;;;;0;0;0\" ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st>. Цель также не может быть <st id=\"a32abbab-000e-49e2-8fe4-6628bf365889\" box=0 hidden=0 name=\"одержима\" t=0 ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st> и не может быть <st id=\"charmed\" box=0 hidden=0 name=\"очарована\" t=0 ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st> или <st id=\"frightened\" box=0 hidden=0 name=\"испугана\" t=0 ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st> от таких существ. Если цель уже <st id=\"a32abbab-000e-49e2-8fe4-6628bf365889\" box=0 hidden=0 name=\"одержима\" t=0 ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st>, <st id=\"charmed\" box=0 hidden=0 name=\"очарована\" t=0 ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st> или <st id=\"frightened\" box=0 hidden=0 name=\"испугана\" t=0 ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st> таким существом, то она получает <st id=\"preim\" box=0 hidden=0 name=\"преимущество\" t=0 modes=\"4;;0;;0;0;0;;0;0;1;0;;0;;-1;;0;0;0;0;0;;ini;;0;0;0|4;;0;;1;0;0;;0;0;1;0;;0;;-1;;0;0;0;0;0;;;;0;0;0|4;;0;;0;0;0;;0;1;1;0;;0;;-1;;0;0;0;0;0;;o;;0;0;0\" ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st> на любые новые спасброски против соответствующего эффекта."
+}
