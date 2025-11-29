@@ -432,24 +432,36 @@ nav {
         grid-template-columns: repeat(3, 63.5mm);
         gap: 2mm;
         justify-content: center;
-        padding: 5mm;
+        padding: 0 5mm 10mm 5mm;
         width: 210mm;
+        margin-top: 0;
     }
 
     .spell-card {
         width: 63.5mm;
         height: 88.9mm;
         margin: 0;
-        border: 1px solid #000;
+        border: 2px solid #8b4513 !important;
+        border-radius: 8px !important;
         box-shadow: none;
         page-break-inside: avoid;
         break-inside: avoid;
         overflow: hidden;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
     }
 
     @page {
         size: A4;
-        margin: 0;
+        margin: 10mm;
+    }
+
+    /* Исправление для Firefox - используем box-shadow для границ */
+    @-moz-document url-prefix() {
+        .spell-card {
+            border: none !important;
+            box-shadow: inset 0 0 0 2px #8b4513;
+        }
     }
 }
 
