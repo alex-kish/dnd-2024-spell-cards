@@ -157,6 +157,7 @@ function setFontSize(spellId, size) {
 // Отображение заклинаний
 function displaySpells(spells) {
     const grid = document.getElementById('spellsGrid');
+    const countElement = document.getElementById('spellsCount');
     grid.innerHTML = '';
     
     const sortedSpells = sortSpells(spells);
@@ -164,6 +165,15 @@ function displaySpells(spells) {
         const card = createSpellCard(spell, false);
         grid.appendChild(card);
     });
+    
+    // Обновляем счетчик
+    if (countElement) {
+        const totalCount = allSpells.length;
+        const displayedCount = sortedSpells.length;
+        countElement.textContent = `Показано ${displayedCount} из ${totalCount} заклинаний`;
+    }
+    
+    updateSpellCardButtons();
 }
 
 // Создание карточки заклинания
