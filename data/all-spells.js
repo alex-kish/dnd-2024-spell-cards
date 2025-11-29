@@ -1361,7 +1361,7 @@ const ALL_SPELLS_DATA = [
     "M": true,
     "ComponentText": "кусочек слюды",
     "Duration": "Мгновенная",
-    "Classes": "12|21|20|26|25|15|19",
+    "Classes": "12|21|26|25|15|19",
     "HtmlText": "<table name=\"Таблица\" chest=0 linkChest=1 trans=0 rand=0 min=1 max=1><tr f=1><td al=Left w=0 s=1 t=*>Кратко</td></tr><tr f=0><td al=Left>Сфера <ft cell=5>10</ft> — <ch new=1 p=0 clear=0 h=0 ps=0 psm=0 prof=0 text=\"Спасбросок Телосложения\" difLevel=\"1|4\" mod=\"0\" customValue=\"[dc]\" id=\"s3\">Спасбросок Телосложения СЛ [dc]</ch>, иначе<dice dmgType=\"18\" name=\"3к8\">3к8</dice>, или 1/2. Конструкты с <st id=\"pomeha\" box=0 hidden=0 name=\"помехой\" t=0 modes=\"5;;0;;0;0;0;;0;0;1;0;;0;;-1;;0;0;0;0;0;;;;0;0;0\" ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st>.</td></tr></table>\r\nГромкий звук возникает в точке по вашему выбору в пределах дистанции. Каждое существо в сфере радиусом <ft cell=5>10</ft> с центром в этой точке должно совершить <ch new=1 p=0 clear=0 h=0 ps=0 psm=0 prof=0 text=\"Спасбросок Телосложения\" difLevel=\"1|4\" mod=\"0\" customValue=\"[dc]\" id=\"s3\">Спасбросок Телосложения СЛ [dc]</ch>, получая <dice dmgType=\"18\" name=\"3к8\">3к8</dice> урона звуком при провале или половину этого урона при успехе. Конструкты совершают спасбросок с <st id=\"pomeha\" box=0 hidden=0 name=\"помехой\" t=0 modes=\"5;;0;;0;0;0;;0;0;1;0;;0;;-1;;0;0;0;0;0;;;;0;0;0\" ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st>.\r\nНемагический предмет, который не надеся и не несётся, также получает урон, если он находится в области действия заклинания.\r\n<zag size=\"14\" s=1 >На больших уровнях:</zag> Урон увеличивается на <dice dmgType=\"18\" name=\"1к8\">1к8</dice> за каждый уровень ячейки заклинаний выше второго."
   },
   {
@@ -2874,7 +2874,7 @@ const ALL_SPELLS_DATA = [
     "ComponentText": "",
     "Duration": "Мгновенная",
     "Classes": "12|13|16|17|22|23",
-    "HtmlText": "<table name=\"Таблица\" chest=0 linkChest=1 trans=0 rand=0 min=1 max=1><tr f=1><td al=Left w=0 s=1 t=*>Кратко</td></tr><tr f=0><td al=Left>Больше не лечит болезни. Только снимает одно из перечисленных состояний.</td></tr></table>\r\nВы касаетесь существа и снимаете с него одно из состояний: <st id=\"blinded\" r=\"10\" box=0 hidden=0 name=\"слепота\" t=0 ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st>, <st id=\"deafened\" r=\"10\" box=0 hidden=0 name=\"глухота\" t=0 ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st>, <st id=\"paralyzed\" r=\"10\" box=0 hidden=0 name=\"паралич\" t=0 modes=\"5;;0;;0;0;0;;1;0;1;0;;0;;-1;;0;0;0;0;0;;p1;;0;0;0|5;;0;;0;0;0;;1;0;1;0;;0;;-1;;0;0;0;0;0;;p2;;0;0;0\" inner=\"incapacitated\" ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st> или <st id=\"poisoned2\" r=\"10\" box=0 hidden=0 name=\"отравление\" t=0 modes=\"5;;0;;1;0;0;;0;0;1;0;;0;;-1;;0;0;0;0;0;;;;0;0;0|5;;0;;0;0;0;;0;0;1;0;;0;;-1;;0;0;0;0;0;;;;0;0;0\" ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st>."
+    "HtmlText": "Вы касаетесь существа и снимаете с него одно из состояний: слепота, глухота, паралич или отравление."
   },
   {
     "Id": "4e57e92c-1119-4798-a92c-a5d945ce127b",
@@ -3251,7 +3251,7 @@ const ALL_SPELLS_DATA = [
     "M": false,
     "ComponentText": "",
     "Duration": "Мгновенная",
-    "Classes": "13",
+    "Classes": "13|16",
     "HtmlText": "<table name=\"Таблица\" chest=0 linkChest=1 trans=0 rand=0 min=1 max=1><tr f=1><td al=Left w=0 s=1 t=*>Кратко</td></tr><tr f=0><td al=Left>Раз в день — короткий отдых и лечение всего за 10 минут.</td></tr></table>\r\nДо пяти существ на ваш выбор, которые находятся в пределах дистанции на всё время накладывания заклинания, получают эффект завершения короткого отдыха и восстанавливают <dice dmgType=\"31\" mg=\"0\" name=\"2к8\">2к8</dice> хитов. Существо не может быть повторно подвержено этому заклинанию до тех пор, пока не завершит продолжительный отдых.\r\n<zag size=\"14\" s=1 >На больших уровнях:</zag>  Лечение увеличивается на <dice dmgType=\"31\" mg=\"0\" name=\"1к8\">1к8</dice> за каждый уровень ячейки выше 2."
   },
   {
@@ -3986,7 +3986,7 @@ const ALL_SPELLS_DATA = [
     "M": false,
     "ComponentText": "",
     "Duration": "Концентрация, до 1 минуты",
-    "Classes": "12|22|13|23|20",
+    "Classes": "12|22|23|20",
     "HtmlText": "<table name=\"Таблица\" chest=0 linkChest=1 trans=0 rand=0 min=1 max=1><tr f=1><td al=Left w=0 s=1 t=*>Кратко</td></tr><tr f=0><td al=Left><ch new=1 p=0 clear=0 h=0 ps=0 psm=0 prof=0 text=\"Спасбросок Ловкости\" difLevel=\"1|4\" mod=\"0\" customValue=\"[dc]\" id=\"s2\">Спасбросок Ловкости СЛ [dc]</ch>, иначе <st id=\"light_dis\" box=0 hidden=0 name=\"тусклый свет\" t=0 modes=\"5;;0;;0;0;0;;0;0;1;0;;0;;-1;;0;0;0;0;0;;a13;;0;0;0\" ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st> в радиусе <ft cell=5>10</ft>, отмеянет <st id=\"invisible\" r=\"10\" box=0 hidden=0 name=\"невидимость\" t=0 ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st> и дает <st id=\"preim\" box=0 hidden=0 name=\"преимущество\" t=0 modes=\"4;;0;;0;0;0;;0;0;1;0;;0;;-1;;0;0;0;0;0;;ini;;0;0;0|4;;0;;1;0;0;;0;0;1;0;;0;;-1;;0;0;0;0;0;;;;0;0;0|4;;0;;0;0;0;;0;1;1;0;;0;;-1;;0;0;0;0;0;;o;;0;0;0\" ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st> на атаки.</td></tr></table>\r\nОбъекты в пределах <ft cell=5>20</ft> куба в пределах дистанции выделяются синим, зелёным или фиолетовым светом (на ваш выбор). Каждое существо в кубе также выделяется, если не проходит <ch new=1 p=0 clear=0 h=0 ps=0 psm=0 prof=0 text=\"Спасбросок Ловкости\" difLevel=\"1|4\" mod=\"0\" customValue=\"[dc]\" id=\"s2\">Спасбросок Ловкости СЛ [dc]</ch>. В течение длительности объекты и поражённые существа излучают <st id=\"light_dis\" box=0 hidden=0 name=\"тусклый свет\" t=0 modes=\"5;;0;;0;0;0;;0;0;1;0;;0;;-1;;0;0;0;0;0;;a13;;0;0;0\" ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st> в радиусе <ft cell=5>10</ft> и не могут воспользоваться состоянием <st id=\"invisible\" r=\"10\" box=0 hidden=0 name=\"невидимый\" t=0 ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st>. Броски атаки по затронутым существам или объектам совершаются с <st id=\"preim\" box=0 hidden=0 name=\"преимуществом\" t=0 modes=\"4;;0;;0;0;0;;0;0;1;0;;0;;-1;;0;0;0;0;0;;ini;;0;0;0|4;;0;;1;0;0;;0;0;1;0;;0;;-1;;0;0;0;0;0;;;;0;0;0|4;;0;;0;0;0;;0;1;1;0;;0;;-1;;0;0;0;0;0;;o;;0;0;0\" ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st>, если атакующий может их видеть."
   },
   {
@@ -6380,7 +6380,7 @@ const ALL_SPELLS_DATA = [
     "M": true,
     "ComponentText": "щепотка разноцветного песка",
     "Duration": "Мгновенная",
-    "Classes": "14|18|19|21",
+    "Classes": "12|14|18|19|21",
     "HtmlText": "<table name=\"Таблица\" chest=0 linkChest=1 trans=0 rand=0 min=1 max=1><tr f=1><td al=Left w=0 s=1 t=*>Кратко</td></tr><tr f=0><td al=Left><ch new=1 p=0 clear=0 h=0 ps=0 psm=0 prof=0 text=\"Спасбросок Телосложения\" difLevel=\"1|4\" mod=\"0\" customValue=\"[dc]\" id=\"s3\">Спасбросок Телосложения СЛ [dc]</ch>, иначе <st id=\"blinded\" r=\"1\" box=0 hidden=0 name=\"ослеплён\" t=7 ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st> до конца вашего следующего хода</td></tr></table>\r\nВы создаёте вихрь мигающего цветного света. Каждое существо в конусе <ft cell=5>15</ft>, исходящем от вас, должно преуспеть в <ch new=1 p=0 clear=0 h=0 ps=0 psm=0 prof=0 text=\"Спасбросок Телосложения\" difLevel=\"1|4\" mod=\"0\" customValue=\"[dc]\" id=\"s3\">Спасбросок Телосложения СЛ [dc]</ch> или получить состояние <st id=\"blinded\" r=\"1\" box=0 hidden=0 name=\"ослеплённый\" t=7 ><rtb i=4></rtb><rtb i=1></rtb><rtb i=2></rtb><rtb i=3></rtb></st> до конца вашего следующего хода."
   },
   {
@@ -7451,7 +7451,7 @@ const ALL_SPELLS_DATA = [
     "M": false,
     "ComponentText": "",
     "Duration": "Мгновенная",
-    "Classes": "21|22|20|26|25|16|17|19",
+    "Classes": "21|22|20|26|25|19",
     "HtmlText": "<table name=\"Таблица\" chest=0 linkChest=1 trans=0 rand=0 min=1 max=1><tr f=1><td al=Left w=0 s=1 t=*>Кратко</td></tr><tr f=0><td al=Left>Схваченный вами маг, растворяется в серебряном тумане. Появившись в <ft cell=5>30</ft> от вас, он с Рывком убегает прочь.</td></tr></table>\r\nВас на мгновение окружает серебристый туман и вы телепортируетесь на расстояние до <ft cell=5>30</ft> в незанятое пространство, которое видите."
   },
   {
