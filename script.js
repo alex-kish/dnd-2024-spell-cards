@@ -170,7 +170,7 @@ function displaySpells(spells) {
     if (countElement) {
         const totalCount = allSpells.length;
         const displayedCount = sortedSpells.length;
-        countElement.textContent = `Показано ${displayedCount} из ${totalCount} заклинаний`;
+        countElement.innerHTML = `Показано <span class="serch-result-count">${displayedCount}</span> из <span class="serch-result-count">${totalCount}</span> заклинаний`;
     }
     
     updateSpellCardButtons();
@@ -237,20 +237,18 @@ function createSpellCard(spell, isBookView = false) {
         <div class="spell-description" data-spell-id="${spell.Id}" data-font-size="${isBookView ? getFontSize(spell.Id) : 7}" style="${isBookView ? `font-size: ${getFontSize(spell.Id)}pt;` : ''}">
             ${processHtmlText(spell.HtmlText || '')}
         </div>
+        ${!isBookView ? `
+        <div class="spell-actions">
+            <button class="btn-add" onclick="addToSpellBook('${spell.Id}')" 
+                    ${isInSpellBook(spell.Id) ? 'style="display:none"' : ''}>Добавить в книгу</button>
+            <button class="btn-remove" onclick="removeFromSpellBook('${spell.Id}')" 
+                    ${!isInSpellBook(spell.Id) ? 'style="display:none"' : ''}>Удалить из книги</button>
+        </div>
+        ` : ''}
         ${isBookView ? `
         <div class="font-size-controls">
             <button class="font-size-btn font-size-decrease" onclick="decreaseFontSize('${spell.Id}')" title="Уменьшить шрифт">−</button>
             <button class="font-size-btn font-size-increase" onclick="increaseFontSize('${spell.Id}')" title="Увеличить шрифт">+</button>
-        </div>
-        ` : ''}
-        ${!isBookView ? `
-        <div class="spell-actions">
-            <button class="btn-add" onclick="addToSpellBook('${spell.Id}')" 
-                    ${isInSpellBook(spell.Id) ? 'style="display:none"' : ''}
-                    title="Добавить в книгу">+</button>
-            <button class="btn-remove" onclick="removeFromSpellBook('${spell.Id}')" 
-                    ${!isInSpellBook(spell.Id) ? 'style="display:none"' : ''}
-                    title="Удалить из книги">−</button>
         </div>
         ` : ''}
     `;
