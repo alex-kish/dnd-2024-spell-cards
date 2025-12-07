@@ -368,6 +368,13 @@ function processHtmlText(htmlText) {
     // Удаляем таблицу с кратким описанием
     let processed = htmlText
         .replace(/<table[^>]*name=["']Таблица["'][^>]*>[\s\S]*?<\/table>/gi, '')
+        // Обрабатываем baselink - извлекаем название из атрибута name, если содержимое пустое
+        .replace(/<baselink[^>]*name=["']([^"']+)["'][^>]*>([^<]*)<\/baselink>/gi, function(match, nameAttr, content) {
+            // Используем атрибут name, если содержимое пустое или только пробелы
+            return content.trim() ? `<span class="baselink">${content}</span>` : `<span class="baselink">${nameAttr}</span>`;
+        })
+        // Обрабатываем самозакрывающиеся baselink теги
+        .replace(/<baselink[^>]*name=["']([^"']+)["'][^>]*\/>/gi, '<span class="baselink">$1</span>')
         // Заменяем специальные теги на более читаемые версии
         .replace(/<zag[^>]*>/gi, '<strong>')
         .replace(/<\/zag>/gi, '</strong>')
