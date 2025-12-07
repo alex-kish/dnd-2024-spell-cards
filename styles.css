@@ -473,3 +473,42 @@ nav {
     }
 }
 
+/* Дополнительные стили для SEO и accessibility */
+
+/* Скрытые элементы для screen readers */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* Улучшение focus indicators для accessibility */
+button:focus,
+input:focus,
+select:focus {
+    outline: 2px solid #8b4513;
+    outline-offset: 2px;
+}
+
+/* Skip to main content link для screen readers */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #8b4513;
+    color: white;
+    padding: 8px;
+    text-decoration: none;
+    z-index: 100;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+

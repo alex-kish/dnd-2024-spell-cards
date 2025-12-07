@@ -1,0 +1,19 @@
+# robots.txt для сайта карточек заклинаний D&D 2024
+
+User-agent: *
+Allow: /
+Disallow: /data/
+
+# Разрешаем индексацию основных файлов
+Allow: /index.html
+Allow: /styles.css
+Allow: /script.js
+
+# Запрещаем индексацию данных
+Disallow: /data/all-spells.js
+Disallow: /data/all-spells.json
+Disallow: /data/spells/
+
+# Sitemap
+Sitemap: https://alex-kish.github.io/dnd-2024-spell-cards/sitemap.xml
+
