@@ -470,7 +470,7 @@ function updateSpellBookDisplay() {
     const bookSpells = allSpells.filter(spell => spellBook.includes(spell.Id));
     
     if (bookCount) {
-        bookCount.textContent = `Заклинаний в книге: ${bookSpells.length}`;
+        bookCount.innerHTML = `Заклинаний в книге: <span class="serch-result-count">${bookSpells.length}</span>`;
     }
     
     if (bookSpells.length === 0) {

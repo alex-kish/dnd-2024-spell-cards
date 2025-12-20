@@ -46,24 +46,27 @@
         </header>
 
         <div id="allSpellsView" class="view">
-            <div class="filters">
-                <input type="text" id="searchName" placeholder="Поиск по названию..." class="filter-input">
-                <select id="filterLevel" class="filter-select">
-                    <option value="">Все уровни</option>
-                    <option value="0">Заговоры</option>
-                    <option value="1">1 уровень</option>
-                    <option value="2">2 уровень</option>
-                    <option value="3">3 уровень</option>
-                    <option value="4">4 уровень</option>
-                    <option value="5">5 уровень</option>
-                    <option value="6">6 уровень</option>
-                    <option value="7">7 уровень</option>
-                    <option value="8">8 уровень</option>
-                    <option value="9">9 уровень</option>
-                </select>
-                <select id="filterClass" class="filter-select">
-                    <option value="">Все классы</option>
-                </select>
+            <div class="all-spells-header">
+                <h2>Все заклинания</h2>
+                <div class="filters">
+                    <input type="text" id="searchName" placeholder="Поиск по названию..." class="filter-input">
+                    <select id="filterLevel" class="filter-select">
+                        <option value="">Все уровни</option>
+                        <option value="0">Заговоры</option>
+                        <option value="1">1 уровень</option>
+                        <option value="2">2 уровень</option>
+                        <option value="3">3 уровень</option>
+                        <option value="4">4 уровень</option>
+                        <option value="5">5 уровень</option>
+                        <option value="6">6 уровень</option>
+                        <option value="7">7 уровень</option>
+                        <option value="8">8 уровень</option>
+                        <option value="9">9 уровень</option>
+                    </select>
+                    <select id="filterClass" class="filter-select">
+                        <option value="">Все классы</option>
+                    </select>
+                </div>
             </div>
             <div id="spellsCount" class="spells-count"></div>
             <div id="loadingIndicator" class="loading" style="display: none;">
@@ -75,15 +78,7 @@
         <div id="spellBookView" class="view hidden">
             <div class="book-header">
                 <div class="book-title-section">
-                    <div class="book-title-row">
-                        <h2>Книга заклинаний</h2>
-                        <div class="book-actions">
-                            <button id="resetSettingsBtn" class="reset-btn">Сбросить настройки</button>
-                            <button id="clearBookBtn" class="clear-book-btn">Очистить книгу</button>
-                            <button id="printBtn" class="print-btn">Печать</button>
-                        </div>
-                    </div>
-                    <p id="bookCount" class="book-count">Заклинаний в книге: 0</p>
+                    <h2>Книга заклинаний</h2>
                 </div>
                 <div class="card-size-controls">
                     <div class="card-controls-row">
@@ -139,8 +134,23 @@
                             </select>
                         </label>
                     </div>
+                    <div class="book-actions">
+                        <button id="resetSettingsBtn" class="reset-btn">
+                            <img src="icons/reset.svg" alt="Сбросить настройки" class="reset-icon">
+                            Сбросить настройки
+                        </button>
+                        <button id="clearBookBtn" class="clear-book-btn">
+                            <img src="icons/trash.svg" alt="Удалить все заклинания" class="trash-icon">
+                            Удалить все заклинания
+                        </button>
+                        <button id="printBtn" class="print-btn">
+                            <img src="icons/printer.svg" alt="Печать" class="print-icon">
+                            Печать
+                        </button>
+                    </div>
                 </div>
             </div>
+            <div id="bookCount" class="spells-count">Заклинаний в книге: 0</div>
             <div id="spellBookGrid" class="spells-grid print-grid"></div>
         </div>
     </div>
