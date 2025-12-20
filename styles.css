@@ -686,8 +686,8 @@ nav {
         max-width: 100%;
         box-sizing: border-box !important;
         /* Высота при печати рассчитывается так же - переопределяем стили для мобильных */
-        /* Для Firefox на Windows немного уменьшаем высоту для компенсации различий в рендеринге */
-        height: calc((277mm - (var(--rows-per-page) - 1) * 2mm) / var(--rows-per-page) - 0.1mm) !important;
+        /* Для Firefox при печати на физический принтер уменьшаем высоту для компенсации различий в отступах */
+        height: calc((277mm - (var(--rows-per-page) - 1) * 2mm) / var(--rows-per-page) - 0.5mm) !important;
         min-height: auto !important;
     }
 
