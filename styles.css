@@ -14,9 +14,10 @@ body {
 .container {
     max-width: 210mm;
     margin: 0 auto;
-    padding: 20px;
+    padding: 5mm; /* Переведено из 20px для единообразия с печатью */
     background: white;
     min-height: 100vh;
+    box-sizing: border-box;
 }
 
 header {
@@ -119,11 +120,29 @@ nav {
     justify-items: center;
 }
 
+.spells-grid.print-grid {
+    width: 210mm;
+    max-width: calc(100% + 10mm); /* Компенсируем padding контейнера (5mm * 2) */
+    margin-left: -5mm; /* Компенсируем padding контейнера слева */
+    margin-right: -5mm; /* Компенсируем padding контейнера справа */
+    padding: 0 5mm 10mm 5mm; /* Те же отступы, что и при печати */
+    gap: 2mm; /* Тот же gap, что и при печати */
+    box-sizing: border-box;
+    /* Используем CSS переменные для динамического управления */
+    --cards-per-row: 3;
+    --rows-per-page: 3;
+    grid-template-columns: repeat(var(--cards-per-row), 1fr);
+    /* Высота контейнера для расчета высоты карточек: доступная высота A4 (297mm) - отступы (20mm) = 277mm */
+    /* Используем min-height для расчета высоты карточек, но позволяем контейнеру растягиваться */
+    min-height: 277mm;
+    height: auto;
+}
+
 .spell-card {
-    width: 63.5mm;
-    height: 88.9mm;
+    /* Ширина управляется через grid-template-columns */
+    width: 100%;
     background: white;
-    border: 2px solid #8b4513;
+    border: 2px solid var(--card-border-color, #8b4513);
     border-radius: 8px;
     padding: 2mm;
     display: flex;
@@ -131,10 +150,45 @@ nav {
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     position: relative;
     page-break-inside: avoid;
+    --card-border-color: #8b4513;
+}
+
+/* Высота карточек в книге заклинаний рассчитывается через calc с абсолютными значениями */
+.spells-grid.print-grid .spell-card {
+    /* Высота рассчитывается: (277mm доступная высота - gap между строками) / количество строк */
+    height: calc((277mm - (var(--rows-per-page) - 1) * 2mm) / var(--rows-per-page));
 }
 
 .spell-card-in-book {
     border-color: orange;
+}
+
+/* Разделитель страниц */
+.page-separator {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+    padding: 10px 0;
+}
+
+.page-separator-line {
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #8b4513, transparent);
+    opacity: 0.5;
+}
+
+.page-separator-label {
+    font-size: 12px;
+    font-weight: bold;
+    color: #8b4513;
+    padding: 5px 15px;
+    background: rgba(139, 69, 19, 0.1);
+    border-radius: 15px;
+    white-space: nowrap;
 }
 
 .spell-card:hover .font-size-controls {
@@ -192,8 +246,9 @@ nav {
     margin-top: 0;
     line-height: 1.4;
     scrollbar-width: thin;
-    scrollbar-color: #8b4513 #f0f0f0;
+    scrollbar-color: var(--scrollbar-color, #8b4513) #f0f0f0;
     position: relative;
+    --scrollbar-color: #8b4513;
 }
 
 .spell-description::-webkit-scrollbar {
@@ -205,7 +260,7 @@ nav {
 }
 
 .spell-description::-webkit-scrollbar-thumb {
-    background: #8b4513;
+    background: var(--scrollbar-color, #8b4513);
     border-radius: 2px;
 }
 
@@ -251,6 +306,23 @@ nav {
 .font-size-btn:hover {
     background: #8b4513;
     color: white;
+}
+
+.font-size-btn.font-size-delete {
+    color: #dc3545;
+    border-color: #dc3545;
+}
+
+.font-size-btn.font-size-delete:hover {
+    background: #dc3545;
+    color: white;
+    border-color: #dc3545;
+}
+
+.font-size-decrease,
+.font-size-increase,
+.font-size-delete {
+    padding: 4px 0 0 1px;
 }
 
 .spell-description table {
@@ -341,8 +413,67 @@ nav {
 .book-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.book-title-section {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+}
+
+.book-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.card-size-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.card-controls-row {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.card-size-controls label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+    color: #333;
+}
+
+.size-input,
+.size-select {
+    width: 120px;
+    padding: 5px 8px;
+    border: 2px solid #8b4513;
+    border-radius: 5px;
+    font-size: 14px;
+    background: white;
+    cursor: pointer;
+}
+
+.size-select {
+    min-width: 120px;
+}
+
+.size-select:focus {
+    outline: none;
+    border-color: #8b4513;
+    box-shadow: 0 0 0 2px rgba(139, 69, 19, 0.2);
 }
 
 .book-header h2 {
@@ -358,14 +489,15 @@ nav {
 }
 
 .print-btn {
-    padding: 12px 24px;
+    padding: 10px 20px;
     background: #8b4513;
     color: white;
     border: none;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 14px;
     cursor: pointer;
     font-weight: bold;
+    transition: background 0.2s;
 }
 
 .print-btn:hover {
@@ -373,7 +505,57 @@ nav {
 }
 
 /* Адаптив для мобильных устройств */
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
+    .book-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .book-title-section {
+        width: 100%;
+    }
+
+    .book-title-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .print-btn {
+        width: 100%;
+    }
+
+    .card-size-controls {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .card-controls-row {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .card-size-controls label {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    /* На мобильных всегда 1 карточка на строку */
+    .spells-grid.print-grid {
+        grid-template-columns: 1fr !important;
+        height: auto !important;
+    }
+
+    .spells-grid.print-grid .spell-card {
+        height: auto !important;
+        min-height: auto;
+    }
+}
+
+@media (max-width: 480px) {
     header h1 {
         font-size: 1.8em;
     }
@@ -392,18 +574,12 @@ nav {
         padding: 2px;
     }
 
-    .book-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-    }
-
-    .book-header > div {
+    .book-header > div:first-child {
         width: 100%;
     }
 
-    .print-btn {
-        width: 100%;
+    .size-input {
+        width: 100px;
     }
 }
 
@@ -428,6 +604,10 @@ nav {
         display: none !important;
     }
 
+    .page-separator {
+        display: none !important;
+    }
+
     #allSpellsView {
         display: none !important;
     }
@@ -437,26 +617,52 @@ nav {
     }
 
     .spells-grid.print-grid {
-        grid-template-columns: repeat(3, 63.5mm);
         gap: 2mm;
-        justify-content: center;
-        padding: 0 5mm 10mm 5mm;
+        justify-content: start;
+        justify-items: start;
+        padding: 0 5mm 0 5mm; /* Убираем нижний padding, чтобы избежать пустой страницы */
         width: 210mm;
         margin-top: 0;
+        margin-bottom: 0; /* Убираем нижний margin */
+        box-sizing: border-box;
+        /* Высота контейнера для расчета высоты карточек: доступная высота A4 (297mm) - отступы (20mm) = 277mm */
+        /* Убираем фиксированную высоту, чтобы контейнер мог правильно растягиваться на несколько страниц */
+        height: auto;
+        /* Переопределяем стили для мобильных при печати - используем настройки пользователя */
+        grid-template-columns: repeat(var(--cards-per-row), 1fr) !important;
+        /* Убираем ограничения на разрыв страниц для контейнера */
+        /* Предотвращаем разрыв контейнера между страницами, но разрешаем растягивание */
+        page-break-inside: auto;
+        break-inside: auto;
+        /* Контролируем разрыв страниц для строк grid */
+        orphans: 1;
+        widows: 1;
+        /* Убираем разрыв страницы после контейнера */
+        page-break-after: auto;
+        break-after: auto;
     }
 
     .spell-card {
-        width: 63.5mm;
-        height: 88.9mm;
         margin: 0;
-        border: 2px solid #8b4513 !important;
+        border: 2px solid var(--card-border-color, #8b4513) !important;
         border-radius: 8px !important;
         box-shadow: none;
+        /* Разрешаем разрыв страниц внутри карточки, но стараемся избегать */
         page-break-inside: avoid;
         break-inside: avoid;
+        /* Разрешаем разрыв страниц после карточки */
+        page-break-after: auto;
+        break-after: auto;
         overflow: hidden;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
+        flex-shrink: 0;
+        flex-grow: 0;
+        min-width: 0;
+        max-width: 100%;
+        /* Высота при печати рассчитывается так же - переопределяем стили для мобильных */
+        height: calc((277mm - (var(--rows-per-page) - 1) * 2mm) / var(--rows-per-page)) !important;
+        min-height: auto !important;
     }
 
     @page {

@@ -75,11 +75,68 @@
 
         <div id="spellBookView" class="view hidden">
             <div class="book-header">
-                <div>
-                    <h2>Книга заклинаний</h2>
+                <div class="book-title-section">
+                    <div class="book-title-row">
+                        <h2>Книга заклинаний</h2>
+                        <button id="printBtn" class="print-btn">Печать</button>
+                    </div>
                     <p id="bookCount" class="book-count">Заклинаний в книге: 0</p>
                 </div>
-                <button id="printBtn" class="print-btn">Печать</button>
+                <div class="card-size-controls">
+                    <div class="card-controls-row">
+                        <label>
+                            Карточек в строке:
+                            <select id="cardsPerRow" class="size-select">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3" selected>3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </label>
+                        <label>
+                            Строк на странице:
+                            <select id="rowsPerPage" class="size-select">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3" selected>3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="card-controls-row">
+                        <label>
+                            Размер шрифта:
+                            <select id="fontSize" class="size-select">
+                                <option value="5">5pt</option>
+                                <option value="5.5">5.5pt</option>
+                                <option value="6" selected>6pt</option>
+                                <option value="6.5">6.5pt</option>
+                                <option value="7">7pt</option>
+                                <option value="7.5">7.5pt</option>
+                                <option value="8">8pt</option>
+                                <option value="8.5">8.5pt</option>
+                                <option value="9">9pt</option>
+                                <option value="9.5">9.5pt</option>
+                                <option value="10">10pt</option>
+                            </select>
+                        </label>
+                        <label>
+                            Цвет карточек:
+                            <select id="cardColor" class="size-select">
+                                <option value="#8b4513" selected>Коричневый</option>
+                                <option value="#e01a10">Изобретатель</option>
+                                <option value="#e91e63">Бард</option>
+                                <option value="#FDD835">Жрец</option>
+                                <option value="#795548">Друид</option>
+                                <option value="#2196f3">Паладин</option>
+                                <option value="#4caf50">Следопыт</option>
+                                <option value="#ff9800">Чародей</option>
+                                <option value="#673ab7">Колдун</option>
+                                <option value="#f44336">Волшебник</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
             </div>
             <div id="spellBookGrid" class="spells-grid print-grid"></div>
         </div>

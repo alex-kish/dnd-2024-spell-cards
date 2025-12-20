@@ -4,6 +4,11 @@ let classesMap = {};
 let schoolsMap = {};
 let spellBook = [];
 
+// Константы
+const DEFAULT_FONT_SIZE = 7;
+const DEFAULT_CARD_SETTINGS = { cardsPerRow: 3, rowsPerPage: 3, fontSize: 6, cardColor: '#FDD835' };
+const FONT_SIZE_LIMITS = { min: 2, max: 12 };
+
 // Загрузка данных из встроенных скриптов
 function loadData() {
     const loadingIndicator = document.getElementById('loadingIndicator');
@@ -46,6 +51,8 @@ function loadData() {
         loadFilters(); // Загружаем сохраненные фильтры
         filterSpells(); // Применяем фильтры
         updateSpellBookDisplay();
+        // Применяем размеры карточек при загрузке
+        setTimeout(() => applyCardSizes(), 100);
 
         loadingIndicator.style.display = 'none';
         console.log(`Загружено ${allSpells.length} заклинаний`);
@@ -62,6 +69,83 @@ function loadSpellBook() {
     if (saved) {
         spellBook = JSON.parse(saved);
     }
+}
+
+// Загрузка настроек карточек из localStorage
+function loadCardSettings() {
+    const saved = localStorage.getItem('cardSettings');
+    if (saved) {
+        try {
+            const settings = JSON.parse(saved);
+            return {
+                cardsPerRow: Math.max(1, Math.min(4, parseInt(settings.cardsPerRow) || DEFAULT_CARD_SETTINGS.cardsPerRow)),
+                rowsPerPage: Math.max(1, Math.min(4, parseInt(settings.rowsPerPage) || DEFAULT_CARD_SETTINGS.rowsPerPage)),
+                fontSize: Math.max(5, Math.min(10, parseFloat(settings.fontSize) || DEFAULT_CARD_SETTINGS.fontSize)),
+                cardColor: settings.cardColor || DEFAULT_CARD_SETTINGS.cardColor
+            };
+        } catch (e) {
+            console.warn('Ошибка загрузки настроек карточек:', e);
+        }
+    }
+    return { ...DEFAULT_CARD_SETTINGS };
+}
+
+// Сохранение настроек карточек в localStorage
+function saveCardSettings(cardsPerRow, rowsPerPage, fontSize, cardColor) {
+    localStorage.setItem('cardSettings', JSON.stringify({ cardsPerRow, rowsPerPage, fontSize, cardColor }));
+}
+
+// Применение размеров карточек
+function applyCardSizes() {
+    const settings = loadCardSettings();
+    const grid = document.getElementById('spellBookGrid');
+    const cards = grid.querySelectorAll('.spell-card');
+    
+    // Устанавливаем CSS переменные для количества карточек
+    grid.style.setProperty('--cards-per-row', settings.cardsPerRow);
+    grid.style.setProperty('--rows-per-page', settings.rowsPerPage);
+    
+    // Применяем количество колонок через CSS Grid с относительными единицами
+    grid.style.gridTemplateColumns = `repeat(${settings.cardsPerRow}, 1fr)`;
+    
+    // Загружаем индивидуальные размеры шрифтов один раз
+    const fontSizes = loadFontSizes();
+    
+    // Применяем размер шрифта и цвет к карточкам (размеры карточек теперь управляются CSS)
+    cards.forEach(card => {
+        const description = card.querySelector('.spell-description');
+        if (description) {
+            const spellId = description.dataset.spellId;
+            const fontSize = getCardFontSize(spellId, settings.fontSize);
+            
+            description.style.fontSize = fontSize + 'pt';
+            description.dataset.fontSize = fontSize;
+            
+            // Применяем цвет к полосе прокрутки через CSS переменную
+            description.style.setProperty('--scrollbar-color', settings.cardColor);
+            description.style.scrollbarColor = `${settings.cardColor} #f0f0f0`;
+        }
+        
+        // Применяем цвет к карточке через CSS переменную и напрямую
+        card.style.setProperty('--card-border-color', settings.cardColor);
+        card.style.borderColor = settings.cardColor;
+        
+        // Применяем цвет к названию заклинания
+        const spellName = card.querySelector('.spell-name');
+        if (spellName) {
+            spellName.style.color = settings.cardColor;
+        }
+    });
+    
+    // Обновляем выпадающие списки
+    const cardsPerRowSelect = document.getElementById('cardsPerRow');
+    const rowsPerPageSelect = document.getElementById('rowsPerPage');
+    const fontSizeSelect = document.getElementById('fontSize');
+    const cardColorSelect = document.getElementById('cardColor');
+    if (cardsPerRowSelect) cardsPerRowSelect.value = settings.cardsPerRow;
+    if (rowsPerPageSelect) rowsPerPageSelect.value = settings.rowsPerPage;
+    if (fontSizeSelect) fontSizeSelect.value = settings.fontSize;
+    if (cardColorSelect) cardColorSelect.value = settings.cardColor;
 }
 
 // Сохранение книги заклинаний в localStorage
@@ -97,6 +181,15 @@ function clearSpellBook() {
         const remainingFontSizes = {};
         // Сохраняем размеры только для заклинаний, которые остались в книге (в данном случае никого)
         saveFontSizes(remainingFontSizes);
+        // Очищаем настройки карточек
+        localStorage.removeItem('cardSettings');
+        // Сбрасываем значения в выпадающих списках на значения по умолчанию
+        const cardsPerRowSelect = document.getElementById('cardsPerRow');
+        const rowsPerPageSelect = document.getElementById('rowsPerPage');
+        const fontSizeSelect = document.getElementById('fontSize');
+        if (cardsPerRowSelect) cardsPerRowSelect.value = DEFAULT_CARD_SETTINGS.cardsPerRow;
+        if (rowsPerPageSelect) rowsPerPageSelect.value = DEFAULT_CARD_SETTINGS.rowsPerPage;
+        if (fontSizeSelect) fontSizeSelect.value = DEFAULT_CARD_SETTINGS.fontSize;
         updateSpellBookDisplay();
         updateSpellCardButtons();
     }
@@ -144,7 +237,14 @@ function saveFontSizes(fontSizes) {
 // Получение размера шрифта для заклинания
 function getFontSize(spellId) {
     const fontSizes = loadFontSizes();
-    return fontSizes[spellId] ? parseFloat(fontSizes[spellId]) : 7;
+    return fontSizes[spellId] ? parseFloat(fontSizes[spellId]) : DEFAULT_FONT_SIZE;
+}
+
+// Получение размера шрифта для карточки (индивидуальный или общий)
+function getCardFontSize(spellId, defaultFontSize) {
+    const fontSizes = loadFontSizes();
+    const hasIndividualSize = fontSizes.hasOwnProperty(spellId);
+    return hasIndividualSize ? parseFloat(fontSizes[spellId]) : defaultFontSize;
 }
 
 // Установка размера шрифта для заклинания
@@ -184,6 +284,13 @@ function createSpellCard(spell, isBookView = false) {
         card.classList.add('spell-card-in-book');
     }
     card.dataset.spellId = spell.Id;
+    
+    // Определяем цвет карточки для книги заклинаний
+    if (isBookView) {
+        const cardSettings = loadCardSettings();
+        card.style.setProperty('--card-border-color', cardSettings.cardColor);
+        card.style.borderColor = cardSettings.cardColor;
+    }
 
     const levelText = spell.Level === 0 ? '<strong>Заговор</strong>' : `<strong>${spell.Level}</strong> уровень`;
     const schoolName = schoolsMap[spell.School] || `Школа ${spell.School}`;
@@ -205,9 +312,21 @@ function createSpellCard(spell, isBookView = false) {
         ? `${escapeHtml(russianName)} <span class="spell-name-english">[${escapeHtml(englishName)}]</span>`
         : escapeHtml(spell.Name);
 
+    // Определяем размер шрифта для описания и цвет для названия
+    let descriptionFontSize = DEFAULT_FONT_SIZE;
+    let descriptionStyle = '';
+    let spellNameStyle = '';
+    let scrollbarColorStyle = '';
+    if (isBookView) {
+        const cardSettings = loadCardSettings();
+        descriptionFontSize = getCardFontSize(spell.Id, cardSettings.fontSize);
+        descriptionStyle = `style="font-size: ${descriptionFontSize}pt; --scrollbar-color: ${cardSettings.cardColor}; scrollbar-color: ${cardSettings.cardColor} #f0f0f0;"`;
+        spellNameStyle = `style="color: ${cardSettings.cardColor};"`;
+    }
+
     card.innerHTML = `
         <div class="spell-card-header">
-            <div class="spell-name">${nameHtml}</div>
+            <div class="spell-name" ${spellNameStyle}>${nameHtml}</div>
             <div class="spell-level-school">
                 <span>${levelText}</span>
                 <span>${schoolName}</span>
@@ -234,7 +353,7 @@ function createSpellCard(spell, isBookView = false) {
                 <span style="font-size: 6pt;">${escapeHtml(classesList)}</span>
             </div>
         </div>
-        <div class="spell-description" data-spell-id="${spell.Id}" data-font-size="${isBookView ? getFontSize(spell.Id) : 7}" style="${isBookView ? `font-size: ${getFontSize(spell.Id)}pt;` : ''}">
+        <div class="spell-description" data-spell-id="${spell.Id}" data-font-size="${descriptionFontSize}" ${descriptionStyle}>
             ${processHtmlText(spell.HtmlText || '')}
         </div>
         ${!isBookView ? `
@@ -249,6 +368,7 @@ function createSpellCard(spell, isBookView = false) {
         <div class="font-size-controls">
             <button class="font-size-btn font-size-decrease" onclick="decreaseFontSize('${spell.Id}')" title="Уменьшить шрифт">−</button>
             <button class="font-size-btn font-size-increase" onclick="increaseFontSize('${spell.Id}')" title="Увеличить шрифт">+</button>
+            <button class="font-size-btn font-size-delete" onclick="removeFromSpellBook('${spell.Id}')" title="Удалить из книги">×</button>
         </div>
         ` : ''}
     `;
@@ -296,10 +416,27 @@ function updateSpellBookDisplay() {
     }
     
     const sortedBookSpells = sortSpells(bookSpells);
-    sortedBookSpells.forEach(spell => {
+    const settings = loadCardSettings();
+    const cardsPerPage = settings.cardsPerRow * settings.rowsPerPage;
+    let pageNumber = 1;
+    
+    sortedBookSpells.forEach((spell, index) => {
         const card = createSpellCard(spell, true);
         grid.appendChild(card);
+        
+        // Добавляем разделитель страницы после каждой страницы (кроме последней)
+        if ((index + 1) % cardsPerPage === 0 && index + 1 < sortedBookSpells.length) {
+            pageNumber++;
+            const separator = document.createElement('div');
+            separator.className = 'page-separator';
+            separator.setAttribute('data-page', pageNumber);
+            separator.innerHTML = `<div class="page-separator-line"></div><div class="page-separator-label">Страница ${pageNumber}</div><div class="page-separator-line"></div>`;
+            grid.appendChild(separator);
+        }
     });
+    
+    // Применяем размеры карточек после создания
+    applyCardSizes();
 }
 
 // Сохранение фильтров в localStorage
@@ -408,6 +545,8 @@ function switchView(view) {
         allBtn.classList.remove('active');
         bookBtn.classList.add('active');
         updateSpellBookDisplay();
+        // Применяем размеры при переключении на книгу
+        setTimeout(() => applyCardSizes(), 100);
     }
 }
 
@@ -417,8 +556,48 @@ function printSpellBook() {
     switchView('book');
     // Небольшая задержка для обновления DOM перед печатью
     setTimeout(() => {
+        // Применяем размеры перед печатью (использует ту же логику расчета)
+        // Но сохраняем индивидуальные размеры шрифта перед применением
+        const grid = document.getElementById('spellBookGrid');
+        const cards = grid.querySelectorAll('.spell-card');
+        
+        // Сохраняем текущие индивидуальные размеры из DOM перед применением общих настроек
+        const settings = loadCardSettings();
+        cards.forEach(card => {
+            const description = card.querySelector('.spell-description');
+            if (description) {
+                const spellId = description.dataset.spellId;
+                const currentSize = parseFloat(description.dataset.fontSize) || parseFloat(description.style.fontSize);
+                // Если размер отличается от общего, сохраняем его как индивидуальный
+                if (currentSize && currentSize !== settings.fontSize) {
+                    setFontSize(spellId, currentSize);
+                }
+            }
+        });
+        
+        // Применяем размеры (теперь индивидуальные размеры сохранены в localStorage)
+        applyCardSizes();
         window.print();
-    }, 100);
+    }, 200);
+}
+
+// Обработчик изменения настроек карточек
+function handleCardSettingsChange() {
+    const cardsPerRowSelect = document.getElementById('cardsPerRow');
+    const rowsPerPageSelect = document.getElementById('rowsPerPage');
+    const fontSizeSelect = document.getElementById('fontSize');
+    const cardColorSelect = document.getElementById('cardColor');
+    
+    if (!cardsPerRowSelect || !rowsPerPageSelect || !fontSizeSelect || !cardColorSelect) return;
+    
+    const cardsPerRow = parseInt(cardsPerRowSelect.value);
+    const rowsPerPage = parseInt(rowsPerPageSelect.value);
+    const fontSize = parseFloat(fontSizeSelect.value);
+    const cardColor = cardColorSelect.value;
+    
+    // Сохраняем и применяем размеры сразу
+    saveCardSettings(cardsPerRow, rowsPerPage, fontSize, cardColor);
+    applyCardSizes();
 }
 
 // Инициализация при загрузке страницы
@@ -436,12 +615,31 @@ document.addEventListener('DOMContentLoaded', () => {
     // Обработчик печати
     document.getElementById('printBtn').addEventListener('click', printSpellBook);
 
+    // Обработчики настроек карточек
+    const cardsPerRowSelect = document.getElementById('cardsPerRow');
+    const rowsPerPageSelect = document.getElementById('rowsPerPage');
+    const fontSizeSelect = document.getElementById('fontSize');
+    const cardColorSelect = document.getElementById('cardColor');
+    
+    if (cardsPerRowSelect) {
+        cardsPerRowSelect.addEventListener('change', handleCardSettingsChange);
+    }
+    if (rowsPerPageSelect) {
+        rowsPerPageSelect.addEventListener('change', handleCardSettingsChange);
+    }
+    if (fontSizeSelect) {
+        fontSizeSelect.addEventListener('change', handleCardSettingsChange);
+    }
+    if (cardColorSelect) {
+        cardColorSelect.addEventListener('change', handleCardSettingsChange);
+    }
+
     // Загрузка данных
     loadData();
 });
 
 // Изменение размера шрифта для карточки в книге
-function increaseFontSize(spellId) {
+function changeFontSize(spellId, delta) {
     // Работает только в книге заклинаний
     const bookView = document.getElementById('spellBookView');
     if (bookView.classList.contains('hidden')) return;
@@ -450,29 +648,22 @@ function increaseFontSize(spellId) {
     if (!description) return;
     
     const currentSize = parseFloat(description.dataset.fontSize) || getFontSize(spellId);
-    if (currentSize < 12) { // максимум +5 от базового 7pt
-        const newSize = currentSize + 0.5;
-        description.dataset.fontSize = newSize;
-        description.style.fontSize = newSize + 'pt';
-        setFontSize(spellId, newSize);
-    }
+    const newSize = currentSize + delta;
+    
+    // Проверяем границы
+    if (newSize < FONT_SIZE_LIMITS.min || newSize > FONT_SIZE_LIMITS.max) return;
+    
+    description.dataset.fontSize = newSize;
+    description.style.fontSize = newSize + 'pt';
+    setFontSize(spellId, newSize);
+}
+
+function increaseFontSize(spellId) {
+    changeFontSize(spellId, 0.5);
 }
 
 function decreaseFontSize(spellId) {
-    // Работает только в книге заклинаний
-    const bookView = document.getElementById('spellBookView');
-    if (bookView.classList.contains('hidden')) return;
-    
-    const description = document.querySelector(`#spellBookGrid .spell-description[data-spell-id="${spellId}"]`);
-    if (!description) return;
-    
-    const currentSize = parseFloat(description.dataset.fontSize) || getFontSize(spellId);
-    if (currentSize > 2) { // минимум -5 от базового 7pt
-        const newSize = currentSize - 0.5;
-        description.dataset.fontSize = newSize;
-        description.style.fontSize = newSize + 'pt';
-        setFontSize(spellId, newSize);
-    }
+    changeFontSize(spellId, -0.5);
 }
 
 // Экспорт функций для использования в onclick
