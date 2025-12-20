@@ -166,19 +166,24 @@ nav {
     border-color: orange;
 }
 
-.spell-card-in-book .spell-card-header {
-    border-bottom-color: orange;
-}
-
 .spell-card:hover .font-size-controls {
     opacity: 1;
     visibility: visible;
 }
 
 .spell-card-header {
-    border-bottom: 1px solid var(--card-border-color, #8b4513);
     padding-bottom: 5px;
     margin-bottom: 5px;
+    position: relative;
+}
+
+.spell-card-header .header-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    pointer-events: none;
 }
 
 .spell-name {
@@ -691,6 +696,11 @@ nav {
         min-height: auto !important;
     }
 
+    .spell-card-header {
+        padding-bottom: 5px !important;
+        margin-bottom: 5px !important;
+    }
+
     @page {
         size: A4;
         margin: 10mm;
@@ -704,8 +714,17 @@ nav {
         }
         
         .spell-card-header {
-            border-bottom: none !important;
-            box-shadow: inset 0 -1px 0 0 var(--card-border-color, #8b4513) !important;
+            /* Убираем все границы и тени */
+            border: none !important;
+            box-shadow: none !important;
+            -webkit-box-shadow: none !important;
+            /* Убеждаемся, что padding и margin сохранены */
+            padding-bottom: 5px !important;
+            margin-bottom: 5px !important;
+            /* SVG будет установлен через JavaScript */
+            background-repeat: no-repeat !important;
+            background-position: bottom !important;
+            background-size: 100% 1px !important;
         }
     }
 }

@@ -8,6 +8,15 @@ let spellBook = [];
 const DEFAULT_FONT_SIZE = 7;
 const DEFAULT_CARD_SETTINGS = { cardsPerRow: 3, rowsPerPage: 3, fontSize: 7, cardColor: '#8b4513' };
 const FONT_SIZE_LIMITS = { min: 2, max: 12 };
+const DEFAULT_HEADER_LINE_COLOR = '#8b4513';
+const BOOK_CARD_HEADER_LINE_COLOR = 'orange';
+
+// Вспомогательная функция для определения цвета полоски header
+function getHeaderLineColor(card, cardSettings) {
+    return card.classList.contains('spell-card-in-book') 
+        ? BOOK_CARD_HEADER_LINE_COLOR 
+        : (cardSettings?.cardColor || DEFAULT_HEADER_LINE_COLOR);
+}
 
 // Загрузка данных из встроенных скриптов
 function loadData() {
@@ -134,6 +143,12 @@ function applyCardSizes() {
             const spellName = card.querySelector('.spell-name');
             if (spellName) {
                 spellName.style.color = settings.cardColor;
+            }
+            
+            // Обновляем цвет SVG полоски в header
+            const headerLine = card.querySelector('.spell-card-header .header-line line');
+            if (headerLine) {
+                headerLine.setAttribute('stroke', getHeaderLineColor(card, settings));
             }
         });
     
@@ -345,13 +360,16 @@ function createSpellCard(spell, isBookView = false) {
     let descriptionFontSize = DEFAULT_FONT_SIZE;
     let descriptionStyle = '';
     let spellNameStyle = '';
-    let scrollbarColorStyle = '';
+    let cardSettings = null;
+    
     if (isBookView) {
-        const cardSettings = loadCardSettings();
+        cardSettings = loadCardSettings();
         descriptionFontSize = getCardFontSize(spell.Id, cardSettings.fontSize);
         descriptionStyle = `style="font-size: ${descriptionFontSize}pt; --scrollbar-color: ${cardSettings.cardColor}; scrollbar-color: ${cardSettings.cardColor} #f0f0f0;"`;
         spellNameStyle = `style="color: ${cardSettings.cardColor};"`;
     }
+
+    const headerLineColor = getHeaderLineColor(card, cardSettings);
 
     card.innerHTML = `
         <div class="spell-card-header">
@@ -360,6 +378,9 @@ function createSpellCard(spell, isBookView = false) {
                 <span>${levelText}</span>
                 <span>${schoolName}</span>
             </div>
+            <svg class="header-line" xmlns="http://www.w3.org/2000/svg" width="100%" height="2" preserveAspectRatio="none">
+                <line x1="0" y1="0" x2="100%" y2="0" stroke="${headerLineColor}" stroke-width="2"/>
+            </svg>
         </div>
         <div class="spell-info">
             <div class="spell-info-row">
@@ -413,6 +434,7 @@ function createSpellCard(spell, isBookView = false) {
         </div>
         ` : ''}
     `;
+
 
     return card;
 }
