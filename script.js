@@ -111,31 +111,31 @@ function applyCardSizes() {
     // Загружаем индивидуальные размеры шрифтов один раз
     const fontSizes = loadFontSizes();
     
-    // Применяем размер шрифта и цвет к карточкам (размеры карточек теперь управляются CSS)
-    cards.forEach(card => {
-        const description = card.querySelector('.spell-description');
-        if (description) {
-            const spellId = description.dataset.spellId;
-            const fontSize = getCardFontSize(spellId, settings.fontSize);
+        // Применяем размер шрифта и цвет к карточкам (размеры карточек теперь управляются CSS)
+        cards.forEach(card => {
+            const description = card.querySelector('.spell-description');
+            if (description) {
+                const spellId = description.dataset.spellId;
+                const fontSize = getCardFontSize(spellId, settings.fontSize);
+                
+                description.style.fontSize = fontSize + 'pt';
+                description.dataset.fontSize = fontSize;
+                
+                // Применяем цвет к полосе прокрутки через CSS переменную
+                description.style.setProperty('--scrollbar-color', settings.cardColor);
+                description.style.scrollbarColor = `${settings.cardColor} #f0f0f0`;
+            }
             
-            description.style.fontSize = fontSize + 'pt';
-            description.dataset.fontSize = fontSize;
-            
-            // Применяем цвет к полосе прокрутки через CSS переменную
-            description.style.setProperty('--scrollbar-color', settings.cardColor);
-            description.style.scrollbarColor = `${settings.cardColor} #f0f0f0`;
-        }
-        
-        // Применяем цвет к карточке через CSS переменную и напрямую
+        // Применяем цвет к карточке через CSS переменную
         card.style.setProperty('--card-border-color', settings.cardColor);
         card.style.borderColor = settings.cardColor;
-        
-        // Применяем цвет к названию заклинания
-        const spellName = card.querySelector('.spell-name');
-        if (spellName) {
-            spellName.style.color = settings.cardColor;
-        }
-    });
+            
+            // Применяем цвет к названию заклинания
+            const spellName = card.querySelector('.spell-name');
+            if (spellName) {
+                spellName.style.color = settings.cardColor;
+            }
+        });
     
     // Обновляем выпадающие списки
     const cardsPerRowSelect = document.getElementById('cardsPerRow');
@@ -289,6 +289,7 @@ function createSpellCard(spell, isBookView = false) {
     if (isBookView) {
         const cardSettings = loadCardSettings();
         card.style.setProperty('--card-border-color', cardSettings.cardColor);
+        // Для Firefox используем прямое присваивание
         card.style.borderColor = cardSettings.cardColor;
     }
 
@@ -366,9 +367,21 @@ function createSpellCard(spell, isBookView = false) {
         ` : ''}
         ${isBookView ? `
         <div class="font-size-controls">
-            <button class="font-size-btn font-size-decrease" onclick="decreaseFontSize('${spell.Id}')" title="Уменьшить шрифт">−</button>
-            <button class="font-size-btn font-size-increase" onclick="increaseFontSize('${spell.Id}')" title="Увеличить шрифт">+</button>
-            <button class="font-size-btn font-size-delete" onclick="removeFromSpellBook('${spell.Id}')" title="Удалить из книги">×</button>
+            <button class="font-size-btn font-size-decrease" onclick="decreaseFontSize('${spell.Id}')" title="Уменьшить шрифт">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+                    <path d="M1 6h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+            <button class="font-size-btn font-size-increase" onclick="increaseFontSize('${spell.Id}')" title="Увеличить шрифт">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+                    <path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+            <button class="font-size-btn font-size-delete" onclick="removeFromSpellBook('${spell.Id}')" title="Удалить из книги">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+                    <path d="M1 1l10 10M11 1L1 11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
         </div>
         ` : ''}
     `;
@@ -416,23 +429,9 @@ function updateSpellBookDisplay() {
     }
     
     const sortedBookSpells = sortSpells(bookSpells);
-    const settings = loadCardSettings();
-    const cardsPerPage = settings.cardsPerRow * settings.rowsPerPage;
-    let pageNumber = 1;
-    
-    sortedBookSpells.forEach((spell, index) => {
+    sortedBookSpells.forEach(spell => {
         const card = createSpellCard(spell, true);
         grid.appendChild(card);
-        
-        // Добавляем разделитель страницы после каждой страницы (кроме последней)
-        if ((index + 1) % cardsPerPage === 0 && index + 1 < sortedBookSpells.length) {
-            pageNumber++;
-            const separator = document.createElement('div');
-            separator.className = 'page-separator';
-            separator.setAttribute('data-page', pageNumber);
-            separator.innerHTML = `<div class="page-separator-line"></div><div class="page-separator-label">Страница ${pageNumber}</div><div class="page-separator-line"></div>`;
-            grid.appendChild(separator);
-        }
     });
     
     // Применяем размеры карточек после создания

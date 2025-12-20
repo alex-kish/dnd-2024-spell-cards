@@ -143,6 +143,7 @@ nav {
     width: 100%;
     background: white;
     border: 2px solid var(--card-border-color, #8b4513);
+    border-color: var(--card-border-color, #8b4513);
     border-radius: 8px;
     padding: 2mm;
     display: flex;
@@ -161,34 +162,6 @@ nav {
 
 .spell-card-in-book {
     border-color: orange;
-}
-
-/* Разделитель страниц */
-.page-separator {
-    grid-column: 1 / -1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    margin: 20px 0;
-    padding: 10px 0;
-}
-
-.page-separator-line {
-    flex: 1;
-    height: 2px;
-    background: linear-gradient(to right, transparent, #8b4513, transparent);
-    opacity: 0.5;
-}
-
-.page-separator-label {
-    font-size: 12px;
-    font-weight: bold;
-    color: #8b4513;
-    padding: 5px 15px;
-    background: rgba(139, 69, 19, 0.1);
-    border-radius: 15px;
-    white-space: nowrap;
 }
 
 .spell-card:hover .font-size-controls {
@@ -297,10 +270,15 @@ nav {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 14pt;
-    font-weight: bold;
-    line-height: 1;
     padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.font-size-btn svg {
+    display: block;
+    width: 12px;
+    height: 12px;
 }
 
 .font-size-btn:hover {
@@ -319,11 +297,7 @@ nav {
     border-color: #dc3545;
 }
 
-.font-size-decrease,
-.font-size-increase,
-.font-size-delete {
-    padding: 4px 0 0 1px;
-}
+/* Стили для SVG иконок уже применены через .font-size-btn svg */
 
 .spell-description table {
     width: 100%;
@@ -604,10 +578,6 @@ nav {
         display: none !important;
     }
 
-    .page-separator {
-        display: none !important;
-    }
-
     #allSpellsView {
         display: none !important;
     }
@@ -645,6 +615,7 @@ nav {
     .spell-card {
         margin: 0;
         border: 2px solid var(--card-border-color, #8b4513) !important;
+        border-color: var(--card-border-color, #8b4513) !important;
         border-radius: 8px !important;
         box-shadow: none;
         /* Разрешаем разрыв страниц внутри карточки, но стараемся избегать */
@@ -670,11 +641,11 @@ nav {
         margin: 10mm;
     }
 
-    /* Исправление для Firefox - используем box-shadow для границ */
+    /* Исправление для Firefox - используем box-shadow для границ только при печати */
     @-moz-document url-prefix() {
         .spell-card {
             border: none !important;
-            box-shadow: inset 0 0 0 2px #8b4513;
+            box-shadow: inset 0 0 0 2px var(--card-border-color, #8b4513) !important;
         }
     }
 }
