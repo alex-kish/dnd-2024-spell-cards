@@ -6,7 +6,7 @@ let spellBook = [];
 
 // Константы
 const DEFAULT_FONT_SIZE = 7;
-const DEFAULT_CARD_SETTINGS = { cardsPerRow: 3, rowsPerPage: 3, fontSize: 6, cardColor: '#FDD835' };
+const DEFAULT_CARD_SETTINGS = { cardsPerRow: 3, rowsPerPage: 3, fontSize: 7, cardColor: '#8b4513' };
 const FONT_SIZE_LIMITS = { min: 2, max: 12 };
 
 // Загрузка данных из встроенных скриптов
@@ -169,6 +169,34 @@ function removeFromSpellBook(spellId) {
     saveSpellBook();
     updateSpellBookDisplay();
     updateSpellCardButtons();
+}
+
+// Сброс настроек карточек и индивидуальных размеров шрифта
+function resetCardSettings() {
+    if (confirm('Вы уверены, что хотите сбросить все настройки карточек и размеры шрифта?')) {
+        // Удаляем настройки карточек из localStorage
+        localStorage.removeItem('cardSettings');
+        
+        // Удаляем все индивидуальные размеры шрифта
+        localStorage.removeItem('spellFontSizes');
+        
+        // Сбрасываем значения в выпадающих списках на значения по умолчанию
+        const cardsPerRowSelect = document.getElementById('cardsPerRow');
+        const rowsPerPageSelect = document.getElementById('rowsPerPage');
+        const fontSizeSelect = document.getElementById('fontSize');
+        const cardColorSelect = document.getElementById('cardColor');
+        
+        if (cardsPerRowSelect) cardsPerRowSelect.value = DEFAULT_CARD_SETTINGS.cardsPerRow;
+        if (rowsPerPageSelect) rowsPerPageSelect.value = DEFAULT_CARD_SETTINGS.rowsPerPage;
+        if (fontSizeSelect) fontSizeSelect.value = DEFAULT_CARD_SETTINGS.fontSize;
+        if (cardColorSelect) cardColorSelect.value = DEFAULT_CARD_SETTINGS.cardColor;
+        
+        // Применяем настройки по умолчанию
+        applyCardSizes();
+        
+        // Обновляем отображение книги заклинаний
+        updateSpellBookDisplay();
+    }
 }
 
 // Очистка всей книги заклинаний
@@ -613,6 +641,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Обработчик печати
     document.getElementById('printBtn').addEventListener('click', printSpellBook);
+    
+    // Обработчик сброса настроек
+    const resetSettingsBtn = document.getElementById('resetSettingsBtn');
+    if (resetSettingsBtn) {
+        resetSettingsBtn.addEventListener('click', resetCardSettings);
+    }
 
     // Обработчики настроек карточек
     const cardsPerRowSelect = document.getElementById('cardsPerRow');

@@ -42,7 +42,6 @@
             <nav>
                 <button id="viewAllBtn" class="nav-btn active">Все заклинания</button>
                 <button id="viewBookBtn" class="nav-btn">Книга заклинаний</button>
-                <button id="clearBookBtn" class="nav-btn">Очистить книгу</button>
             </nav>
         </header>
 
@@ -78,7 +77,11 @@
                 <div class="book-title-section">
                     <div class="book-title-row">
                         <h2>Книга заклинаний</h2>
-                        <button id="printBtn" class="print-btn">Печать</button>
+                        <div class="book-actions">
+                            <button id="resetSettingsBtn" class="reset-btn">Сбросить настройки</button>
+                            <button id="clearBookBtn" class="clear-book-btn">Очистить книгу</button>
+                            <button id="printBtn" class="print-btn">Печать</button>
+                        </div>
                     </div>
                     <p id="bookCount" class="book-count">Заклинаний в книге: 0</p>
                 </div>
@@ -109,9 +112,9 @@
                             <select id="fontSize" class="size-select">
                                 <option value="5">5pt</option>
                                 <option value="5.5">5.5pt</option>
-                                <option value="6" selected>6pt</option>
+                                <option value="6">6pt</option>
                                 <option value="6.5">6.5pt</option>
-                                <option value="7">7pt</option>
+                                <option value="7" selected>7pt</option>
                                 <option value="7.5">7.5pt</option>
                                 <option value="8">8pt</option>
                                 <option value="8.5">8.5pt</option>
