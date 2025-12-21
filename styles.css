@@ -156,6 +156,9 @@ nav {
     /* Используем min-height для расчета высоты карточек, но позволяем контейнеру растягиваться */
     min-height: 277mm;
     height: auto;
+    align-items: start;
+    align-content: start;
+    justify-items: start;
 }
 
 .spell-card {
