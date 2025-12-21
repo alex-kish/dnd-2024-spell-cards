@@ -493,7 +493,8 @@ function saveFilters() {
     const filters = {
         name: document.getElementById('searchName').value,
         level: document.getElementById('filterLevel').value,
-        class: document.getElementById('filterClass').value
+        class: document.getElementById('filterClass').value,
+        source: document.getElementById('filterSource').value
     };
     localStorage.setItem('spellFilters', JSON.stringify(filters));
 }
@@ -513,6 +514,9 @@ function loadFilters() {
             if (filters.class) {
                 document.getElementById('filterClass').value = filters.class;
             }
+            if (filters.source) {
+                document.getElementById('filterSource').value = filters.source;
+            }
         } catch (e) {
             console.warn('Ошибка загрузки фильтров:', e);
         }
@@ -524,6 +528,7 @@ function filterSpells() {
     const nameFilter = document.getElementById('searchName').value.toLowerCase();
     const levelFilter = document.getElementById('filterLevel').value;
     const classFilter = document.getElementById('filterClass').value;
+    const sourceFilter = document.getElementById('filterSource').value;
 
     // Сохраняем фильтры
     saveFilters();
@@ -532,8 +537,9 @@ function filterSpells() {
         const nameMatch = !nameFilter || spell.Name.toLowerCase().includes(nameFilter);
         const levelMatch = !levelFilter || spell.Level.toString() === levelFilter;
         const classMatch = !classFilter || spell.Classes.split('|').includes(classFilter);
+        const sourceMatch = !sourceFilter || spell.Source === sourceFilter;
         
-        return nameMatch && levelMatch && classMatch;
+        return nameMatch && levelMatch && classMatch && sourceMatch;
     });
 
     displaySpells(filtered);
@@ -655,6 +661,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('searchName').addEventListener('input', filterSpells);
     document.getElementById('filterLevel').addEventListener('change', filterSpells);
     document.getElementById('filterClass').addEventListener('change', filterSpells);
+    document.getElementById('filterSource').addEventListener('change', filterSpells);
 
     // Обработчики навигации
     document.getElementById('viewAllBtn').addEventListener('click', () => switchView('all'));
