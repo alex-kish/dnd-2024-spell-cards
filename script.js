@@ -537,6 +537,12 @@ function updateSpellCardButtons() {
             } else {
                 card.classList.remove('spell-card-in-book');
             }
+            
+            // Обновляем цвет линии header
+            const headerLine = card.querySelector('.spell-card-header .header-line line');
+            if (headerLine) {
+                headerLine.setAttribute('stroke', getHeaderLineColor(card, null));
+            }
         }
     });
 }
