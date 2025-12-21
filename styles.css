@@ -86,6 +86,27 @@ nav {
     width: 100%;
 }
 
+.filter-group {
+    display: flex;
+    gap: 15px;
+    flex: 1;
+    min-width: 0;
+}
+
+.filter-item {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+}
+
+.filter-item label {
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+}
+
 .filter-input,
 .filter-select {
     padding: 10px;
@@ -93,8 +114,10 @@ nav {
     border-radius: 5px;
     font-size: 14px;
     background: white;
-    flex: 1;
+    width: 100%;
     min-width: 0;
+    height: 42px;
+    box-sizing: border-box;
 }
 
 .filter-input:focus,
@@ -454,9 +477,16 @@ nav {
     color: #333;
 }
 
-.card-size-controls label > *:first-child {
+.card-size-controls label > span:first-child {
     min-width: 140px;
     flex-shrink: 0;
+}
+
+.import-btn img,
+.export-btn img {
+    min-width: auto !important;
+    width: 16px;
+    height: 16px;
 }
 
 .size-input,
@@ -500,6 +530,8 @@ nav {
     display: flex;
     align-items: center;
     gap: 8px;
+    height: 32px;
+    box-sizing: border-box;
 }
 
 .print-icon {
@@ -512,7 +544,20 @@ nav {
     background: #654321;
 }
 
-.book-actions {
+.book-print .print-btn {
+    margin-left: auto;
+}
+
+.book-controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-top: 10px;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.book-print {
     display: flex;
     gap: 10px;
     align-items: center;
@@ -520,9 +565,6 @@ nav {
     width: 100%;
 }
 
-.book-actions .print-btn {
-    margin-left: auto;
-}
 
 .reset-btn {
     background: white;
@@ -537,6 +579,8 @@ nav {
     display: flex;
     align-items: center;
     gap: 8px;
+    height: 32px;
+    box-sizing: border-box;
 }
 
 .reset-icon {
@@ -546,8 +590,13 @@ nav {
 }
 
 .reset-btn:hover {
-    background: #f5f5f5;
-    border-color: #654321;
+    background: #8b4513;
+    color: white;
+    border-color: #8b4513;
+}
+
+.reset-btn:hover .reset-icon {
+    filter: brightness(0) saturate(100%) invert(1);
 }
 
 .clear-book-btn {
@@ -563,6 +612,8 @@ nav {
     display: flex;
     align-items: center;
     gap: 8px;
+    height: 32px;
+    box-sizing: border-box;
 }
 
 .trash-icon {
@@ -576,8 +627,66 @@ nav {
     border-color: #c82333;
 }
 
+.export-btn,
+.import-btn {
+    background: white;
+    color: #8b4513 !important;
+    border: 2px solid #8b4513;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background 0.2s, border-color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    box-sizing: border-box;
+    line-height: 1.4;
+    height: 32px;
+    margin: 0;
+    text-align: left;
+}
+
+.import-btn {
+    position: relative;
+    font-family: inherit;
+}
+
+.export-icon,
+.import-icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+.export-btn:hover,
+.import-btn:hover {
+    background: #8b4513;
+    color: white !important;
+}
+
+.export-btn:hover .export-icon,
+.import-btn:hover .import-icon {
+    filter: brightness(0) saturate(100%) invert(1);
+}
+
 /* Адаптив для мобильных устройств */
 @media screen and (max-width: 768px) {
+    .filters {
+        flex-direction: column;
+    }
+
+    .filter-group {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .filter-item {
+        width: 100%;
+    }
+
     .book-header {
         flex-direction: column;
         align-items: stretch;
@@ -587,15 +696,28 @@ nav {
         width: 100%;
     }
 
-    .book-actions {
+    .book-controls {
+        flex-direction: column;
+        width: 100%;
+        justify-content: stretch;
+    }
+
+    .book-print {
         flex-direction: column;
         width: 100%;
     }
 
     .reset-btn,
     .clear-book-btn,
-    .print-btn {
+    .print-btn,
+    .export-btn,
+    .import-btn {
         width: 100%;
+    }
+
+    .import-btn {
+        justify-content: flex-start !important;
+        text-align: left !important;
     }
 
     .card-size-controls {
@@ -611,7 +733,7 @@ nav {
         gap: 10px;
     }
 
-    .card-size-controls label {
+    .card-size-controls > .card-controls-row > label {
         width: 100%;
         justify-content: space-between;
     }
@@ -647,6 +769,19 @@ nav {
         padding: 2px;
     }
 
+    .filters {
+        flex-direction: column;
+    }
+
+    .filter-group {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .filter-item {
+        width: 100%;
+    }
+
     .book-header > div:first-child {
         width: 100%;
     }
@@ -671,6 +806,8 @@ nav {
     header,
     .filters,
     .book-header,
+    .book-controls,
+    .book-print,
     .spell-actions,
     .font-size-controls,
     .nav-btn,

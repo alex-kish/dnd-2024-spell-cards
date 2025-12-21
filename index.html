@@ -33,7 +33,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
     <link rel="manifest" href="favicon/site.webmanifest">
     
-    <link rel="stylesheet" href="styles.css?v=1.1">
+    <link rel="stylesheet" href="styles.css?v=1.2">
 </head>
 <body>
     <div class="container">
@@ -49,28 +49,44 @@
             <div class="all-spells-header">
                 <h2>Все заклинания</h2>
                 <div class="filters">
-                    <input type="text" id="searchName" placeholder="Поиск по названию..." class="filter-input">
-                    <select id="filterLevel" class="filter-select">
-                        <option value="">Все уровни</option>
-                        <option value="0">Заговоры</option>
-                        <option value="1">1 уровень</option>
-                        <option value="2">2 уровень</option>
-                        <option value="3">3 уровень</option>
-                        <option value="4">4 уровень</option>
-                        <option value="5">5 уровень</option>
-                        <option value="6">6 уровень</option>
-                        <option value="7">7 уровень</option>
-                        <option value="8">8 уровень</option>
-                        <option value="9">9 уровень</option>
-                    </select>
-                    <select id="filterClass" class="filter-select">
-                        <option value="">Все классы</option>
-                    </select>
-                    <select id="filterSource" class="filter-select">
-                        <option value="">Все</option>
-                        <option value="PHB">PHB</option>
-                        <option value="EFA">EFA</option>
-                    </select>
+                    <div class="filter-group">
+                        <div class="filter-item">
+                            <label for="searchName">Поиск по названию</label>
+                            <input type="text" id="searchName" placeholder="Поиск по названию..." class="filter-input">
+                        </div>
+                        <div class="filter-item">
+                            <label for="filterLevel">Уровень</label>
+                            <select id="filterLevel" class="filter-select">
+                                <option value="">Все уровни</option>
+                                <option value="0">Заговоры</option>
+                                <option value="1">1 уровень</option>
+                                <option value="2">2 уровень</option>
+                                <option value="3">3 уровень</option>
+                                <option value="4">4 уровень</option>
+                                <option value="5">5 уровень</option>
+                                <option value="6">6 уровень</option>
+                                <option value="7">7 уровень</option>
+                                <option value="8">8 уровень</option>
+                                <option value="9">9 уровень</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <div class="filter-item">
+                            <label for="filterClass">Класс</label>
+                            <select id="filterClass" class="filter-select">
+                                <option value="">Все классы</option>
+                            </select>
+                        </div>
+                        <div class="filter-item">
+                            <label for="filterSource">Источник</label>
+                            <select id="filterSource" class="filter-select">
+                                <option value="">Все</option>
+                                <option value="PHB">PHB</option>
+                                <option value="EFA">EFA</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div id="spellsCount" class="spells-count"></div>
@@ -139,7 +155,7 @@
                             </select>
                         </label>
                     </div>
-                    <div class="book-actions">
+                    <div class="book-controls">
                         <button id="resetSettingsBtn" class="reset-btn">
                             <img src="icons/reset.svg" alt="Сбросить настройки" class="reset-icon">
                             Сбросить настройки
@@ -148,6 +164,17 @@
                             <img src="icons/trash.svg" alt="Удалить все заклинания" class="trash-icon">
                             Удалить все заклинания
                         </button>
+                        <button id="exportBookBtn" class="export-btn">
+                            <img src="icons/export.svg" alt="Экспорт" class="export-icon">
+                            Экспорт
+                        </button>
+                        <label for="importBookInput" class="import-btn">
+                            <img src="icons/import.svg" alt="Импорт" class="import-icon">
+                            Импорт
+                            <input type="file" id="importBookInput" accept=".json" style="display: none;">
+                        </label>
+                    </div>
+                    <div class="book-print">
                         <button id="printBtn" class="print-btn">
                             <img src="icons/printer.svg" alt="Печать" class="print-icon">
                             Печать
@@ -167,8 +194,8 @@
     <script type="application/json" id="schools-data">
 [{"id":"1","name":"Воплощение"},{"id":"2","name":"Вызов"},{"id":"3","name":"Ограждение"},{"id":"4","name":"Некромантия"},{"id":"5","name":"Очарование"},{"id":"6","name":"Иллюзия"},{"id":"7","name":"Преобразование"},{"id":"8","name":"Прорицание"}]
     </script>
-    <script src="data/all-spells.js?v=1.1"></script>
-    <script src="script.js?v=1.1"></script>
+    <script src="data/all-spells.js?v=1.2"></script>
+    <script src="script.js?v=1.2"></script>
 </body>
 </html>
 

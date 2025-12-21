@@ -168,6 +168,86 @@ function saveSpellBook() {
     localStorage.setItem('spellBook', JSON.stringify(spellBook));
 }
 
+// Экспорт книги заклинаний в JSON файл
+function exportSpellBook() {
+    if (spellBook.length === 0) {
+        alert('Книга заклинаний пуста. Нет заклинаний для экспорта.');
+        return;
+    }
+    
+    const exportData = {
+        spellIds: spellBook
+    };
+    
+    const jsonString = JSON.stringify(exportData, null, 2);
+    const blob = new Blob([jsonString], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'spellbook.json';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    URL.revokeObjectURL(url);
+}
+
+// Импорт книги заклинаний из JSON файла
+function importSpellBook(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        try {
+            const data = JSON.parse(e.target.result);
+            
+            // Проверяем формат файла
+            if (!data.spellIds || !Array.isArray(data.spellIds)) {
+                alert('Неверный формат файла. Ожидается объект с полем spellIds (массив ID заклинаний).');
+                return;
+            }
+            
+            if (!confirm('Загрузить книгу заклинаний?\nТекущая книга будет заменена.')) {
+                // Сбрасываем input, чтобы можно было загрузить тот же файл снова
+                event.target.value = '';
+                return;
+            }
+            
+            // Валидируем ID - проверяем что они существуют в allSpells
+            const validIds = data.spellIds.filter(id => 
+                allSpells.some(spell => spell.Id === id)
+            );
+            
+            if (validIds.length !== data.spellIds.length) {
+                const invalidCount = data.spellIds.length - validIds.length;
+                alert(`Загружено ${validIds.length} заклинаний. ${invalidCount} заклинаний не найдено и пропущено.`);
+            }
+            
+            // Заменяем текущую книгу
+            spellBook = validIds;
+            saveSpellBook();
+            
+            // Обновляем отображение
+            updateSpellBookDisplay();
+            updateSpellCardButtons();
+            
+            alert(`Книга заклинаний загружена! Загружено ${validIds.length} заклинаний.`);
+            
+            // Сбрасываем input
+            event.target.value = '';
+            
+        } catch (error) {
+            console.error('Ошибка загрузки файла:', error);
+            alert('Ошибка загрузки файла. Проверьте формат JSON.');
+            event.target.value = '';
+        }
+    };
+    
+    reader.readAsText(file);
+}
+
 // Добавление заклинания в книгу
 function addToSpellBook(spellId) {
     if (!spellBook.includes(spellId)) {
@@ -670,6 +750,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Обработчик печати
     document.getElementById('printBtn').addEventListener('click', printSpellBook);
+    
+    // Обработчик экспорта книги
+    document.getElementById('exportBookBtn').addEventListener('click', exportSpellBook);
+    
+    // Обработчик импорта книги
+    document.getElementById('importBookInput').addEventListener('change', importSpellBook);
     
     // Обработчик сброса настроек
     const resetSettingsBtn = document.getElementById('resetSettingsBtn');
