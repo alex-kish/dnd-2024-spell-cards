@@ -242,8 +242,7 @@ nav {
 }
 
 .spell-components {
-    font-size: 7pt;
-    margin: 5px 0;
+    margin: 2px 0;
 }
 
 .spell-description {
@@ -483,7 +482,7 @@ nav {
 }
 
 .card-size-controls label > span:first-child {
-    min-width: 140px;
+    min-width: 200px;
     flex-shrink: 0;
 }
 

@@ -6,7 +6,16 @@ let spellBook = [];
 
 // Константы
 const DEFAULT_FONT_SIZE = 7;
-const DEFAULT_CARD_SETTINGS = { cardsPerRow: 3, rowsPerPage: 3, fontSize: 7, cardColor: '#8b4513' };
+const DEFAULT_CARD_SETTINGS = { 
+    cardsPerRow: 3, 
+    rowsPerPage: 3, 
+    fontSize: 7, 
+    headerFontSize: 10,
+    subheaderFontSize: 8,
+    infoFontSize: 7,
+    cardColor: '#8b4513',
+    borderRadius: '8px'
+};
 const FONT_SIZE_LIMITS = { min: 2, max: 12 };
 const DEFAULT_HEADER_LINE_COLOR = '#8b4513';
 const BOOK_CARD_HEADER_LINE_COLOR = 'orange';
@@ -90,7 +99,11 @@ function loadCardSettings() {
                 cardsPerRow: Math.max(1, Math.min(4, parseInt(settings.cardsPerRow) || DEFAULT_CARD_SETTINGS.cardsPerRow)),
                 rowsPerPage: Math.max(1, Math.min(4, parseInt(settings.rowsPerPage) || DEFAULT_CARD_SETTINGS.rowsPerPage)),
                 fontSize: Math.max(5, Math.min(10, parseFloat(settings.fontSize) || DEFAULT_CARD_SETTINGS.fontSize)),
-                cardColor: settings.cardColor || DEFAULT_CARD_SETTINGS.cardColor
+                headerFontSize: Math.max(8, Math.min(13, parseFloat(settings.headerFontSize) || DEFAULT_CARD_SETTINGS.headerFontSize)),
+                subheaderFontSize: Math.max(5, Math.min(10, parseFloat(settings.subheaderFontSize) || DEFAULT_CARD_SETTINGS.subheaderFontSize)),
+                infoFontSize: Math.max(5, Math.min(10, parseFloat(settings.infoFontSize) || DEFAULT_CARD_SETTINGS.infoFontSize)),
+                cardColor: settings.cardColor || DEFAULT_CARD_SETTINGS.cardColor,
+                borderRadius: settings.borderRadius || DEFAULT_CARD_SETTINGS.borderRadius
             };
         } catch (e) {
             console.warn('Ошибка загрузки настроек карточек:', e);
@@ -100,8 +113,17 @@ function loadCardSettings() {
 }
 
 // Сохранение настроек карточек в localStorage
-function saveCardSettings(cardsPerRow, rowsPerPage, fontSize, cardColor) {
-    localStorage.setItem('cardSettings', JSON.stringify({ cardsPerRow, rowsPerPage, fontSize, cardColor }));
+function saveCardSettings(cardsPerRow, rowsPerPage, fontSize, headerFontSize, subheaderFontSize, infoFontSize, cardColor, borderRadius) {
+    localStorage.setItem('cardSettings', JSON.stringify({ 
+        cardsPerRow, 
+        rowsPerPage, 
+        fontSize, 
+        headerFontSize,
+        subheaderFontSize,
+        infoFontSize,
+        cardColor,
+        borderRadius
+    }));
 }
 
 // Применение размеров карточек
@@ -135,14 +157,28 @@ function applyCardSizes() {
                 description.style.scrollbarColor = `${settings.cardColor} #f0f0f0`;
             }
             
-        // Применяем цвет к карточке через CSS переменную
+        // Применяем цвет и скругление к карточке через CSS переменную
         card.style.setProperty('--card-border-color', settings.cardColor);
         card.style.borderColor = settings.cardColor;
+        card.style.borderRadius = settings.borderRadius;
             
-            // Применяем цвет к названию заклинания
+            // Применяем цвет и размер шрифта к названию заклинания
             const spellName = card.querySelector('.spell-name');
             if (spellName) {
                 spellName.style.color = settings.cardColor;
+                spellName.style.fontSize = settings.headerFontSize + 'pt';
+            }
+            
+            // Применяем размер шрифта к подзаголовку (уровень и школа)
+            const spellLevelSchool = card.querySelector('.spell-level-school');
+            if (spellLevelSchool) {
+                spellLevelSchool.style.fontSize = settings.subheaderFontSize + 'pt';
+            }
+            
+            // Применяем размер шрифта к информации
+            const spellInfo = card.querySelector('.spell-info');
+            if (spellInfo) {
+                spellInfo.style.fontSize = settings.infoFontSize + 'pt';
             }
             
             // Обновляем цвет SVG полоски в header
@@ -156,11 +192,19 @@ function applyCardSizes() {
     const cardsPerRowSelect = document.getElementById('cardsPerRow');
     const rowsPerPageSelect = document.getElementById('rowsPerPage');
     const fontSizeSelect = document.getElementById('fontSize');
+    const headerFontSizeSelect = document.getElementById('headerFontSize');
+    const subheaderFontSizeSelect = document.getElementById('subheaderFontSize');
+    const infoFontSizeSelect = document.getElementById('infoFontSize');
     const cardColorSelect = document.getElementById('cardColor');
+    const borderRadiusSelect = document.getElementById('borderRadius');
     if (cardsPerRowSelect) cardsPerRowSelect.value = settings.cardsPerRow;
     if (rowsPerPageSelect) rowsPerPageSelect.value = settings.rowsPerPage;
     if (fontSizeSelect) fontSizeSelect.value = settings.fontSize;
+    if (headerFontSizeSelect) headerFontSizeSelect.value = settings.headerFontSize;
+    if (subheaderFontSizeSelect) subheaderFontSizeSelect.value = settings.subheaderFontSize;
+    if (infoFontSizeSelect) infoFontSizeSelect.value = settings.infoFontSize;
     if (cardColorSelect) cardColorSelect.value = settings.cardColor;
+    if (borderRadiusSelect) borderRadiusSelect.value = settings.borderRadius;
 }
 
 // Сохранение книги заклинаний в localStorage
@@ -195,7 +239,11 @@ function exportSpellBook() {
             cardsPerRow: cardSettings.cardsPerRow,
             rowsPerPage: cardSettings.rowsPerPage,
             fontSize: cardSettings.fontSize,
-            cardColor: cardSettings.cardColor
+            headerFontSize: cardSettings.headerFontSize,
+            subheaderFontSize: cardSettings.subheaderFontSize,
+            infoFontSize: cardSettings.infoFontSize,
+            cardColor: cardSettings.cardColor,
+            borderRadius: cardSettings.borderRadius
         },
         spellFontSizes: bookFontSizes
     };
@@ -257,9 +305,13 @@ function importSpellBook(event) {
                 const cardsPerRow = Math.max(1, Math.min(4, parseInt(settings.cardsPerRow) || DEFAULT_CARD_SETTINGS.cardsPerRow));
                 const rowsPerPage = Math.max(1, Math.min(4, parseInt(settings.rowsPerPage) || DEFAULT_CARD_SETTINGS.rowsPerPage));
                 const fontSize = Math.max(5, Math.min(10, parseFloat(settings.fontSize) || DEFAULT_CARD_SETTINGS.fontSize));
+                const headerFontSize = Math.max(8, Math.min(13, parseFloat(settings.headerFontSize) || DEFAULT_CARD_SETTINGS.headerFontSize));
+                const subheaderFontSize = Math.max(5, Math.min(10, parseFloat(settings.subheaderFontSize) || DEFAULT_CARD_SETTINGS.subheaderFontSize));
+                const infoFontSize = Math.max(5, Math.min(10, parseFloat(settings.infoFontSize) || DEFAULT_CARD_SETTINGS.infoFontSize));
                 const cardColor = settings.cardColor || DEFAULT_CARD_SETTINGS.cardColor;
+                const borderRadius = settings.borderRadius || DEFAULT_CARD_SETTINGS.borderRadius;
                 
-                saveCardSettings(cardsPerRow, rowsPerPage, fontSize, cardColor);
+                saveCardSettings(cardsPerRow, rowsPerPage, fontSize, headerFontSize, subheaderFontSize, infoFontSize, cardColor, borderRadius);
             }
             
             // Применяем индивидуальные размеры шрифта, если они есть в файле
@@ -331,12 +383,20 @@ function resetCardSettings() {
         const cardsPerRowSelect = document.getElementById('cardsPerRow');
         const rowsPerPageSelect = document.getElementById('rowsPerPage');
         const fontSizeSelect = document.getElementById('fontSize');
+        const headerFontSizeSelect = document.getElementById('headerFontSize');
+        const subheaderFontSizeSelect = document.getElementById('subheaderFontSize');
+        const infoFontSizeSelect = document.getElementById('infoFontSize');
         const cardColorSelect = document.getElementById('cardColor');
+        const borderRadiusSelect = document.getElementById('borderRadius');
         
         if (cardsPerRowSelect) cardsPerRowSelect.value = DEFAULT_CARD_SETTINGS.cardsPerRow;
         if (rowsPerPageSelect) rowsPerPageSelect.value = DEFAULT_CARD_SETTINGS.rowsPerPage;
         if (fontSizeSelect) fontSizeSelect.value = DEFAULT_CARD_SETTINGS.fontSize;
+        if (headerFontSizeSelect) headerFontSizeSelect.value = DEFAULT_CARD_SETTINGS.headerFontSize;
+        if (subheaderFontSizeSelect) subheaderFontSizeSelect.value = DEFAULT_CARD_SETTINGS.subheaderFontSize;
+        if (infoFontSizeSelect) infoFontSizeSelect.value = DEFAULT_CARD_SETTINGS.infoFontSize;
         if (cardColorSelect) cardColorSelect.value = DEFAULT_CARD_SETTINGS.cardColor;
+        if (borderRadiusSelect) borderRadiusSelect.value = DEFAULT_CARD_SETTINGS.borderRadius;
         
         // Применяем настройки по умолчанию
         applyCardSizes();
@@ -362,9 +422,17 @@ function clearSpellBook() {
         const cardsPerRowSelect = document.getElementById('cardsPerRow');
         const rowsPerPageSelect = document.getElementById('rowsPerPage');
         const fontSizeSelect = document.getElementById('fontSize');
+        const headerFontSizeSelect = document.getElementById('headerFontSize');
+        const subheaderFontSizeSelect = document.getElementById('subheaderFontSize');
+        const infoFontSizeSelect = document.getElementById('infoFontSize');
+        const borderRadiusSelect = document.getElementById('borderRadius');
         if (cardsPerRowSelect) cardsPerRowSelect.value = DEFAULT_CARD_SETTINGS.cardsPerRow;
         if (rowsPerPageSelect) rowsPerPageSelect.value = DEFAULT_CARD_SETTINGS.rowsPerPage;
         if (fontSizeSelect) fontSizeSelect.value = DEFAULT_CARD_SETTINGS.fontSize;
+        if (headerFontSizeSelect) headerFontSizeSelect.value = DEFAULT_CARD_SETTINGS.headerFontSize;
+        if (subheaderFontSizeSelect) subheaderFontSizeSelect.value = DEFAULT_CARD_SETTINGS.subheaderFontSize;
+        if (infoFontSizeSelect) infoFontSizeSelect.value = DEFAULT_CARD_SETTINGS.infoFontSize;
+        if (borderRadiusSelect) borderRadiusSelect.value = DEFAULT_CARD_SETTINGS.borderRadius;
         updateSpellBookDisplay();
         updateSpellCardButtons();
     }
@@ -460,12 +528,13 @@ function createSpellCard(spell, isBookView = false) {
     }
     card.dataset.spellId = spell.Id;
     
-    // Определяем цвет карточки для книги заклинаний
+    // Определяем цвет и скругление карточки для книги заклинаний
     if (isBookView) {
         const cardSettings = loadCardSettings();
         card.style.setProperty('--card-border-color', cardSettings.cardColor);
         // Для Firefox используем прямое присваивание
         card.style.borderColor = cardSettings.cardColor;
+        card.style.borderRadius = cardSettings.borderRadius;
     }
 
     const levelText = spell.Level === 0 ? '<strong>Заговор</strong>' : `<strong>${spell.Level}</strong> уровень`;
@@ -492,13 +561,17 @@ function createSpellCard(spell, isBookView = false) {
     let descriptionFontSize = DEFAULT_FONT_SIZE;
     let descriptionStyle = '';
     let spellNameStyle = '';
+    let spellLevelSchoolStyle = '';
+    let spellInfoStyle = '';
     let cardSettings = null;
     
     if (isBookView) {
         cardSettings = loadCardSettings();
         descriptionFontSize = getCardFontSize(spell.Id, cardSettings.fontSize);
         descriptionStyle = `style="font-size: ${descriptionFontSize}pt; --scrollbar-color: ${cardSettings.cardColor}; scrollbar-color: ${cardSettings.cardColor} #f0f0f0;"`;
-        spellNameStyle = `style="color: ${cardSettings.cardColor};"`;
+        spellNameStyle = `style="color: ${cardSettings.cardColor}; font-size: ${cardSettings.headerFontSize}pt;"`;
+        spellLevelSchoolStyle = `style="font-size: ${cardSettings.subheaderFontSize}pt;"`;
+        spellInfoStyle = `style="font-size: ${cardSettings.infoFontSize}pt;"`;
     }
 
     const headerLineColor = getHeaderLineColor(card, cardSettings);
@@ -506,7 +579,7 @@ function createSpellCard(spell, isBookView = false) {
     card.innerHTML = `
         <div class="spell-card-header">
             <div class="spell-name" ${spellNameStyle}>${nameHtml}</div>
-            <div class="spell-level-school">
+            <div class="spell-level-school" ${spellLevelSchoolStyle}>
                 <span>${levelText}</span>
                 <span>${schoolName}</span>
             </div>
@@ -514,7 +587,7 @@ function createSpellCard(spell, isBookView = false) {
                 <line x1="0" y1="0" x2="100%" y2="0" stroke="${headerLineColor}" stroke-width="2"/>
             </svg>
         </div>
-        <div class="spell-info">
+        <div class="spell-info" ${spellInfoStyle}>
             <div class="spell-info-row">
                 <span><strong>Время:</strong></span>
                 <span>${escapeHtml(spell.Time)}</span>
@@ -779,17 +852,25 @@ function handleCardSettingsChange() {
     const cardsPerRowSelect = document.getElementById('cardsPerRow');
     const rowsPerPageSelect = document.getElementById('rowsPerPage');
     const fontSizeSelect = document.getElementById('fontSize');
+    const headerFontSizeSelect = document.getElementById('headerFontSize');
+    const subheaderFontSizeSelect = document.getElementById('subheaderFontSize');
+    const infoFontSizeSelect = document.getElementById('infoFontSize');
     const cardColorSelect = document.getElementById('cardColor');
+    const borderRadiusSelect = document.getElementById('borderRadius');
     
-    if (!cardsPerRowSelect || !rowsPerPageSelect || !fontSizeSelect || !cardColorSelect) return;
+    if (!cardsPerRowSelect || !rowsPerPageSelect || !fontSizeSelect || !headerFontSizeSelect || !subheaderFontSizeSelect || !infoFontSizeSelect || !cardColorSelect || !borderRadiusSelect) return;
     
     const cardsPerRow = parseInt(cardsPerRowSelect.value);
     const rowsPerPage = parseInt(rowsPerPageSelect.value);
     const fontSize = parseFloat(fontSizeSelect.value);
+    const headerFontSize = parseFloat(headerFontSizeSelect.value);
+    const subheaderFontSize = parseFloat(subheaderFontSizeSelect.value);
+    const infoFontSize = parseFloat(infoFontSizeSelect.value);
     const cardColor = cardColorSelect.value;
+    const borderRadius = borderRadiusSelect.value;
     
     // Сохраняем и применяем размеры сразу
-    saveCardSettings(cardsPerRow, rowsPerPage, fontSize, cardColor);
+    saveCardSettings(cardsPerRow, rowsPerPage, fontSize, headerFontSize, subheaderFontSize, infoFontSize, cardColor, borderRadius);
     applyCardSizes();
 }
 
@@ -825,6 +906,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const cardsPerRowSelect = document.getElementById('cardsPerRow');
     const rowsPerPageSelect = document.getElementById('rowsPerPage');
     const fontSizeSelect = document.getElementById('fontSize');
+    const headerFontSizeSelect = document.getElementById('headerFontSize');
+    const subheaderFontSizeSelect = document.getElementById('subheaderFontSize');
+    const infoFontSizeSelect = document.getElementById('infoFontSize');
     const cardColorSelect = document.getElementById('cardColor');
     
     if (cardsPerRowSelect) {
@@ -836,8 +920,21 @@ document.addEventListener('DOMContentLoaded', () => {
     if (fontSizeSelect) {
         fontSizeSelect.addEventListener('change', handleCardSettingsChange);
     }
+    if (headerFontSizeSelect) {
+        headerFontSizeSelect.addEventListener('change', handleCardSettingsChange);
+    }
+    if (subheaderFontSizeSelect) {
+        subheaderFontSizeSelect.addEventListener('change', handleCardSettingsChange);
+    }
+    if (infoFontSizeSelect) {
+        infoFontSizeSelect.addEventListener('change', handleCardSettingsChange);
+    }
     if (cardColorSelect) {
         cardColorSelect.addEventListener('change', handleCardSettingsChange);
+    }
+    const borderRadiusSelect = document.getElementById('borderRadius');
+    if (borderRadiusSelect) {
+        borderRadiusSelect.addEventListener('change', handleCardSettingsChange);
     }
 
     // Загрузка данных
