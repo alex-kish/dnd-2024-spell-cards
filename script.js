@@ -847,6 +847,14 @@ function printSpellBook() {
     }, 200);
 }
 
+// Переключение видимости настроек
+function toggleSettings() {
+    const settingsPanel = document.getElementById('cardSizeControls');
+    if (settingsPanel) {
+        settingsPanel.classList.toggle('hidden');
+    }
+}
+
 // Обработчик изменения настроек карточек
 function handleCardSettingsChange() {
     const cardsPerRowSelect = document.getElementById('cardsPerRow');
@@ -900,6 +908,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const resetSettingsBtn = document.getElementById('resetSettingsBtn');
     if (resetSettingsBtn) {
         resetSettingsBtn.addEventListener('click', resetCardSettings);
+    }
+    
+    // Обработчик переключения настроек
+    const toggleSettingsBtn = document.getElementById('toggleSettingsBtn');
+    if (toggleSettingsBtn) {
+        toggleSettingsBtn.addEventListener('click', toggleSettings);
     }
 
     // Обработчики настроек карточек

@@ -100,132 +100,7 @@
             <div class="book-header">
                 <div class="book-title-section">
                     <h2>Книга заклинаний</h2>
-                </div>
-                <div class="card-size-controls">
-                    <div class="card-controls-row">
-                        <label>
-                            <span>Карточек в строке:</span>
-                            <select id="cardsPerRow" class="size-select">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3" selected>3</option>
-                                <option value="4">4</option>
-                            </select>
-                        </label>
-                        <label>
-                            <span>Строк на странице:</span>
-                            <select id="rowsPerPage" class="size-select">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3" selected>3</option>
-                                <option value="4">4</option>
-                            </select>
-                        </label>
-                    </div>
-                    <div class="card-controls-row">
-                        <label>
-                            <span>Размер шрифта заголовка:</span>
-                            <select id="headerFontSize" class="size-select">
-                                <option value="8">8pt</option>
-                                <option value="8.5">8.5pt</option>
-                                <option value="9">9pt</option>
-                                <option value="9.5">9.5pt</option>
-                                <option value="10" selected>10pt</option>
-                                <option value="10.5">10.5pt</option>
-                                <option value="11">11pt</option>
-                                <option value="11.5">11.5pt</option>
-                                <option value="12">12pt</option>
-                                <option value="12.5">12.5pt</option>
-                                <option value="13">13pt</option>
-                            </select>
-                        </label>
-                        <label>
-                            <span>Размер шрифта подзаголовка:</span>
-                            <select id="subheaderFontSize" class="size-select">
-                                <option value="5">5pt</option>
-                                <option value="5.5">5.5pt</option>
-                                <option value="6">6pt</option>
-                                <option value="6.5">6.5pt</option>
-                                <option value="7">7pt</option>
-                                <option value="7.5">7.5pt</option>
-                                <option value="8" selected>8pt</option>
-                                <option value="8.5">8.5pt</option>
-                                <option value="9">9pt</option>
-                                <option value="9.5">9.5pt</option>
-                                <option value="10">10pt</option>
-                            </select>
-                        </label>
-                    </div>
-                    <div class="card-controls-row">
-                        <label>
-                            <span>Размер шрифта информации:</span>
-                            <select id="infoFontSize" class="size-select">
-                                <option value="5">5pt</option>
-                                <option value="5.5">5.5pt</option>
-                                <option value="6">6pt</option>
-                                <option value="6.5">6.5pt</option>
-                                <option value="7" selected>7pt</option>
-                                <option value="7.5">7.5pt</option>
-                                <option value="8">8pt</option>
-                                <option value="8.5">8.5pt</option>
-                                <option value="9">9pt</option>
-                                <option value="9.5">9.5pt</option>
-                                <option value="10">10pt</option>
-                            </select>
-                        </label>
-                        <label>
-                            <span>Размер шрифта описания:</span>
-                            <select id="fontSize" class="size-select">
-                                <option value="5">5pt</option>
-                                <option value="5.5">5.5pt</option>
-                                <option value="6">6pt</option>
-                                <option value="6.5">6.5pt</option>
-                                <option value="7" selected>7pt</option>
-                                <option value="7.5">7.5pt</option>
-                                <option value="8">8pt</option>
-                                <option value="8.5">8.5pt</option>
-                                <option value="9">9pt</option>
-                                <option value="9.5">9.5pt</option>
-                                <option value="10">10pt</option>
-                            </select>
-                        </label>
-                    </div>
-                    <div class="card-controls-row">
-                        <label>
-                            <span>Цвет карточек:</span>
-                            <select id="cardColor" class="size-select">
-                                <option value="#8b4513" selected>Коричневый</option>
-                                <option value="#e01a10">Изобретатель</option>
-                                <option value="#e91e63">Бард</option>
-                                <option value="#FDD835">Жрец</option>
-                                <option value="#795548">Друид</option>
-                                <option value="#2196f3">Паладин</option>
-                                <option value="#4caf50">Следопыт</option>
-                                <option value="#ff9800">Чародей</option>
-                                <option value="#673ab7">Колдун</option>
-                                <option value="#f44336">Волшебник</option>
-                            </select>
-                        </label>
-                        <label>
-                            <span>Скругление рамки:</span>
-                            <select id="borderRadius" class="size-select">
-                                <option value="0">0</option>
-                                <option value="4px">4px</option>
-                                <option value="8px" selected>8px</option>
-                                <option value="12px">12px</option>
-                                <option value="16px">16px</option>
-                            </select>
-                        </label>
-                    </div>
                     <div class="book-controls">
-                        <button id="resetSettingsBtn" class="reset-btn">
-                            <img src="icons/reset.svg" alt="Сбросить настройки" class="reset-icon">
-                            Сбросить настройки
-                        </button>
-                        <button id="clearBookBtn" class="clear-book-btn">
-                            <img src="icons/trash.svg" alt="Удалить все заклинания" class="trash-icon">
-                            Удалить все заклинания
-                        </button>
                         <button id="exportBookBtn" class="export-btn">
                             <img src="icons/export.svg" alt="Экспорт" class="export-icon">
                             Экспорт
@@ -236,11 +111,141 @@
                             <input type="file" id="importBookInput" accept=".json" style="display: none;">
                         </label>
                     </div>
+                </div>
                     <div class="book-print">
+                        <button id="clearBookBtn" class="clear-book-btn">
+                            <img src="icons/trash.svg" alt="Удалить все заклинания" class="trash-icon">
+                            Удалить все заклинания
+                        </button>
+                        <button id="resetSettingsBtn" class="reset-btn">
+                            <img src="icons/reset.svg" alt="Сбросить настройки" class="reset-icon">
+                            Сбросить настройки
+                        </button>
+                        <button id="toggleSettingsBtn" class="settings-btn">
+                            <img src="icons/settings.svg" alt="Настройки" class="settings-icon">
+                            Настройки
+                        </button>
                         <button id="printBtn" class="print-btn">
                             <img src="icons/printer.svg" alt="Печать" class="print-icon">
                             Печать
                         </button>
+                    </div>
+                    <div id="cardSizeControls" class="card-size-controls hidden">
+                        <div class="card-controls-row">
+                            <label>
+                                <span>Карточек в строке:</span>
+                                <select id="cardsPerRow" class="size-select">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3" selected>3</option>
+                                    <option value="4">4</option>
+                                </select>
+                            </label>
+                            <label>
+                                <span>Строк на странице:</span>
+                                <select id="rowsPerPage" class="size-select">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3" selected>3</option>
+                                    <option value="4">4</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="card-controls-row">
+                            <label>
+                                <span>Шрифт заголовка:</span>
+                                <select id="headerFontSize" class="size-select">
+                                    <option value="8">8pt</option>
+                                    <option value="8.5">8.5pt</option>
+                                    <option value="9">9pt</option>
+                                    <option value="9.5">9.5pt</option>
+                                    <option value="10" selected>10pt</option>
+                                    <option value="10.5">10.5pt</option>
+                                    <option value="11">11pt</option>
+                                    <option value="11.5">11.5pt</option>
+                                    <option value="12">12pt</option>
+                                    <option value="12.5">12.5pt</option>
+                                    <option value="13">13pt</option>
+                                </select>
+                            </label>
+                            <label>
+                                <span>Шрифт подзаголовка:</span>
+                                <select id="subheaderFontSize" class="size-select">
+                                    <option value="5">5pt</option>
+                                    <option value="5.5">5.5pt</option>
+                                    <option value="6">6pt</option>
+                                    <option value="6.5">6.5pt</option>
+                                    <option value="7">7pt</option>
+                                    <option value="7.5">7.5pt</option>
+                                    <option value="8" selected>8pt</option>
+                                    <option value="8.5">8.5pt</option>
+                                    <option value="9">9pt</option>
+                                    <option value="9.5">9.5pt</option>
+                                    <option value="10">10pt</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="card-controls-row">
+                            <label>
+                                <span>Шрифт информации:</span>
+                                <select id="infoFontSize" class="size-select">
+                                    <option value="5">5pt</option>
+                                    <option value="5.5">5.5pt</option>
+                                    <option value="6">6pt</option>
+                                    <option value="6.5">6.5pt</option>
+                                    <option value="7" selected>7pt</option>
+                                    <option value="7.5">7.5pt</option>
+                                    <option value="8">8pt</option>
+                                    <option value="8.5">8.5pt</option>
+                                    <option value="9">9pt</option>
+                                    <option value="9.5">9.5pt</option>
+                                    <option value="10">10pt</option>
+                                </select>
+                            </label>
+                            <label>
+                                <span>Шрифт описания:</span>
+                                <select id="fontSize" class="size-select">
+                                    <option value="5">5pt</option>
+                                    <option value="5.5">5.5pt</option>
+                                    <option value="6">6pt</option>
+                                    <option value="6.5">6.5pt</option>
+                                    <option value="7" selected>7pt</option>
+                                    <option value="7.5">7.5pt</option>
+                                    <option value="8">8pt</option>
+                                    <option value="8.5">8.5pt</option>
+                                    <option value="9">9pt</option>
+                                    <option value="9.5">9.5pt</option>
+                                    <option value="10">10pt</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="card-controls-row">
+                            <label>
+                                <span>Цвет карточек:</span>
+                                <select id="cardColor" class="size-select">
+                                    <option value="#8b4513" selected>Коричневый</option>
+                                    <option value="#e01a10">Изобретатель</option>
+                                    <option value="#e91e63">Бард</option>
+                                    <option value="#FDD835">Жрец</option>
+                                    <option value="#795548">Друид</option>
+                                    <option value="#2196f3">Паладин</option>
+                                    <option value="#4caf50">Следопыт</option>
+                                    <option value="#ff9800">Чародей</option>
+                                    <option value="#673ab7">Колдун</option>
+                                    <option value="#f44336">Волшебник</option>
+                                </select>
+                            </label>
+                            <label>
+                                <span>Скругление рамки:</span>
+                                <select id="borderRadius" class="size-select">
+                                    <option value="0">0</option>
+                                    <option value="4px">4px</option>
+                                    <option value="8px" selected>8px</option>
+                                    <option value="12px">12px</option>
+                                    <option value="16px">16px</option>
+                                </select>
+                            </label>
+                        </div>
                     </div>
                 </div>
             </div>
