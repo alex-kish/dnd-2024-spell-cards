@@ -175,8 +175,29 @@ function exportSpellBook() {
         return;
     }
     
+    // Загружаем настройки карточек
+    const cardSettings = loadCardSettings();
+    
+    // Загружаем индивидуальные размеры шрифта
+    const spellFontSizes = loadFontSizes();
+    
+    // Фильтруем индивидуальные размеры шрифта только для заклинаний в книге
+    const bookFontSizes = {};
+    spellBook.forEach(spellId => {
+        if (spellFontSizes[spellId]) {
+            bookFontSizes[spellId] = spellFontSizes[spellId];
+        }
+    });
+    
     const exportData = {
-        spellIds: spellBook
+        spellIds: spellBook,
+        cardSettings: {
+            cardsPerRow: cardSettings.cardsPerRow,
+            rowsPerPage: cardSettings.rowsPerPage,
+            fontSize: cardSettings.fontSize,
+            cardColor: cardSettings.cardColor
+        },
+        spellFontSizes: bookFontSizes
     };
     
     const jsonString = JSON.stringify(exportData, null, 2);
@@ -228,6 +249,37 @@ function importSpellBook(event) {
             // Заменяем текущую книгу
             spellBook = validIds;
             saveSpellBook();
+            
+            // Применяем настройки карточек, если они есть в файле
+            if (data.cardSettings) {
+                const settings = data.cardSettings;
+                // Валидируем значения перед применением
+                const cardsPerRow = Math.max(1, Math.min(4, parseInt(settings.cardsPerRow) || DEFAULT_CARD_SETTINGS.cardsPerRow));
+                const rowsPerPage = Math.max(1, Math.min(4, parseInt(settings.rowsPerPage) || DEFAULT_CARD_SETTINGS.rowsPerPage));
+                const fontSize = Math.max(5, Math.min(10, parseFloat(settings.fontSize) || DEFAULT_CARD_SETTINGS.fontSize));
+                const cardColor = settings.cardColor || DEFAULT_CARD_SETTINGS.cardColor;
+                
+                saveCardSettings(cardsPerRow, rowsPerPage, fontSize, cardColor);
+            }
+            
+            // Применяем индивидуальные размеры шрифта, если они есть в файле
+            if (data.spellFontSizes && typeof data.spellFontSizes === 'object') {
+                // Загружаем текущие размеры шрифта
+                const currentFontSizes = loadFontSizes();
+                
+                // Обновляем только размеры для заклинаний из импортированной книги
+                validIds.forEach(spellId => {
+                    if (data.spellFontSizes[spellId]) {
+                        const fontSize = parseFloat(data.spellFontSizes[spellId]);
+                        // Валидируем размер шрифта
+                        if (!isNaN(fontSize) && fontSize >= FONT_SIZE_LIMITS.min && fontSize <= FONT_SIZE_LIMITS.max) {
+                            currentFontSizes[spellId] = fontSize;
+                        }
+                    }
+                });
+                
+                saveFontSizes(currentFontSizes);
+            }
             
             // Обновляем отображение
             updateSpellBookDisplay();
