@@ -463,7 +463,7 @@ nav {
     background: white;
     color: #8b4513;
     border: 2px solid #8b4513;
-    padding: 8px 16px;
+    padding: 8px 12px;
     border-radius: 5px;
     cursor: pointer;
     font-size: 14px;
@@ -576,7 +576,7 @@ nav {
 
 
 .print-btn {
-    padding: 10px 20px;
+    padding: 8px 12px;
     background: #8b4513;
     color: white;
     border: none;
@@ -626,7 +626,7 @@ nav {
     background: white;
     color: #8b4513;
     border: 2px solid #8b4513;
-    padding: 8px 16px;
+    padding: 8px 12px;
     border-radius: 5px;
     cursor: pointer;
     font-size: 14px;
@@ -659,7 +659,7 @@ nav {
     background: #dc3545;
     color: white;
     border: 2px solid #dc3545;
-    padding: 8px 16px;
+    padding: 8px 12px;
     border-radius: 5px;
     cursor: pointer;
     font-size: 14px;
@@ -688,7 +688,7 @@ nav {
     background: white;
     color: #8b4513 !important;
     border: 2px solid #8b4513;
-    padding: 8px 16px;
+    padding: 8px 12px;
     border-radius: 5px;
     cursor: pointer;
     font-size: 14px;
