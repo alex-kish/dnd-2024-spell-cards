@@ -69,8 +69,6 @@ function loadData() {
         loadFilters(); // Загружаем сохраненные фильтры
         filterSpells(); // Применяем фильтры
         updateSpellBookDisplay();
-        // Применяем размеры карточек при загрузке
-        setTimeout(() => applyCardSizesAndSplit(), 100);
 
         loadingIndicator.style.display = 'none';
         console.log(`Загружено ${allSpells.length} заклинаний`);
@@ -207,191 +205,132 @@ function applyCardSizes() {
     if (borderRadiusSelect) borderRadiusSelect.value = settings.borderRadius;
 }
 
+const descriptionSources = new WeakMap();
+const MAX_SPLIT_PARTS = 20;
+
 function applyCardSizesAndSplit() {
     applyCardSizes();
-    requestAnimationFrame(() => {
-        splitOverflowingSpellBookCards();
-        applyCardSizes();
+    splitOverflowingSpellBookCards();
+}
+
+function splitOverflowingSpellBookCards({ force = false } = {}) {
+    const bookView = document.getElementById('spellBookView');
+    const grid = document.getElementById('spellBookGrid');
+    if (!bookView || !grid) return;
+
+    const wasHidden = bookView.classList.contains('hidden');
+    if (wasHidden && !force) return;
+
+    const { scrollX, scrollY } = window;
+
+    grid.querySelectorAll('.spell-card[data-split-part="true"]').forEach(card => card.remove());
+    const cards = Array.from(grid.querySelectorAll('.spell-card'));
+    cards.forEach(card => {
+        const description = card.querySelector('.spell-description');
+        if (description && descriptionSources.has(description)) {
+            description.innerHTML = descriptionSources.get(description);
+        }
+        setPartIndicator(card, null);
+    });
+    if (cards.length === 0) return;
+
+    bookView.classList.remove('hidden');
+    grid.classList.add('split-measuring');
+    try {
+        const overflowing = cards.filter(card => {
+            const description = card.querySelector('.spell-description');
+            return description && isOverflowing(description);
+        });
+        overflowing.forEach(splitSpellCard);
+    } finally {
+        grid.classList.remove('split-measuring');
+        if (wasHidden) bookView.classList.add('hidden');
+    }
+    window.scrollTo(scrollX, scrollY);
+}
+
+function splitSpellCard(card) {
+    const description = card.querySelector('.spell-description');
+    const tokens = tokenizeDescription(descriptionSources.get(description) ?? description.innerHTML);
+    const parts = [card];
+    let current = card;
+    let start = 0;
+
+    while (start < tokens.length) {
+        const currentDescription = current.querySelector('.spell-description');
+        setPartIndicator(current, '\u00a0');
+
+        let end = parts.length === MAX_SPLIT_PARTS
+            ? tokens.length
+            : findFittingEnd(currentDescription, tokens, start);
+        while (end > start + 1 && isBlankToken(tokens[end - 1])) end--;
+        renderTokens(currentDescription, tokens, start, end);
+
+        start = end;
+        while (start < tokens.length && isBlankToken(tokens[start])) start++;
+        if (start >= tokens.length) break;
+
+        const next = card.cloneNode(true);
+        next.dataset.splitPart = 'true';
+        current.after(next);
+        parts.push(next);
+        current = next;
+    }
+
+    parts.forEach((part, idx) => {
+        setPartIndicator(part, parts.length > 1 ? `(${idx + 1}/${parts.length})` : null);
     });
 }
 
-function splitOverflowingSpellBookCards() {
-    const bookView = document.getElementById('spellBookView');
-    if (!bookView || bookView.classList.contains('hidden')) return;
-
-    const grid = document.getElementById('spellBookGrid');
-    if (!grid) return;
-
-    grid.querySelectorAll('.spell-card[data-split-part="true"]').forEach(card => card.remove());
-
-    grid.querySelectorAll('.spell-card').forEach(card => {
-        const description = card.querySelector('.spell-description');
-        if (!description) return;
-        if (description.dataset.fullHtml) {
-            description.innerHTML = description.dataset.fullHtml;
+function tokenizeDescription(html) {
+    const container = document.createElement('div');
+    container.innerHTML = html;
+    const tokens = [];
+    container.childNodes.forEach(node => {
+        if (node.nodeType === Node.TEXT_NODE) {
+            tokens.push(...(node.textContent.match(/\s+|\S+\s*/g) || []));
         } else {
-            description.dataset.fullHtml = description.innerHTML;
+            tokens.push(node);
         }
     });
+    return tokens;
+}
 
-    const OVERFLOW_EPS_PX = 1;
-    const MAX_PARTS = 10;
+function isBlankToken(token) {
+    if (typeof token === 'string') return token.trim().length === 0;
+    return token.nodeName === 'BR' || token.nodeType === Node.COMMENT_NODE;
+}
 
-    const isMeaningfulNode = (node) => {
-        if (!node) return false;
-        if (node.nodeType === Node.TEXT_NODE) {
-            return node.textContent.trim().length > 0;
-        }
-        return true;
-    };
+function renderTokens(description, tokens, start, end) {
+    description.replaceChildren(...tokens.slice(start, end).map(t => typeof t === 'string' ? t : t.cloneNode(true)));
+}
 
-    const countMeaningfulNodes = (container) => {
-        if (!container) return 0;
-        let count = 0;
-        container.childNodes.forEach(n => {
-            if (isMeaningfulNode(n)) count += 1;
-        });
-        return count;
-    };
+function isOverflowing(element) {
+    return element.scrollHeight > element.clientHeight + 1;
+}
 
-    const getLastMeaningfulTextNode = (container) => {
-        if (!container) return null;
-        const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, {
-            acceptNode: (node) => {
-                return node.textContent && node.textContent.trim().length > 0
-                    ? NodeFilter.FILTER_ACCEPT
-                    : NodeFilter.FILTER_REJECT;
-            }
-        });
-        let last = null;
-        while (walker.nextNode()) last = walker.currentNode;
-        return last;
-    };
-
-    const moveWordsFromEnd = (fromContainer, toContainer, wordsToMove = 25) => {
-        const textNode = getLastMeaningfulTextNode(fromContainer);
-        if (!textNode) return false;
-
-        const text = textNode.textContent;
-        const parts = text.split(/\s+/).filter(Boolean);
-        if (parts.length <= 1) return false;
-
-        const moveCount = Math.min(wordsToMove, parts.length - 1);
-        const movedWords = parts.slice(parts.length - moveCount);
-        const keptWords = parts.slice(0, parts.length - moveCount);
-
-        textNode.textContent = keptWords.join(' ');
-        const movedText = movedWords.join(' ');
-
-        toContainer.prepend(document.createTextNode(movedText + ' '));
-        return true;
-    };
-
-    const originalCards = Array.from(grid.querySelectorAll('.spell-card'));
-    for (const card of originalCards) {
-        let currentCard = card;
-        let partsCreated = 1;
-
-        while (partsCreated < MAX_PARTS) {
-            const description = currentCard.querySelector('.spell-description');
-            if (!description) break;
-
-            if (description.scrollHeight <= description.clientHeight + OVERFLOW_EPS_PX) break;
-
-            const nextCard = currentCard.cloneNode(true);
-            nextCard.dataset.splitPart = 'true';
-            nextCard.dataset.splitRootSpellId = currentCard.dataset.spellId;
-
-            const nextDescription = nextCard.querySelector('.spell-description');
-            if (!nextDescription) break;
-
-            nextDescription.innerHTML = '';
-            nextDescription.dataset.fullHtml = description.dataset.fullHtml || description.innerHTML;
-
-            let moved = false;
-            const movedNodes = [];
-            while (
-                description.scrollHeight > description.clientHeight + OVERFLOW_EPS_PX &&
-                description.childNodes.length > 1
-            ) {
-                // Не даем вычистить первую карточку полностью
-                if (countMeaningfulNodes(description) <= 1) break;
-
-                let nodeToMove = description.lastChild;
-                if (!nodeToMove) break;
-
-                // Пропускаем пустые текстовые узлы, чтобы не переносить "ничего" бесконечно
-                while (nodeToMove && nodeToMove.nodeType === Node.TEXT_NODE && nodeToMove.textContent.trim().length === 0) {
-                    const prev = nodeToMove.previousSibling;
-                    nodeToMove.remove();
-                    nodeToMove = prev;
-                }
-                if (!nodeToMove) break;
-
-                nextDescription.prepend(nodeToMove);
-                movedNodes.push(nodeToMove);
-                moved = true;
-            }
-
-            // Фоллбек: если описание монолитное (1 узел) — режем по словам в последнем текстовом узле
-            let fallbackGuard = 0;
-            while (
-                description.scrollHeight > description.clientHeight + OVERFLOW_EPS_PX &&
-                countMeaningfulNodes(description) <= 1 &&
-                fallbackGuard < 200
-            ) {
-                if (!moveWordsFromEnd(description, nextDescription, 30)) break;
-                moved = true;
-                fallbackGuard += 1;
-            }
-
-            // Если в текущей карточке не осталось контента — откатываем перенос
-            if (countMeaningfulNodes(description) === 0) {
-                for (const n of movedNodes) {
-                    description.appendChild(n);
-                }
-                nextCard.remove();
-                break;
-            }
-
-            if (!moved || countMeaningfulNodes(nextDescription) === 0) {
-                break;
-            }
-
-            currentCard.after(nextCard);
-            partsCreated += 1;
-            currentCard = nextCard;
+function findFittingEnd(description, tokens, start) {
+    let lo = start + 1;
+    let hi = tokens.length;
+    renderTokens(description, tokens, start, hi);
+    if (!isOverflowing(description)) return hi;
+    while (hi - lo > 1) {
+        const mid = (lo + hi) >> 1;
+        renderTokens(description, tokens, start, mid);
+        if (isOverflowing(description)) {
+            hi = mid;
+        } else {
+            lo = mid;
         }
     }
+    return lo;
+}
 
-    // Обновляем индикаторы частей (1/N)
-    const allCards = Array.from(grid.querySelectorAll('.spell-card'));
-    const cardsBySpellId = new Map();
-    allCards.forEach(c => {
-        const spellId = c.dataset.spellId;
-        if (!spellId) return;
-        if (!cardsBySpellId.has(spellId)) cardsBySpellId.set(spellId, []);
-        cardsBySpellId.get(spellId).push(c);
-    });
-
-    cardsBySpellId.forEach(cards => {
-        const total = cards.length;
-        cards.forEach((c, idx) => {
-            let indicator = c.querySelector('.spell-part-indicator');
-            if (!indicator) {
-                indicator = document.createElement('div');
-                indicator.className = 'spell-part-indicator';
-                c.appendChild(indicator);
-            }
-            if (total <= 1) {
-                indicator.textContent = '';
-                indicator.style.display = 'none';
-            } else {
-                indicator.textContent = `(${idx + 1}/${total})`;
-                indicator.style.display = '';
-            }
-        });
-    });
+function setPartIndicator(card, text) {
+    const indicator = card.querySelector('.spell-part-indicator');
+    if (!indicator) return;
+    indicator.textContent = text ?? '';
+    indicator.style.display = text === null ? 'none' : '';
 }
 
 // Сохранение книги заклинаний в localStorage
@@ -586,7 +525,7 @@ function resetCardSettings() {
         if (borderRadiusSelect) borderRadiusSelect.value = DEFAULT_CARD_SETTINGS.borderRadius;
         
         // Применяем настройки по умолчанию
-        applyCardSizesAndSplit();
+        applyCardSizes();
         
         // Обновляем отображение книги заклинаний
         updateSpellBookDisplay();
@@ -832,7 +771,7 @@ function createSpellCard(spell, isBookView = false) {
     if (isBookView) {
         const description = card.querySelector('.spell-description');
         if (description) {
-            description.dataset.fullHtml = description.innerHTML;
+            descriptionSources.set(description, description.innerHTML);
         }
     }
 
@@ -1006,8 +945,6 @@ function switchView(view) {
         allBtn.classList.remove('active');
         bookBtn.classList.add('active');
         updateSpellBookDisplay();
-        // Применяем размеры при переключении на книгу
-        setTimeout(() => applyCardSizesAndSplit(), 100);
     }
 }
 
@@ -1072,13 +1009,24 @@ function handleCardSettingsChange() {
     const cardColor = cardColorSelect.value;
     const borderRadius = borderRadiusSelect.value;
     
+    const prev = loadCardSettings();
+    const layoutChanged = prev.cardsPerRow !== cardsPerRow || prev.rowsPerPage !== rowsPerPage ||
+        prev.fontSize !== fontSize || prev.headerFontSize !== headerFontSize ||
+        prev.subheaderFontSize !== subheaderFontSize || prev.infoFontSize !== infoFontSize;
+
     // Сохраняем и применяем размеры сразу
     saveCardSettings(cardsPerRow, rowsPerPage, fontSize, headerFontSize, subheaderFontSize, infoFontSize, cardColor, borderRadius);
-    applyCardSizesAndSplit();
+    if (layoutChanged) {
+        applyCardSizesAndSplit();
+    } else {
+        applyCardSizes();
+    }
 }
 
 // Инициализация при загрузке страницы
 document.addEventListener('DOMContentLoaded', () => {
+    window.addEventListener('beforeprint', () => splitOverflowingSpellBookCards({ force: true }));
+
     // Обработчики фильтров
     document.getElementById('searchName').addEventListener('input', filterSpells);
     document.getElementById('filterLevel').addEventListener('change', filterSpells);
@@ -1171,7 +1119,7 @@ function changeFontSize(spellId, delta) {
     });
     setFontSize(spellId, newSize);
 
-    applyCardSizesAndSplit();
+    splitOverflowingSpellBookCards();
 }
 
 function increaseFontSize(spellId) {
