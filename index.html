@@ -33,225 +33,252 @@
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
     <link rel="manifest" href="favicon/site.webmanifest">
 
-    <link rel="stylesheet" href="styles.css?v=1.4">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Golos+Text:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="styles.css?v=2.0">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Карточки заклинаний D&D 2024</h1>
-            <nav>
-                <button id="viewAllBtn" class="nav-btn active">Все заклинания</button>
-                <button id="viewBookBtn" class="nav-btn">Книга заклинаний</button>
+    <header class="site-header">
+        <div class="site-header-inner">
+            <div class="site-title">
+                <h1>Карточки заклинаний</h1>
+                <span class="site-subtitle">D&amp;D 2024</span>
+            </div>
+            <nav class="tabs" aria-label="Разделы">
+                <button id="viewCatalogBtn" class="tab" aria-pressed="true">Заклинания</button>
+                <button id="viewPrintBtn" class="tab" aria-pressed="false">Карточки · <span id="tabBookCount">0</span></button>
             </nav>
-        </header>
-
-        <div id="allSpellsView" class="view">
-            <div class="all-spells-header">
-                <h2>Все заклинания</h2>
-                <div class="filters">
-                    <div class="filter-group">
-                        <div class="filter-item">
-                            <label for="searchName">Поиск по названию</label>
-                            <input type="text" id="searchName" placeholder="Поиск по названию..." class="filter-input">
-                        </div>
-                        <div class="filter-item">
-                            <label for="filterLevel">Уровень</label>
-                            <select id="filterLevel" class="filter-select">
-                                <option value="">Все уровни</option>
-                                <option value="0">Заговоры</option>
-                                <option value="1">1 уровень</option>
-                                <option value="2">2 уровень</option>
-                                <option value="3">3 уровень</option>
-                                <option value="4">4 уровень</option>
-                                <option value="5">5 уровень</option>
-                                <option value="6">6 уровень</option>
-                                <option value="7">7 уровень</option>
-                                <option value="8">8 уровень</option>
-                                <option value="9">9 уровень</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="filter-group">
-                        <div class="filter-item">
-                            <label for="filterClass">Класс</label>
-                            <select id="filterClass" class="filter-select">
-                                <option value="">Все классы</option>
-                            </select>
-                        </div>
-                        <div class="filter-item">
-                            <label for="filterSource">Источник</label>
-                            <select id="filterSource" class="filter-select">
-                                <option value="">Все</option>
-                                <option value="PHB">PHB</option>
-                                <option value="EFA">EFA</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="spellsCount" class="spells-count"></div>
-            <div id="loadingIndicator" class="loading" style="display: none;">
-                <p>Загрузка заклинаний...</p>
-            </div>
-            <div id="spellsGrid" class="spells-grid"></div>
         </div>
+    </header>
 
-        <div id="spellBookView" class="view hidden">
-            <div class="book-header">
-                <div class="book-title-section">
-                    <h2>Книга заклинаний</h2>
-                    <div class="book-controls">
-                        <button id="exportBookBtn" class="export-btn">
-                            <img src="icons/export.svg" alt="Экспорт" class="export-icon">
-                            Экспорт
-                        </button>
-                        <label for="importBookInput" class="import-btn">
-                            <img src="icons/import.svg" alt="Импорт" class="import-icon">
-                            Импорт
-                            <input type="file" id="importBookInput" accept=".json" style="display: none;">
+    <main id="catalogView" class="view catalog-layout">
+        <section class="catalog" aria-label="Каталог заклинаний">
+            <div class="filters">
+                <div class="filter-search">
+                    <label for="searchName" class="sr-only">Поиск по названию</label>
+                    <input type="search" id="searchName" class="field" placeholder="Поиск: «огненный», «fireball»…">
+                    <button type="button" id="clearSearchBtn" class="search-clear" aria-label="Очистить поиск" hidden>
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 3l8 8M11 3l-8 8"/></svg>
+                    </button>
+                </div>
+                <label>
+                    <span class="sr-only">Уровень</span>
+                    <select id="filterLevel" class="field">
+                        <option value="">Все уровни</option>
+                        <option value="0">Заговоры</option>
+                        <option value="1">1 уровень</option>
+                        <option value="2">2 уровень</option>
+                        <option value="3">3 уровень</option>
+                        <option value="4">4 уровень</option>
+                        <option value="5">5 уровень</option>
+                        <option value="6">6 уровень</option>
+                        <option value="7">7 уровень</option>
+                        <option value="8">8 уровень</option>
+                        <option value="9">9 уровень</option>
+                    </select>
+                </label>
+                <label>
+                    <span class="sr-only">Класс</span>
+                    <select id="filterClass" class="field">
+                        <option value="">Все классы</option>
+                    </select>
+                </label>
+                <label>
+                    <span class="sr-only">Источник</span>
+                    <select id="filterSource" class="field">
+                        <option value="">Все источники</option>
+                        <option value="PHB">PHB</option>
+                        <option value="EFA">EFA</option>
+                    </select>
+                </label>
+                <label class="chip"><input type="checkbox" id="filterConcentration">Концентрация</label>
+                <label class="chip"><input type="checkbox" id="filterRitual">Ритуал</label>
+            </div>
+
+            <div class="catalog-meta">
+                <p id="spellsCount" class="muted"></p>
+            </div>
+
+            <div class="spell-table">
+                <div class="spell-table-head" aria-hidden="true">
+                    <span class="col-name">Название</span>
+                    <span class="col-level">Уровень</span>
+                    <span class="col-school">Школа</span>
+                    <span class="col-time">Время</span>
+                    <span class="col-chevron"></span>
+                </div>
+                <div id="spellList"></div>
+                <p id="loadingIndicator" class="table-message">Загрузка заклинаний…</p>
+            </div>
+        </section>
+
+        <aside class="panel selection" aria-label="Выбранные заклинания">
+            <div class="panel-head">
+                <h2>Выбрано</h2>
+                <span id="selectionCount" class="muted"></span>
+                <button id="toggleSelectionBtn" class="btn ghost small selection-toggle" aria-expanded="false" aria-controls="selectionGroups">Показать</button>
+            </div>
+            <p id="selectionEmpty" class="muted selection-empty">Отмечайте заклинания галочкой в списке — они появятся здесь, а во вкладке «Карточки» их можно подготовить и распечатать.</p>
+            <div id="selectionGroups" class="selection-groups"></div>
+            <div class="panel-actions">
+                <button id="goPrintBtn" class="btn">К карточкам →</button>
+                <button id="clearBookBtn" class="btn ghost">Очистить</button>
+            </div>
+            <div class="panel-actions secondary">
+                <button id="exportBookBtn" class="btn ghost small">Экспорт</button>
+                <label class="btn ghost small" for="importBookInput">Импорт
+                    <input type="file" id="importBookInput" accept=".json" class="sr-only">
+                </label>
+            </div>
+        </aside>
+    </main>
+
+    <main id="printView" class="view print-layout" hidden>
+        <aside class="panel print-side" aria-label="Настройки печати">
+            <div class="print-side-top">
+                <p id="printSummary" class="print-summary"></p>
+                <button id="printBtn" class="btn print-btn">Распечатать</button>
+
+                <div class="settings-grid">
+                    <span class="settings-label" id="gridLabel">Сетка</span>
+                    <div class="settings-pair" role="group" aria-labelledby="gridLabel">
+                        <label>
+                            <span class="sr-only">Колонок</span>
+                            <select id="cardsPerRow" class="field compact" title="Колонок на листе">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </label>
+                        <span class="muted" aria-hidden="true">×</span>
+                        <label>
+                            <span class="sr-only">Рядов</span>
+                            <select id="rowsPerPage" class="field compact" title="Рядов на листе">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
                         </label>
                     </div>
+
+                    <label class="settings-label" for="fontSize">Шрифт</label>
+                    <select id="fontSize" class="field compact">
+                        <option value="5">5pt</option>
+                        <option value="5.5">5,5pt</option>
+                        <option value="6">6pt</option>
+                        <option value="6.5">6,5pt</option>
+                        <option value="7">7pt</option>
+                        <option value="7.5">7,5pt</option>
+                        <option value="8">8pt</option>
+                        <option value="8.5">8,5pt</option>
+                        <option value="9">9pt</option>
+                        <option value="9.5">9,5pt</option>
+                        <option value="10">10pt</option>
+                    </select>
+
+                    <label class="settings-label" for="minFontSize">Не мельче</label>
+                    <select id="minFontSize" class="field compact">
+                        <option value="4">4pt</option>
+                        <option value="4.5">4,5pt</option>
+                        <option value="5">5pt</option>
+                        <option value="5.5">5,5pt</option>
+                        <option value="6">6pt</option>
+                        <option value="6.5">6,5pt</option>
+                    </select>
                 </div>
-                    <div class="book-print">
-                        <button id="clearBookBtn" class="clear-book-btn">
-                            <img src="icons/trash.svg" alt="Удалить все заклинания" class="trash-icon">
-                            Удалить все заклинания
-                        </button>
-                        <button id="resetSettingsBtn" class="reset-btn">
-                            <img src="icons/reset.svg" alt="Сбросить настройки" class="reset-icon">
-                            Сбросить настройки
-                        </button>
-                        <button id="toggleSettingsBtn" class="settings-btn">
-                            <img src="icons/settings.svg" alt="Настройки" class="settings-icon">
-                            Настройки
-                        </button>
-                        <button id="printBtn" class="print-btn">
-                            <img src="icons/printer.svg" alt="Печать" class="print-icon">
-                            Печать
-                        </button>
+
+                <button id="fitAllBtn" class="btn ghost">Уместить всё</button>
+
+                <details class="appearance">
+                    <summary>Оформление</summary>
+                    <div class="settings-grid">
+                        <label class="settings-label" for="headerFontSize">Заголовок</label>
+                        <select id="headerFontSize" class="field compact">
+                            <option value="8">8pt</option>
+                            <option value="8.5">8,5pt</option>
+                            <option value="9">9pt</option>
+                            <option value="9.5">9,5pt</option>
+                            <option value="10">10pt</option>
+                            <option value="10.5">10,5pt</option>
+                            <option value="11">11pt</option>
+                            <option value="11.5">11,5pt</option>
+                            <option value="12">12pt</option>
+                            <option value="12.5">12,5pt</option>
+                            <option value="13">13pt</option>
+                        </select>
+
+                        <label class="settings-label" for="subheaderFontSize">Уровень и школа</label>
+                        <select id="subheaderFontSize" class="field compact">
+                            <option value="5">5pt</option>
+                            <option value="5.5">5,5pt</option>
+                            <option value="6">6pt</option>
+                            <option value="6.5">6,5pt</option>
+                            <option value="7">7pt</option>
+                            <option value="7.5">7,5pt</option>
+                            <option value="8">8pt</option>
+                            <option value="8.5">8,5pt</option>
+                            <option value="9">9pt</option>
+                            <option value="9.5">9,5pt</option>
+                            <option value="10">10pt</option>
+                        </select>
+
+                        <label class="settings-label" for="infoFontSize">Характеристики</label>
+                        <select id="infoFontSize" class="field compact">
+                            <option value="5">5pt</option>
+                            <option value="5.5">5,5pt</option>
+                            <option value="6">6pt</option>
+                            <option value="6.5">6,5pt</option>
+                            <option value="7">7pt</option>
+                            <option value="7.5">7,5pt</option>
+                            <option value="8">8pt</option>
+                            <option value="8.5">8,5pt</option>
+                            <option value="9">9pt</option>
+                            <option value="9.5">9,5pt</option>
+                            <option value="10">10pt</option>
+                        </select>
+
+                        <label class="settings-label" for="cardColor">Цвет</label>
+                        <select id="cardColor" class="field compact">
+                            <option value="#3446A6">Синий</option>
+                        <option value="#8b4513">Коричневый</option>
+                            <option value="#e01a10">Изобретатель</option>
+                            <option value="#e91e63">Бард</option>
+                            <option value="#FDD835">Жрец</option>
+                            <option value="#795548">Друид</option>
+                            <option value="#2196f3">Паладин</option>
+                            <option value="#4caf50">Следопыт</option>
+                            <option value="#ff9800">Чародей</option>
+                            <option value="#673ab7">Колдун</option>
+                            <option value="#f44336">Волшебник</option>
+                        </select>
+
+                        <label class="settings-label" for="borderRadius">Скругление</label>
+                        <select id="borderRadius" class="field compact">
+                            <option value="0">0</option>
+                            <option value="4px">4px</option>
+                            <option value="8px">8px</option>
+                            <option value="12px">12px</option>
+                            <option value="16px">16px</option>
+                        </select>
                     </div>
-                    <div id="cardSizeControls" class="card-size-controls hidden">
-                        <div class="card-controls-row">
-                            <label>
-                                <span>Карточек в строке:</span>
-                                <select id="cardsPerRow" class="size-select">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3" selected>3</option>
-                                    <option value="4">4</option>
-                                </select>
-                            </label>
-                            <label>
-                                <span>Строк на странице:</span>
-                                <select id="rowsPerPage" class="size-select">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3" selected>3</option>
-                                    <option value="4">4</option>
-                                </select>
-                            </label>
-                        </div>
-                        <div class="card-controls-row">
-                            <label>
-                                <span>Шрифт заголовка:</span>
-                                <select id="headerFontSize" class="size-select">
-                                    <option value="8">8pt</option>
-                                    <option value="8.5">8.5pt</option>
-                                    <option value="9">9pt</option>
-                                    <option value="9.5">9.5pt</option>
-                                    <option value="10" selected>10pt</option>
-                                    <option value="10.5">10.5pt</option>
-                                    <option value="11">11pt</option>
-                                    <option value="11.5">11.5pt</option>
-                                    <option value="12">12pt</option>
-                                    <option value="12.5">12.5pt</option>
-                                    <option value="13">13pt</option>
-                                </select>
-                            </label>
-                            <label>
-                                <span>Шрифт подзаголовка:</span>
-                                <select id="subheaderFontSize" class="size-select">
-                                    <option value="5">5pt</option>
-                                    <option value="5.5">5.5pt</option>
-                                    <option value="6">6pt</option>
-                                    <option value="6.5">6.5pt</option>
-                                    <option value="7">7pt</option>
-                                    <option value="7.5">7.5pt</option>
-                                    <option value="8" selected>8pt</option>
-                                    <option value="8.5">8.5pt</option>
-                                    <option value="9">9pt</option>
-                                    <option value="9.5">9.5pt</option>
-                                    <option value="10">10pt</option>
-                                </select>
-                            </label>
-                        </div>
-                        <div class="card-controls-row">
-                            <label>
-                                <span>Шрифт информации:</span>
-                                <select id="infoFontSize" class="size-select">
-                                    <option value="5">5pt</option>
-                                    <option value="5.5">5.5pt</option>
-                                    <option value="6">6pt</option>
-                                    <option value="6.5">6.5pt</option>
-                                    <option value="7" selected>7pt</option>
-                                    <option value="7.5">7.5pt</option>
-                                    <option value="8">8pt</option>
-                                    <option value="8.5">8.5pt</option>
-                                    <option value="9">9pt</option>
-                                    <option value="9.5">9.5pt</option>
-                                    <option value="10">10pt</option>
-                                </select>
-                            </label>
-                            <label>
-                                <span>Шрифт описания:</span>
-                                <select id="fontSize" class="size-select">
-                                    <option value="5">5pt</option>
-                                    <option value="5.5">5.5pt</option>
-                                    <option value="6">6pt</option>
-                                    <option value="6.5">6.5pt</option>
-                                    <option value="7" selected>7pt</option>
-                                    <option value="7.5">7.5pt</option>
-                                    <option value="8">8pt</option>
-                                    <option value="8.5">8.5pt</option>
-                                    <option value="9">9pt</option>
-                                    <option value="9.5">9.5pt</option>
-                                    <option value="10">10pt</option>
-                                </select>
-                            </label>
-                        </div>
-                        <div class="card-controls-row">
-                            <label>
-                                <span>Цвет карточек:</span>
-                                <select id="cardColor" class="size-select">
-                                    <option value="#8b4513" selected>Коричневый</option>
-                                    <option value="#e01a10">Изобретатель</option>
-                                    <option value="#e91e63">Бард</option>
-                                    <option value="#FDD835">Жрец</option>
-                                    <option value="#795548">Друид</option>
-                                    <option value="#2196f3">Паладин</option>
-                                    <option value="#4caf50">Следопыт</option>
-                                    <option value="#ff9800">Чародей</option>
-                                    <option value="#673ab7">Колдун</option>
-                                    <option value="#f44336">Волшебник</option>
-                                </select>
-                            </label>
-                            <label>
-                                <span>Скругление рамки:</span>
-                                <select id="borderRadius" class="size-select">
-                                    <option value="0">0</option>
-                                    <option value="4px">4px</option>
-                                    <option value="8px" selected>8px</option>
-                                    <option value="12px">12px</option>
-                                    <option value="16px">16px</option>
-                                </select>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            <div id="bookCount" class="spells-count">Заклинаний в книге: 0</div>
-            <div id="spellBookGrid" class="spells-grid print-grid"></div>
+                    <button id="resetSettingsBtn" class="btn ghost small">Сбросить настройки</button>
+                </details>
+            </div>
+
+            <section id="fitPanel" class="fit-panel" aria-labelledby="fitTitle">
+                <h2 id="fitTitle">Шрифт по заклинаниям</h2>
+                <div id="fitRows"></div>
+            </section>
+        </aside>
+
+        <div class="print-main">
+            <p id="printEmpty" class="print-empty muted" hidden>Пока нечего печатать. <a href="#" id="printEmptyLink">Выберите заклинания</a> в списке.</p>
+            <div id="printPages" class="print-pages"></div>
         </div>
-    </div>
+    </main>
 
     <!-- Встроенные данные для работы без сервера -->
     <script type="application/json" id="classes-data">
@@ -260,8 +287,8 @@
     <script type="application/json" id="schools-data">
 [{"id":"1","name":"Воплощение"},{"id":"2","name":"Вызов"},{"id":"3","name":"Ограждение"},{"id":"4","name":"Некромантия"},{"id":"5","name":"Очарование"},{"id":"6","name":"Иллюзия"},{"id":"7","name":"Преобразование"},{"id":"8","name":"Прорицание"}]
     </script>
-    <script src="data/all-spells.js?v=1.4"></script>
-    <script src="script.js?v=1.4"></script>
+    <script src="data/all-spells.js?v=2.0"></script>
+    <script src="script.js?v=2.0"></script>
 </body>
 </html>
 
