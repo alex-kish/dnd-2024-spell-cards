@@ -70,7 +70,7 @@ function loadData() {
         filterSpells(); // Применяем фильтры
         updateSpellBookDisplay();
         // Применяем размеры карточек при загрузке
-        setTimeout(() => applyCardSizes(), 100);
+        setTimeout(() => applyCardSizesAndSplit(), 100);
 
         loadingIndicator.style.display = 'none';
         console.log(`Загружено ${allSpells.length} заклинаний`);
@@ -205,6 +205,193 @@ function applyCardSizes() {
     if (infoFontSizeSelect) infoFontSizeSelect.value = settings.infoFontSize;
     if (cardColorSelect) cardColorSelect.value = settings.cardColor;
     if (borderRadiusSelect) borderRadiusSelect.value = settings.borderRadius;
+}
+
+function applyCardSizesAndSplit() {
+    applyCardSizes();
+    requestAnimationFrame(() => {
+        splitOverflowingSpellBookCards();
+        applyCardSizes();
+    });
+}
+
+function splitOverflowingSpellBookCards() {
+    const bookView = document.getElementById('spellBookView');
+    if (!bookView || bookView.classList.contains('hidden')) return;
+
+    const grid = document.getElementById('spellBookGrid');
+    if (!grid) return;
+
+    grid.querySelectorAll('.spell-card[data-split-part="true"]').forEach(card => card.remove());
+
+    grid.querySelectorAll('.spell-card').forEach(card => {
+        const description = card.querySelector('.spell-description');
+        if (!description) return;
+        if (description.dataset.fullHtml) {
+            description.innerHTML = description.dataset.fullHtml;
+        } else {
+            description.dataset.fullHtml = description.innerHTML;
+        }
+    });
+
+    const OVERFLOW_EPS_PX = 1;
+    const MAX_PARTS = 10;
+
+    const isMeaningfulNode = (node) => {
+        if (!node) return false;
+        if (node.nodeType === Node.TEXT_NODE) {
+            return node.textContent.trim().length > 0;
+        }
+        return true;
+    };
+
+    const countMeaningfulNodes = (container) => {
+        if (!container) return 0;
+        let count = 0;
+        container.childNodes.forEach(n => {
+            if (isMeaningfulNode(n)) count += 1;
+        });
+        return count;
+    };
+
+    const getLastMeaningfulTextNode = (container) => {
+        if (!container) return null;
+        const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, {
+            acceptNode: (node) => {
+                return node.textContent && node.textContent.trim().length > 0
+                    ? NodeFilter.FILTER_ACCEPT
+                    : NodeFilter.FILTER_REJECT;
+            }
+        });
+        let last = null;
+        while (walker.nextNode()) last = walker.currentNode;
+        return last;
+    };
+
+    const moveWordsFromEnd = (fromContainer, toContainer, wordsToMove = 25) => {
+        const textNode = getLastMeaningfulTextNode(fromContainer);
+        if (!textNode) return false;
+
+        const text = textNode.textContent;
+        const parts = text.split(/\s+/).filter(Boolean);
+        if (parts.length <= 1) return false;
+
+        const moveCount = Math.min(wordsToMove, parts.length - 1);
+        const movedWords = parts.slice(parts.length - moveCount);
+        const keptWords = parts.slice(0, parts.length - moveCount);
+
+        textNode.textContent = keptWords.join(' ');
+        const movedText = movedWords.join(' ');
+
+        toContainer.prepend(document.createTextNode(movedText + ' '));
+        return true;
+    };
+
+    const originalCards = Array.from(grid.querySelectorAll('.spell-card'));
+    for (const card of originalCards) {
+        let currentCard = card;
+        let partsCreated = 1;
+
+        while (partsCreated < MAX_PARTS) {
+            const description = currentCard.querySelector('.spell-description');
+            if (!description) break;
+
+            if (description.scrollHeight <= description.clientHeight + OVERFLOW_EPS_PX) break;
+
+            const nextCard = currentCard.cloneNode(true);
+            nextCard.dataset.splitPart = 'true';
+            nextCard.dataset.splitRootSpellId = currentCard.dataset.spellId;
+
+            const nextDescription = nextCard.querySelector('.spell-description');
+            if (!nextDescription) break;
+
+            nextDescription.innerHTML = '';
+            nextDescription.dataset.fullHtml = description.dataset.fullHtml || description.innerHTML;
+
+            let moved = false;
+            const movedNodes = [];
+            while (
+                description.scrollHeight > description.clientHeight + OVERFLOW_EPS_PX &&
+                description.childNodes.length > 1
+            ) {
+                // Не даем вычистить первую карточку полностью
+                if (countMeaningfulNodes(description) <= 1) break;
+
+                let nodeToMove = description.lastChild;
+                if (!nodeToMove) break;
+
+                // Пропускаем пустые текстовые узлы, чтобы не переносить "ничего" бесконечно
+                while (nodeToMove && nodeToMove.nodeType === Node.TEXT_NODE && nodeToMove.textContent.trim().length === 0) {
+                    const prev = nodeToMove.previousSibling;
+                    nodeToMove.remove();
+                    nodeToMove = prev;
+                }
+                if (!nodeToMove) break;
+
+                nextDescription.prepend(nodeToMove);
+                movedNodes.push(nodeToMove);
+                moved = true;
+            }
+
+            // Фоллбек: если описание монолитное (1 узел) — режем по словам в последнем текстовом узле
+            let fallbackGuard = 0;
+            while (
+                description.scrollHeight > description.clientHeight + OVERFLOW_EPS_PX &&
+                countMeaningfulNodes(description) <= 1 &&
+                fallbackGuard < 200
+            ) {
+                if (!moveWordsFromEnd(description, nextDescription, 30)) break;
+                moved = true;
+                fallbackGuard += 1;
+            }
+
+            // Если в текущей карточке не осталось контента — откатываем перенос
+            if (countMeaningfulNodes(description) === 0) {
+                for (const n of movedNodes) {
+                    description.appendChild(n);
+                }
+                nextCard.remove();
+                break;
+            }
+
+            if (!moved || countMeaningfulNodes(nextDescription) === 0) {
+                break;
+            }
+
+            currentCard.after(nextCard);
+            partsCreated += 1;
+            currentCard = nextCard;
+        }
+    }
+
+    // Обновляем индикаторы частей (1/N)
+    const allCards = Array.from(grid.querySelectorAll('.spell-card'));
+    const cardsBySpellId = new Map();
+    allCards.forEach(c => {
+        const spellId = c.dataset.spellId;
+        if (!spellId) return;
+        if (!cardsBySpellId.has(spellId)) cardsBySpellId.set(spellId, []);
+        cardsBySpellId.get(spellId).push(c);
+    });
+
+    cardsBySpellId.forEach(cards => {
+        const total = cards.length;
+        cards.forEach((c, idx) => {
+            let indicator = c.querySelector('.spell-part-indicator');
+            if (!indicator) {
+                indicator = document.createElement('div');
+                indicator.className = 'spell-part-indicator';
+                c.appendChild(indicator);
+            }
+            if (total <= 1) {
+                indicator.textContent = '';
+                indicator.style.display = 'none';
+            } else {
+                indicator.textContent = `(${idx + 1}/${total})`;
+                indicator.style.display = '';
+            }
+        });
+    });
 }
 
 // Сохранение книги заклинаний в localStorage
@@ -399,7 +586,7 @@ function resetCardSettings() {
         if (borderRadiusSelect) borderRadiusSelect.value = DEFAULT_CARD_SETTINGS.borderRadius;
         
         // Применяем настройки по умолчанию
-        applyCardSizes();
+        applyCardSizesAndSplit();
         
         // Обновляем отображение книги заклинаний
         updateSpellBookDisplay();
@@ -611,6 +798,7 @@ function createSpellCard(spell, isBookView = false) {
         <div class="spell-description" data-spell-id="${spell.Id}" data-font-size="${descriptionFontSize}" ${descriptionStyle}>
             ${processHtmlText(spell.HtmlText || '')}
         </div>
+        ${isBookView ? `<div class="spell-part-indicator" aria-hidden="true"></div>` : ''}
         ${!isBookView ? `
         <div class="spell-actions">
             <button class="btn-add" onclick="addToSpellBook('${spell.Id}')" 
@@ -640,6 +828,13 @@ function createSpellCard(spell, isBookView = false) {
         ` : ''}
     `;
 
+
+    if (isBookView) {
+        const description = card.querySelector('.spell-description');
+        if (description) {
+            description.dataset.fullHtml = description.innerHTML;
+        }
+    }
 
     return card;
 }
@@ -696,7 +891,7 @@ function updateSpellBookDisplay() {
     });
     
     // Применяем размеры карточек после создания
-    applyCardSizes();
+    applyCardSizesAndSplit();
 }
 
 // Сохранение фильтров в localStorage
@@ -812,7 +1007,7 @@ function switchView(view) {
         bookBtn.classList.add('active');
         updateSpellBookDisplay();
         // Применяем размеры при переключении на книгу
-        setTimeout(() => applyCardSizes(), 100);
+        setTimeout(() => applyCardSizesAndSplit(), 100);
     }
 }
 
@@ -842,7 +1037,7 @@ function printSpellBook() {
         });
         
         // Применяем размеры (теперь индивидуальные размеры сохранены в localStorage)
-        applyCardSizes();
+        applyCardSizesAndSplit();
         window.print();
     }, 200);
 }
@@ -879,7 +1074,7 @@ function handleCardSettingsChange() {
     
     // Сохраняем и применяем размеры сразу
     saveCardSettings(cardsPerRow, rowsPerPage, fontSize, headerFontSize, subheaderFontSize, infoFontSize, cardColor, borderRadius);
-    applyCardSizes();
+    applyCardSizesAndSplit();
 }
 
 // Инициализация при загрузке страницы
@@ -961,18 +1156,22 @@ function changeFontSize(spellId, delta) {
     const bookView = document.getElementById('spellBookView');
     if (bookView.classList.contains('hidden')) return;
     
-    const description = document.querySelector(`#spellBookGrid .spell-description[data-spell-id="${spellId}"]`);
-    if (!description) return;
+    const descriptions = document.querySelectorAll(`#spellBookGrid .spell-description[data-spell-id="${spellId}"]`);
+    if (!descriptions || descriptions.length === 0) return;
     
-    const currentSize = parseFloat(description.dataset.fontSize) || getFontSize(spellId);
+    const currentSize = parseFloat(descriptions[0].dataset.fontSize) || getFontSize(spellId);
     const newSize = currentSize + delta;
     
     // Проверяем границы
     if (newSize < FONT_SIZE_LIMITS.min || newSize > FONT_SIZE_LIMITS.max) return;
-    
-    description.dataset.fontSize = newSize;
-    description.style.fontSize = newSize + 'pt';
+
+    descriptions.forEach(description => {
+        description.dataset.fontSize = newSize;
+        description.style.fontSize = newSize + 'pt';
+    });
     setFontSize(spellId, newSize);
+
+    applyCardSizesAndSplit();
 }
 
 function increaseFontSize(spellId) {
