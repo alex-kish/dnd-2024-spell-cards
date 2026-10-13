@@ -275,15 +275,28 @@ nav {
 }
 
 .spell-part-indicator {
-    position: absolute;
-    bottom: 2mm;
-    right: 2mm;
+    flex: none;
+    align-self: flex-end;
+    margin-top: 1mm;
     font-size: 6pt;
+    line-height: 1;
     color: #888;
-    background: rgba(255, 255, 255, 0.85);
-    padding: 0 2px;
-    border-radius: 3px;
-    pointer-events: none;
+}
+
+.spells-grid.print-grid.split-measuring {
+    width: 190mm !important;
+    max-width: none !important;
+    padding: 0 !important;
+    grid-template-columns: repeat(var(--cards-per-row), 1fr) !important;
+}
+
+.spells-grid.print-grid.split-measuring .spell-card {
+    height: calc((277mm - (var(--rows-per-page) - 1) * 2mm) / var(--rows-per-page) - 0.5mm) !important;
+    min-height: auto !important;
+}
+
+.spells-grid.print-grid.split-measuring .spell-description {
+    overflow-y: hidden;
 }
 
 .font-size-controls {
@@ -900,10 +913,10 @@ nav {
         gap: 2mm;
         justify-content: start;
         justify-items: start;
-        padding: 0 5mm 0 5mm; /* Убираем нижний padding, чтобы избежать пустой страницы */
-        width: 210mm;
-        margin-top: 0;
-        margin-bottom: 0; /* Убираем нижний margin */
+        padding: 0;
+        width: 190mm;
+        max-width: none;
+        margin: 0;
         box-sizing: border-box;
         /* Высота контейнера для расчета высоты карточек: доступная высота A4 (297mm) - отступы (20mm) = 277mm */
         /* Убираем фиксированную высоту, чтобы контейнер мог правильно растягиваться на несколько страниц */
