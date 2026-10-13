@@ -11,6 +11,13 @@ body {
     line-height: 1.6;
 }
 
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+}
+
 .container {
     max-width: 210mm;
     margin: 0 auto;
